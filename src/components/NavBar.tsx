@@ -1,16 +1,17 @@
 "use client";
 import { useControlDisplay } from "@/context/ControlDisplay";
-import { route } from "@/utils/pandora";
+import { route } from "@/utils/boxRoutes";
 import Link from "next/link";
 import React from "react";
 import { LuPhone } from "react-icons/lu";
 import { SlCup } from "react-icons/sl";
+
 const NavBar = () => {
   const { windowWidth, windowScroll } = useControlDisplay();
   return (
 
       <div className="text-lg fixed z-10 w-full bg-[#2B2A2B] h-16 flex justify-evenly items-center ">
-        <Link href={"/"} className="w-full flex items-center gap-2">
+        <Link href={"/"} className="flex items-center gap-2">
           {windowWidth > 1150 && (
             <h2 className=" text-2xl">cafeconaroma.com</h2>
           )}
@@ -18,11 +19,12 @@ const NavBar = () => {
 
         </Link>
         
-        <div className="flex sm:gap-2 lg:gap-6">
+        <div className="flex sm:gap-2 lg:gap-4">
           {route.map((item, index) => {
             return (
               <Link key={index} href={item.link}>
                 {item.title}
+                
               </Link>
             );
           })}

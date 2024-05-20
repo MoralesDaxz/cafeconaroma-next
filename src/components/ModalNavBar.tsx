@@ -1,13 +1,20 @@
 "use client";
 
-import { route } from "@/utils/pandora";
+import { getRouteIndex, route } from "@/utils/boxRoutes";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoIosClose } from "react-icons/io";
 import { HiMenu } from "react-icons/hi";
 import { SlCup } from "react-icons/sl";
+import { FaCircle } from "react-icons/fa6";
+import { usePathname } from "next/navigation";
 const ModalNavBar = () => {
+  const path = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const [indexRoute, setIndexRoute] = useState(-1);
+  useEffect(() => {
+    setIndexRoute(getRouteIndex(path));
+  }, [path]);
   return (
     <>
       {isOpen && (
@@ -24,11 +31,35 @@ const ModalNavBar = () => {
           />
 
           <div className="flex flex-col gap-8 pl-3">
-            <Link href={"/"}>Inicio</Link>
+            <Link
+              className="flex items-center justify-between gap-4 py-2"
+              href={"/"}
+            >
+              <FaCircle
+                className={`w-3 h-3 transition-all duration-500 ${
+                  indexRoute === 0 && "chooseRoute"
+                }`}
+                color={indexRoute === 0 ? "#3a7c5e" : "#808080"}
+              />
+
+              <p className={`text-start w-[8rem] `}>Inicio</p>
+            </Link>
             {route.map((item, index) => {
               return (
-                <Link key={index} href={item.link}>
-                  {item.title}
+                <Link
+                  className="flex items-center justify-between gap-4 py-2"
+                  key={index}
+                  href={item.link}
+                >
+                  <FaCircle
+                    className={`w-3 h-3 transition-all duration-500 ${
+                      indexRoute === Number(index + 1) && "chooseRoute"
+                    }`}
+                    color={
+                      indexRoute === Number(index + 1) ? "#3a7c5e" : "#808080"
+                    }
+                  />
+                  <p className={`text-start w-[8rem]`}>{item.title}</p>
                 </Link>
               );
             })}

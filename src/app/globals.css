@@ -37,3 +37,21 @@ body {
     text-wrap: balance;
   }
 }
+
+.chooseRoute {
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  background-color: #3a7c5e;
+  animation: 1.5s pulse infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 #3a7c5e;
+  }
+
+  100% {
+    box-shadow: 0 0 0 14px #69ffa800;
+  }
+}
