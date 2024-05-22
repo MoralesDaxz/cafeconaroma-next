@@ -2,8 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
-  box-sizing: inherit;
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -54,4 +56,11 @@ body {
   100% {
     box-shadow: 0 0 0 14px #69ffa800;
   }
+}
+/* Imagen Cards-Info */
+.cardBg{
+  background-image: url('../assets/images/cards-bg-coffe.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
