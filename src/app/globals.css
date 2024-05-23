@@ -5,7 +5,8 @@
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
+  line-height: 1.2;
 }
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -20,10 +21,10 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
-html{
+html {
   scroll-behavior: smooth;
-  --scroll-behavior-duration: 1s; 
-} 
+  --scroll-behavior-duration: 1s;
+}
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -57,10 +58,24 @@ body {
     box-shadow: 0 0 0 14px #69ffa800;
   }
 }
-/* Imagen Cards-Info */
-.cardBg{
-  background-image: url('../assets/images/cards-bg-coffe.jpg');
+/*Bg - CardsInfo  */
+.bgCards {
+  position: relative; /* Necesario para que el pseudo-elemento se posicione correctamente */
+  overflow: hidden; /* Asegura que el pseudo-elemento no se salga del contenedor */
+}
+
+.bgCards::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../assets/images/cards-coffee-seed.jpg");
+  /*  background-attachment: fixed; */ /* Parallax */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  opacity: 0.4; /* Ajusta este valor para cambiar la opacidad */
+  z-index: 0; /* Coloca el pseudo-elemento detrás del contenido */
 }
