@@ -5,11 +5,11 @@ import React from "react";
 import pickCoffee from "@/assets/images/pick-coffee.jpg";
 import { useControlDisplay } from "@/context/ControlDisplay";
 const Hero = () => {
-  const { windowWidth, windowScroll } = useControlDisplay();
+  const { windowWidth } = useControlDisplay();
   return (
-    <section className="pt-10 sm:pt-24 pb-10 px-12 w-full flex flex-col justify-center sm:flex-row sm:justify-evenly sm:items-center bg-[#FEFFFE] gap-5 h-[500px]">
-      <article className="w-full flex flex-col gap-8 sm:gap-5">
-        <p className="text-[#2B5A45]  font-medium text-lg">
+    <section className="pt-10 sm:pt-24 pb-10 px-12 w-full flex flex-col sm:flex-row sm:justify-center sm:items-center bg-[#FEFFFE] gap-5 h-[500px]">
+      <article className="w-full max-w-[580px] flex flex-col gap-8 sm:gap-5">
+        <p className="text-[#2B5A45] font-medium text-lg">
           De la planta a tu taza
         </p>
         <h3 className="text-[#000101] font-bold text-[2.1rem] leading-8">
@@ -36,11 +36,11 @@ const Hero = () => {
         </div>
       </article>
       {windowWidth > 640 && (
-        <article className="w-full flex justify-center items-center">
+        <article className="w-full max-w-[580px] flex justify-center items-center">
           <Image
             src={pickCoffee}
             alt="coffee-aroma"
-            className="w-full max-w-[550px] rounded-xl shadow-md  shadow-[#00000093] opacity-90 "
+            className="w-full rounded-xl shadow-md  shadow-[#00000093] opacity-90 "
             width={0}
             height={0}
           />
