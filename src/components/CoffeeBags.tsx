@@ -31,12 +31,12 @@ const CoffeeBags: FC<Props> = ({ units }) => {
             if (index < units) {
               return (
                 <div
-                  className="border border-color-[#E3DED7] p-5 flex flex-col items-center group/bagCoffee gap-3"
+                  className="border-2 border-[#e3ded7] hover:border-[#c5c0b8] hover:bg-[#e3ded7] rounded-md p-5 flex flex-col items-center group/bagCoffee gap-3 transition-all duration-500"
                   key={index}
                 >
-                  <p className="capitalize font-medium text-2xl">
+                  <h4 className="capitalize font-medium text-2xl ">
                     {item.brand}
-                  </p>
+                  </h4>
                   <Image
                     className="w-[300px] h-auto"
                     src={item.img_url!}
