@@ -40,7 +40,7 @@ const Hero = () => {
           <Image
             src={pickCoffee}
             alt="coffee-aroma"
-            className="w-full rounded-xl shadow-md  shadow-[#00000093] opacity-90 "
+            className="w-full rounded-xl shadow-md shadow-[#00000093] opacity-90 "
             width={0}
             height={0}
           />

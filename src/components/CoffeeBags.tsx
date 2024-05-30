@@ -25,20 +25,20 @@ const CoffeeBags: FC<Props> = ({ units }) => {
 
   return (
     <>
-      <section className="w-[80%] flex flex-wrap justify-center gap-3">
+      <section className="w-full flex flex-wrap justify-center gap-3">
         {coffee !== undefined &&
           coffee?.map((item, index) => {
             if (index < units) {
               return (
                 <div
-                  className="border-2 border-[#e3ded7] hover:border-[#c5c0b8] hover:bg-[#e3ded7] rounded-md p-5 flex flex-col items-center group/bagCoffee gap-3 transition-all duration-500"
+                  className="w-[70%] sm:w-[40%]  md:w-[20%]  border-2 border-[#e3ded7] hover:border-[#c5c0b8] hover:bg-[#e3ded7] rounded-md p-5 flex flex-col items-center group/bagCoffee gap-3 transition-all duration-500"
                   key={index}
                 >
                   <h4 className="capitalize font-medium text-2xl ">
                     {item.brand}
                   </h4>
                   <Image
-                    className="w-[300px] h-auto"
+                    className="w-[full] h-auto"
                     src={item.img_url!}
                     width={400}
                     height={400}
