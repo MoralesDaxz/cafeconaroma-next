@@ -2,8 +2,8 @@
 const route = [
   { link: "/store", title: "Tienda" },
   { link: "/suscription", title: "Suscripción" },
-  { link: "/companies", title: "Para empresas" },
-  { link: "/us", title: "Sobre nosotros" },
+  { link: "/companies", title: "Empresas" },
+  { link: "/us", title: "Nosotros" },
   { link: "/contact", title: "Contacto" },
 ];
 /* Get index route -> map.route "index + 1" */

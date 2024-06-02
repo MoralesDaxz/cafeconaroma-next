@@ -1,4 +1,5 @@
 import CardsInfo from "@/components/CardsInfo";
+import Contact from "@/components/Contact";
 import Faq from "@/components/Faq";
 import Hero from "@/components/Hero";
 import Location from "@/components/Location";
@@ -12,6 +13,7 @@ export default function Home() {
       <NewsCoffee/>
       <Faq/>
       <Location/>
+      <Contact/>
     </main>
   );
 }

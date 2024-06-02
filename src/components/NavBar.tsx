@@ -12,14 +12,14 @@ const NavBar = () => {
 
       <div className="text-lg fixed z-10 w-full bg-[#2B2A2B] h-16 flex justify-evenly items-center ">
         <Link href={"/"} className="flex items-center gap-2">
-          {windowWidth > 1150 && (
+          {windowWidth > 1000 && (
             <h2 className=" text-2xl">cafeconaroma.com</h2>
           )}
           <SlCup className="w-[1.5rem] h-[1.5rem]" />
 
         </Link>
         
-        <div className="flex sm:gap-2 lg:gap-4">
+        <div className="flex sm:gap-4 lg:gap-6">
           {route.map((item, index) => {
             return (
               <Link key={index} href={item.link}>
