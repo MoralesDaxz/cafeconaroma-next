@@ -5,7 +5,7 @@ import Form from "./Form";
 
 const Contact = () => {
   return (
-    <section className="w-full h-[450px] flex flex-col sm:flex sm:flex-row sm:justify-center py-3 sm:py-0 px-3 sm:px-7 gap-3 bg-[#E2DFD7]">
+    <section className="w-full sm:h-[450px] flex flex-col sm:flex sm:flex-row sm:justify-center py-3 sm:py-0 px-3 sm:px-7 gap-8 sm:gap-3 bg-[#E2DFD7]">
       <article className=" max-w-[580px] flex flex-col gap-4 text-[#777E89] justify-center">
         <h2 className="text-[#111933] font-medium">Entra en contacto con nosotros</h2>
         <p>

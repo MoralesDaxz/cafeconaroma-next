@@ -5,7 +5,7 @@ import truck from "@/assets/images/cards-truck.svg";
 import gift from "@/assets/images/cards-gift.svg";
 const CardsInfo = () => {
   return (
-    <section className="bgCards py-14 w-full text-black flex flex-col items-center justify-center gap-8 ">
+    <section className="bgCards py-14 w-full text-black flex flex-col items-center sm:min-h-[500px] justify-center gap-8 ">
       <h2 className=" text-white text-[1.5rem] font-medium opacity-90 text-center">
         Café con las mejores condiciones
       </h2>

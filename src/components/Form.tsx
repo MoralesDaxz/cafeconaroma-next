@@ -22,28 +22,51 @@ const Form = () => {
           type="text"
           placeholder=""
           minLength={4}
+          maxLength={50}
           required
-          {...register("nombre")}
+          {...register("name")}
         />
         <span className="select-none">Nombre completo</span>
       </label>
 
       <label>
-        <input className="input" type="email" placeholder="" required />
+        <input
+          className="input"
+          type="email"
+          placeholder=""
+          required
+          {...register("mail")}
+        />
         <span className="select-none">Email</span>
       </label>
 
       <label>
-        <input className="input" type="tel" placeholder="" required />
+        <input
+          className="input"
+          type="tel"
+          placeholder=""
+          required
+          {...register("phone")}
+        />
         <span className="select-none">Telefono</span>
       </label>
 
       <label>
-        <textarea className="input" placeholder="" required />
+        <textarea
+          className="input"
+          placeholder=""
+          required
+          {...register("details")}
+        />
         <span className="select-none">¿Cómo podemos ayudarte?</span>
       </label>
       <div className="flex gap-2">
-        <input type="checkbox" className=" accent-[#2B5A45]" required />
+        <input
+          type="checkbox"
+          className=" accent-[#2B5A45]"
+          required
+          {...register("terms")}
+        />
         <span className="text-[.8em]">
           Acepto la{" "}
           <Link href={"#privacity"} className="underline">
