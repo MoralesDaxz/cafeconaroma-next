@@ -25,7 +25,7 @@ const CoffeeBags: FC<Props> = ({ units }) => {
 
   return (
     <>
-      <section className="w-full flex flex-wrap justify-center gap-3">
+      <section className="w-full flex flex-wrap justify-center gap-3 text-[#181717] my-5">
         {coffee !== undefined &&
           coffee?.map((item, index) => {
             if (index < units) {

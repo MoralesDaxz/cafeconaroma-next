@@ -9,8 +9,8 @@ const NewsCoffee = () => {
       <h2 className="title text-[#2A5B45]">Novedades</h2>
       
       <CoffeeBags units={4}/>
-      <Link href={"/store"} className="flex items-center gap-3">
-        <p className="underline font-bold">Ver todos</p>
+      <Link href={"/store"} className="flex items-center gap-3 opacity-90">
+        <p className="border-b-[1px] border-b-black font-bold ">Ver todos</p>
         <FaArrowRightLong />
       </Link>
     </section>

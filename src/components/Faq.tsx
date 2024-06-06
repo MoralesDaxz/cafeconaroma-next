@@ -44,8 +44,8 @@ const Faq = () => {
           </div>
         );
       })}
-      <Link href={"/contact"} className="flex items-center gap-3 mt-10">
-        <p className="underline font-bold">Resolvemos tus dudas</p>
+      <Link href={"/contact"} className="flex items-center gap-3 mt-10 opacity-90">
+        <p className="border-b-[1px] border-b-white font-bold">Resolvemos tus dudas</p>
         <FaArrowRightLong />
       </Link>
     </section>

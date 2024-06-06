@@ -6,6 +6,13 @@ const route = [
   { link: "/us", title: "Nosotros" },
   { link: "/contact", title: "Contacto" },
 ];
+
+/* Routes Footer */
+const footerRoute = [
+  { link: "/privacity", title: "Política de privacidad" },
+  { link: "/terms", title: "Términos y condiciones" },
+  { link: "/cookies", title: "Cookies" },
+];
 /* Get index route -> map.route "index + 1" */
 function getRouteIndex(param: string) {
   switch (param) {
@@ -26,4 +33,4 @@ function getRouteIndex(param: string) {
   }
 }
 
-export { route, getRouteIndex };
+export { route,footerRoute, getRouteIndex };

@@ -20,9 +20,9 @@ const Location = () => {
         </p>
         <Link
           href={"https://maps.app.goo.gl/C4ehyrkk2vKedmLx5"}
-          className="self-start flex items-center gap-3"
+          className="self-start flex items-center gap-3 opacity-90"
         >
-          <p className="underline">Cómo llegar</p> <FaArrowRightLong />
+          <p className="border-b-[1px] border-b-black ">Cómo llegar</p> <FaArrowRightLong />
         </Link>
       </article>
       {windowWidth > 640 ? (

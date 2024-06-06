@@ -1,6 +1,7 @@
 import CardsInfo from "@/components/CardsInfo";
 import Contact from "@/components/Contact";
 import Faq from "@/components/Faq";
+import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import Location from "@/components/Location";
 import NewsCoffee from "@/components/NewsCoffee";
@@ -14,6 +15,7 @@ export default function Home() {
       <Faq/>
       <Location/>
       <Contact/>
+      <Footer/>
     </main>
   );
 }
