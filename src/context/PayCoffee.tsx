@@ -18,7 +18,7 @@ type ControlProps = {
   setWindowScroll: Dispatch<SetStateAction<number>>;
 };
 
-export const ControlDisplay = createContext<ControlProps>({
+export const Purchase = createContext<ControlProps>({
   closeModal: false,
   setCloseModal: () => {},
   windowWidth: 0,
@@ -26,37 +26,16 @@ export const ControlDisplay = createContext<ControlProps>({
   windowScroll: 0,
   setWindowScroll: () => {},
 });
-export const ControlDisplayProvider: FC<{ children: React.ReactNode }> = ({
+export const PurchaseDisplayProvider: FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [closeModal, setCloseModal] = useState<boolean>(true);
   const [windowWidth, setWindowWidth] = useState<number>(0);
   const [windowScroll, setWindowScroll] = useState<number>(0);
   useEffect(() => {
-
-    if (typeof window !== "undefined") {
-      setWindowWidth(window.innerWidth * 1);
-
-      const handleResize = () => {
-        setWindowWidth(window.innerWidth * 1);
-        return;
-      };
-
-      const handleScroll = () => {
-        setWindowScroll(window.scrollY);
-        return;
-      };
-      window.addEventListener("resize", () => handleResize());
-      window.addEventListener("scroll", () => handleScroll());
-
-      return () => {
-        window.removeEventListener("resize", () => handleResize());
-        window.removeEventListener("scroll", () => handleScroll());
-      };
-    }
   }, []);
   return (
-    <ControlDisplay.Provider
+    <Purchase.Provider
       value={{
         closeModal,
         setCloseModal,
@@ -67,8 +46,8 @@ export const ControlDisplayProvider: FC<{ children: React.ReactNode }> = ({
       }}
     >
       {children}
-    </ControlDisplay.Provider>
+    </Purchase.Provider>
   );
 };
 // Crear un hook personalizado para usar los estados dentro de otros componentes
-export const useControlDisplay = () => useContext<ControlProps>(ControlDisplay);
+export const usePurchase = () => useContext<ControlProps>(Purchase);

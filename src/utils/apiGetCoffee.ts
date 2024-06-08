@@ -7,10 +7,10 @@ interface Product {
   package: string;
 }
 
-const URL_API = "https://api-cafeconaroma.onrender.com/products";
 
-const getCoffee = async () => {
-  const promise = await fetch(URL_API);
+
+const getCoffee = async (url:string) => {
+  const promise = await fetch(url);
   const response = await promise.json();
   return response.products;
 };

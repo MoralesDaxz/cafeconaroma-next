@@ -1,8 +1,9 @@
 "use client";
+import { useProducts } from "@/context/GetProducts";
 import { getCoffee } from "@/utils/apiGetCoffee";
 import Image from "next/image";
 import React, { FC, useEffect, useState } from "react";
-
+const URL_API = "https://api-cafeconaroma.onrender.com/products";
 type Product = {
   _id?: string;
   available?: true;
@@ -16,22 +17,27 @@ interface Props {
 }
 
 const CoffeeBags: FC<Props> = ({ units }) => {
-  const [coffee, setCoffee] = useState<Product[]>();
+  const { coffee  } = useProducts();
+
   useEffect(() => {
-    getCoffee().then((data) => {
-      setCoffee(data);
-    });
-  }, []);
+    const getCoffee = async () => {
+      const promise = await fetch(URL_API);
+      const response = await promise.json();
+      return response.products;
+    };
+  });
+
+  const putLocalStorage = () => {};
 
   return (
     <>
-      <section className="w-full flex flex-wrap justify-center gap-3 text-[#181717] my-5">
-        {coffee !== undefined &&
-          coffee?.map((item, index) => {
+      <section className="w-full flex flex-wrap justify-center gap-3 text-[#181717]">
+        {coffee !== undefined ? (
+          coffee.map((item, index) => {
             if (index < units) {
               return (
                 <div
-                  className="w-[70%] sm:w-[40%]  md:w-[20%]  border-2 border-[#e3ded7] hover:border-[#c5c0b8] hover:bg-[#e3ded7] rounded-md p-5 flex flex-col items-center group/bagCoffee gap-3 transition-all duration-500"
+                  className="w-[70%] sm:w-[40%] md:w-[20%]  border-2 border-[#e3ded7] hover:border-[#c5c0b8] hover:bg-[#e3ded7] rounded-md p-5 flex flex-col items-center group/bagCoffee gap-3 transition-all duration-500"
                   key={index}
                 >
                   <h4 className="capitalize font-medium text-2xl ">
@@ -57,7 +63,18 @@ const CoffeeBags: FC<Props> = ({ units }) => {
                 </div>
               );
             }
-          })}
+          })
+        ) : (
+          <div className="flex flex-col items-center">
+            <div className="lds-ellipsis">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+            <p className="text-2xl font-medium">Loading...</p>
+          </div>
+        )}
       </section>
     </>
   );

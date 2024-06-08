@@ -33,6 +33,7 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+    
 }
 ::-webkit-scrollbar {
   height: 5px;
@@ -180,3 +181,4 @@ body {
 .submit:hover {
   background-color: #00bfff96;
 }
+

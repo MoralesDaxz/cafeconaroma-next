@@ -1,8 +1,10 @@
 import { Outfit } from "next/font/google";
 import "./globals.css";
+import "../assets/css/loader.css";
 import { ControlDisplayProvider } from "@/context/ControlDisplay";
 import DisplayNavBar from "@/components/DisplayNavBar";
 import CopyRight from "@/components/CopyRight";
+import { GetProductsProvider } from "@/context/GetProducts";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -37,9 +39,11 @@ export default function RootLayout({
       </head>
       <body className={outfit.className}>
         <ControlDisplayProvider>
-          <DisplayNavBar />
-          {children}
-          <CopyRight/>
+          <GetProductsProvider>
+            <DisplayNavBar />
+            {children}
+            <CopyRight />
+          </GetProductsProvider>
         </ControlDisplayProvider>
       </body>
     </html>

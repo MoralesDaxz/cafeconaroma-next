@@ -6,10 +6,12 @@ import React from "react";
 
 const page = () => {
   return (
-    <section className="pt-20 w-full min-h-screen">
-      <h2 className="text-[#2B5A45] title py-5">Últimos orígenes</h2>
-      <CoffeeBags units={20}/>
-      <CardsInfo/>
+    <section className="w-full min-h-screen ">
+      <article className="pt-20 pb-10 bg-white">
+        <h2 className="text-[#2B5A45] title  my-8">Últimos orígenes</h2>
+        <CoffeeBags units={20} />
+      </article>
+      <CardsInfo />
       <Footer />
     </section>
   );
