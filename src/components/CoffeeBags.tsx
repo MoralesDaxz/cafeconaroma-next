@@ -15,9 +15,14 @@ type Product = {
 interface Props {
   units: number;
 }
+type Local = {
+  id: string;
+  brand: string;
+  img: string;
+};
 
 const CoffeeBags: FC<Props> = ({ units }) => {
-  const { coffee  } = useProducts();
+  const { coffee } = useProducts();
 
   useEffect(() => {
     const getCoffee = async () => {
@@ -27,8 +32,44 @@ const CoffeeBags: FC<Props> = ({ units }) => {
     };
   });
 
-  const putLocalStorage = () => {};
+  const putLocalStorage = (
+    idValue?: string,
+    img?: string,
+    brand?: string,
+    priceValue?: number
+  ) => {
+    const getProductLocal = JSON.parse(localStorage.getItem("coffee")!);
+    const product = {
+      id: idValue,
+      name: brand,
+      image: img,
+      cantidad: 1,
+      price: priceValue,
+    };
 
+    if (getProductLocal !== null) {
+
+      const updateValues = getProductLocal.find((item: Local) => {
+        item.id == idValue;
+      });
+  
+      
+      if (updateValues) {
+        updateValues.cantidad += 1;
+        updateValues.price *= updateValues.cantidad;
+        localStorage.setItem(
+          "coffee",
+          JSON.stringify([updateValues, ...getProductLocal])
+        );
+        return console.log(getProductLocal);
+      }else{ return  localStorage.setItem(
+        "coffee",
+        JSON.stringify([updateValues, ...getProductLocal])
+      );}
+    } else {
+      return localStorage.setItem("coffee", JSON.stringify([{ ...product }]));
+    }
+  };
   return (
     <>
       <section className="w-full flex flex-wrap justify-center gap-3 text-[#181717]">
@@ -57,6 +98,14 @@ const CoffeeBags: FC<Props> = ({ units }) => {
                   <button
                     className="w-fit py-3 px-2 rounded-md bg-[#2a5b45b3] group-hover/bagCoffee:bg-[#2A5B45] text-white font-medium text-lg"
                     id={item._id}
+                    onClick={() =>
+                      putLocalStorage(
+                        item._id,
+                        item.img_url,
+                        item.brand,
+                        item.price
+                      )
+                    }
                   >
                     Añadir
                   </button>
