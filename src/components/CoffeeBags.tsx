@@ -1,74 +1,49 @@
 "use client";
 import { useProducts } from "@/context/GetProducts";
-import { getCoffee } from "@/utils/apiGetCoffee";
 import Image from "next/image";
-import React, { FC, useEffect, useState } from "react";
-const URL_API = "https://api-cafeconaroma.onrender.com/products";
-type Product = {
-  _id?: string;
-  available?: true;
-  brand?: string;
-  img_url?: string;
-  price?: number;
-  package?: string;
-};
-interface Props {
+import React, { FC } from "react";
+import Loader from "./Loader";
+
+type NumberBags = {
   units: number;
-}
+};
 type Local = {
-  id: string;
-  brand: string;
-  img: string;
+  id?: string;
+  img?: string;
+  name?: string;
+  price?: number;
+  units?: number;
 };
 
-const CoffeeBags: FC<Props> = ({ units }) => {
+const CoffeeBags: FC<NumberBags> = ({ units }) => {
   const { coffee } = useProducts();
 
-  useEffect(() => {
-    const getCoffee = async () => {
-      const promise = await fetch(URL_API);
-      const response = await promise.json();
-      return response.products;
-    };
-  });
-
   const putLocalStorage = (
-    idValue?: string,
-    img?: string,
-    brand?: string,
-    priceValue?: number
+    idArg?: string,
+    imgArg?: string,
+    nameArg?: string,
+    priceArg?: number
   ) => {
-    const getProductLocal = JSON.parse(localStorage.getItem("coffee")!);
+    /* Trabajamos con LS dentro de funcion, al montar el componente en primer vuelco nos dara error
+    Mientras que en la FN esperara a ser ejecutada con componente ya desplegado */
+    const storedProducts = localStorage.getItem("coffee");
+    const products = storedProducts ? JSON.parse(storedProducts) : [];
+    /* Nuevo producto con argunmentos proporcionados */
     const product = {
-      id: idValue,
-      name: brand,
-      image: img,
-      cantidad: 1,
-      price: priceValue,
+      id: idArg,
+      image: imgArg,
+      name: nameArg,
+      units: 1,
+      price: priceArg,
     };
-
-    if (getProductLocal !== null) {
-
-      const updateValues = getProductLocal.find((item: Local) => {
-        item.id == idValue;
-      });
-  
-      
-      if (updateValues) {
-        updateValues.cantidad += 1;
-        updateValues.price *= updateValues.cantidad;
-        localStorage.setItem(
-          "coffee",
-          JSON.stringify([updateValues, ...getProductLocal])
-        );
-        return console.log(getProductLocal);
-      }else{ return  localStorage.setItem(
-        "coffee",
-        JSON.stringify([updateValues, ...getProductLocal])
-      );}
+    /* Evaluamos si existe o no para agregar unidades*/
+    const existingProduct = products.find((item: Local) => item.id === idArg);
+    if (existingProduct) {
+      existingProduct.units += 1;
     } else {
-      return localStorage.setItem("coffee", JSON.stringify([{ ...product }]));
+      products.unshift(product);
     }
+    localStorage.setItem("coffee", JSON.stringify(products));
   };
   return (
     <>
@@ -114,15 +89,7 @@ const CoffeeBags: FC<Props> = ({ units }) => {
             }
           })
         ) : (
-          <div className="flex flex-col items-center">
-            <div className="lds-ellipsis">
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
-            <p className="text-2xl font-medium">Loading...</p>
-          </div>
+          <Loader />
         )}
       </section>
     </>
