@@ -10,6 +10,8 @@ import {
   useContext,
 } from "react";
 
+
+
 type Product = {
   _id?: string;
   available?: true;
@@ -20,8 +22,8 @@ type Product = {
 };
 
 type ControlProps = {
-  coffee: Product[] |undefined;
-  setCoffee: Dispatch<SetStateAction<Product[]|undefined>>;
+  coffee: Product[] | undefined;
+  setCoffee: Dispatch<SetStateAction<Product[] | undefined>>;
 };
 
 /* const localInfo = localStorage.setItem('buys', JSON.stringify([])) */
@@ -29,13 +31,14 @@ export const GetProducts = createContext<ControlProps>({
   coffee: [],
   setCoffee: () => {},
 });
+
 export const GetProductsProvider: FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [coffee, setCoffee] = useState<Product[]>();
+  const url = process.env.NEXT_PUBLIC_URL_API_COFFEE;
   useEffect(() => {
-    const URL_API = "https://api-cafeconaroma.onrender.com/products";
-    getCoffee(URL_API).then((data:Product[]) => {
+    getCoffee(url!).then((data: Product[]) => {
       setCoffee(data);
     });
   }, []);

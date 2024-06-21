@@ -13,6 +13,7 @@ const footerRoute = [
   { link: "/terms", title: "Términos y condiciones" },
   { link: "/cookies", title: "Cookies" },
 ];
+
 /* Get index route -> map.route "index + 1" */
 function getRouteIndex(param: string) {
   switch (param) {
@@ -33,4 +34,4 @@ function getRouteIndex(param: string) {
   }
 }
 
-export { route,footerRoute, getRouteIndex };
+export { route, footerRoute, getRouteIndex };

@@ -1,4 +1,5 @@
 "use client";
+import { getCoffee } from "@/utils/apiGetCoffee";
 import {
   useState,
   createContext,
@@ -9,45 +10,48 @@ import {
   useContext,
 } from "react";
 
-type ControlProps = {
-  closeModal: boolean;
-  setCloseModal: Dispatch<SetStateAction<boolean>>;
-  windowWidth: number;
-  setWindowWidth: Dispatch<SetStateAction<number>>;
-  windowScroll: number;
-  setWindowScroll: Dispatch<SetStateAction<number>>;
+type Product = {
+  _id?: string;
+  available?: true;
+  brand?: string;
+  img_url?: string;
+  price?: number;
+  package?: string;
 };
 
-export const Purchase = createContext<ControlProps>({
-  closeModal: false,
-  setCloseModal: () => {},
-  windowWidth: 0,
-  setWindowWidth: () => {},
-  windowScroll: 0,
-  setWindowScroll: () => {},
+type ControlProps = {
+  coffee: Product[] | undefined;
+  setCoffee: Dispatch<SetStateAction<Product[] | undefined>>;
+};
+
+
+
+export const GetProducts = createContext<ControlProps>({
+  coffee: [],
+  setCoffee: () => {},
 });
-export const PurchaseDisplayProvider: FC<{ children: React.ReactNode }> = ({
+
+export const GetProductsProvider: FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [closeModal, setCloseModal] = useState<boolean>(true);
-  const [windowWidth, setWindowWidth] = useState<number>(0);
-  const [windowScroll, setWindowScroll] = useState<number>(0);
+  const [coffee, setCoffee] = useState<Product[]>();
+  const url = process.env.NEXT_PUBLIC_URL_API_COFFEE;
   useEffect(() => {
+    getCoffee(url!).then((data: Product[]) => {
+      setCoffee(data);
+    });
   }, []);
   return (
-    <Purchase.Provider
+    <GetProducts.Provider
       value={{
-        closeModal,
-        setCloseModal,
-        windowWidth,
-        setWindowWidth,
-        windowScroll,
-        setWindowScroll,
+        coffee,
+        setCoffee,
       }}
     >
       {children}
-    </Purchase.Provider>
+    </GetProducts.Provider>
   );
 };
+
 // Crear un hook personalizado para usar los estados dentro de otros componentes
-export const usePurchase = () => useContext<ControlProps>(Purchase);
+export const useProducts = () => useContext<ControlProps>(GetProducts);
