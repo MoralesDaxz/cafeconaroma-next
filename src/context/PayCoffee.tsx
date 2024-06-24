@@ -11,47 +11,42 @@ import {
 } from "react";
 
 type Product = {
-  _id?: string;
-  available?: true;
-  brand?: string;
-  img_url?: string;
+  id?: string;
+  name?: string;
+  img?: string;
   price?: number;
-  package?: string;
+  units?: number;
+ 
 };
 
-type ControlProps = {
-  coffee: Product[] | undefined;
+/* type ControlProps = {
+  local: Product[] | undefined;
   setCoffee: Dispatch<SetStateAction<Product[] | undefined>>;
 };
+ */
 
 
+export const PayProducts = createContext({});
 
-export const GetProducts = createContext<ControlProps>({
-  coffee: [],
-  setCoffee: () => {},
-});
-
-export const GetProductsProvider: FC<{ children: React.ReactNode }> = ({
+export const PayProductsProvider: FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [coffee, setCoffee] = useState<Product[]>();
-  const url = process.env.NEXT_PUBLIC_URL_API_COFFEE;
-  useEffect(() => {
-    getCoffee(url!).then((data: Product[]) => {
-      setCoffee(data);
-    });
-  }, []);
+  const storedProducts = localStorage.getItem("coffee");
+  const products = storedProducts ? JSON.parse(storedProducts) : [];
+  const [local, setLocal] = useState(products)
+/*   const [coffee, setCoffee] = useState<Product[]>();
+  const url = process.env.NEXT_PUBLIC_URL_API_COFFEE; */
+  useEffect(() => {}, []);
   return (
-    <GetProducts.Provider
+    <PayProducts.Provider
       value={{
-        coffee,
-        setCoffee,
+        local,
       }}
     >
       {children}
-    </GetProducts.Provider>
+    </PayProducts.Provider>
   );
 };
 
 // Crear un hook personalizado para usar los estados dentro de otros componentes
-export const useProducts = () => useContext<ControlProps>(GetProducts);
+export const useProducts = () => useContext(PayProducts);
