@@ -10,7 +10,7 @@ const Footer = () => {
   const { windowWidth } = useControlDisplay();
   return (
     <section className="bg-[#201815] w-full flex flex-col justify-center sm:flex-row sm:justify-between sm:items-center p-5">
-      <article className="sm:w-[50%] flex flex-col gap-3">
+      <article className="sm:w-[40%] flex flex-col gap-3">
         <Link href={"/"} className="flex items-center gap-2">
           <h2 className=" text-2xl">cafeconaroma.com</h2>
           <SlCup className="w-[1.5rem] h-[1.5rem]" />
@@ -25,7 +25,7 @@ const Footer = () => {
           <p>hola@cafeconaroma.com</p>
         </div>
       </article>
-      <article className=" w-full sm:w-[50%] flex justify-evenly mt-6 sm:mt-0 sm:flex-wrap sm:gap-6">
+      <article className=" w-full sm:w-[60%] flex justify-evenly mt-6 sm:mt-0 sm:flex-wrap sm:gap-6">
         <div className="flex flex-col gap-4">
           {route.map((item, index) => {
             return (

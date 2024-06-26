@@ -3,8 +3,6 @@ import { getCoffee } from "@/utils/apiGetCoffee";
 import {
   useState,
   createContext,
-  Dispatch,
-  SetStateAction,
   useEffect,
   FC,
   useContext,
@@ -16,27 +14,19 @@ type Product = {
   img?: string;
   price?: number;
   units?: number;
- 
 };
-
-/* type ControlProps = {
-  local: Product[] | undefined;
-  setCoffee: Dispatch<SetStateAction<Product[] | undefined>>;
-};
- */
-
-
 export const PayProducts = createContext({});
 
 export const PayProductsProvider: FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const storedProducts = localStorage.getItem("coffee");
-  const products = storedProducts ? JSON.parse(storedProducts) : [];
-  const [local, setLocal] = useState(products)
-/*   const [coffee, setCoffee] = useState<Product[]>();
-  const url = process.env.NEXT_PUBLIC_URL_API_COFFEE; */
-  useEffect(() => {}, []);
+  const [local, setLocal] = useState<string|null>()
+
+  useEffect(() => {
+    const storedProducts = localStorage.getItem("coffee");
+    const products = storedProducts ? JSON.parse(storedProducts) : [];
+    setLocal(products)
+  }, []);
   return (
     <PayProducts.Provider
       value={{

@@ -7,6 +7,7 @@ import CopyRight from "@/components/CopyRight";
 import { GetProductsProvider } from "@/context/GetProducts";
 import { PayProducts, PayProductsProvider } from "@/context/PayCoffee";
 
+
 const outfit = Outfit({ subsets: ["latin"] });
 
 export default function RootLayout({
