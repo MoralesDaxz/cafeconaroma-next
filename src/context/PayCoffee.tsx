@@ -1,12 +1,5 @@
 "use client";
-import { getCoffee } from "@/utils/apiGetCoffee";
-import {
-  useState,
-  createContext,
-  useEffect,
-  FC,
-  useContext,
-} from "react";
+import { useState, createContext, useEffect, FC, useContext } from "react";
 
 type Product = {
   id?: string;
@@ -15,17 +8,25 @@ type Product = {
   price?: number;
   units?: number;
 };
-export const PayProducts = createContext({});
+
+interface PayProductsContextType {
+  local: Product[];
+}
+
+const defaultValue: PayProductsContextType = {
+  local: [],
+};
+export const PayProducts = createContext(defaultValue);
 
 export const PayProductsProvider: FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [local, setLocal] = useState<string|null>()
+  const [local, setLocal] = useState<Product[]>(defaultValue.local);
 
   useEffect(() => {
     const storedProducts = localStorage.getItem("coffee");
     const products = storedProducts ? JSON.parse(storedProducts) : [];
-    setLocal(products)
+    setLocal(products);
   }, []);
   return (
     <PayProducts.Provider
@@ -39,4 +40,4 @@ export const PayProductsProvider: FC<{ children: React.ReactNode }> = ({
 };
 
 // Crear un hook personalizado para usar los estados dentro de otros componentes
-export const useProducts = () => useContext(PayProducts);
+export const usePayProducts = () => useContext(PayProducts);
