@@ -4,7 +4,7 @@ import { useState, createContext, useEffect, FC, useContext } from "react";
 type Product = {
   id?: string;
   name?: string;
-  img?: string;
+  image?: string;
   price?: number;
   units?: number;
 };
@@ -17,17 +17,25 @@ const defaultValue: PayProductsContextType = {
   local: [],
 };
 export const PayProducts = createContext(defaultValue);
-
+export const control = 0
 export const PayProductsProvider: FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [local, setLocal] = useState<Product[]>(defaultValue.local);
-
-  useEffect(() => {
+ 
+  
+  const getLocal = () => {
     const storedProducts = localStorage.getItem("coffee");
     const products = storedProducts ? JSON.parse(storedProducts) : [];
-    setLocal(products);
-  }, []);
+
+    return setLocal(products)
+  }; 
+
+  useEffect(() => {
+  
+    getLocal()
+   
+  }, [control]);
   return (
     <PayProducts.Provider
       value={{

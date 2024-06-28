@@ -1,3 +1,5 @@
+import { control } from "@/context/PayCoffee";
+
 type Local = {
     id?: string;
     img?: string;
@@ -16,6 +18,7 @@ type Local = {
     Mientras que en la FN esperara a ser ejecutada con componente ya desplegado */
     const storedProducts = localStorage.getItem("coffee");
     const products = storedProducts ? JSON.parse(storedProducts) : [];
+    control+1
     /* Nuevo producto con argunmentos proporcionados */
     const product = {
       id: idArg,
