@@ -1,5 +1,13 @@
 "use client";
-import { useState, createContext, useEffect, FC, useContext } from "react";
+import {
+  useState,
+  createContext,
+  useEffect,
+  FC,
+  useContext,
+  SetStateAction,
+  Dispatch,
+} from "react";
 
 type Product = {
   id?: string;
@@ -11,35 +19,31 @@ type Product = {
 
 interface PayProductsContextType {
   local: Product[];
+  setLocal: Dispatch<SetStateAction<Product[]>>;
 }
 
 const defaultValue: PayProductsContextType = {
   local: [],
+  setLocal: () => {},
 };
+
+
 export const PayProducts = createContext(defaultValue);
-export const control = 0
 export const PayProductsProvider: FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [local, setLocal] = useState<Product[]>(defaultValue.local);
- 
-  
-  const getLocal = () => {
-    const storedProducts = localStorage.getItem("coffee");
-    const products = storedProducts ? JSON.parse(storedProducts) : [];
-
-    return setLocal(products)
-  }; 
 
   useEffect(() => {
-  
-    getLocal()
-   
-  }, [control]);
+    const storedProducts = localStorage.getItem("coffee");
+    const products = storedProducts ? JSON.parse(storedProducts) : [];
+    return setLocal(products);
+  }, []);
   return (
     <PayProducts.Provider
       value={{
         local,
+        setLocal,
       }}
     >
       {children}

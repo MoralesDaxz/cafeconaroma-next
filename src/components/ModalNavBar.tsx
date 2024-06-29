@@ -18,7 +18,7 @@ const ModalNavBar = () => {
   return (
     <>
       {isOpen && (
-        <div className="text-lg fixed z-10 w-full bg-[#2B2A2B] flex flex-col items-start justify-start gap-10 min-h-screen pt-4 px-2">
+        <div className="text-lg fixed z-30 min-w-[330px] w-full bg-[#2B2A2B] flex flex-col items-start justify-start gap-10 min-h-screen pt-4 px-2">
           <Link
             className="bg-[#515051] font-semibold py-3 px-6  flex items-center rounded"
             href={"/login"}
@@ -50,6 +50,7 @@ const ModalNavBar = () => {
                   className="flex items-center justify-between gap-4 py-2"
                   key={index}
                   href={item.link}
+                  onClick={() => setIsOpen(false)}
                 >
                   <FaCircle
                     className={`w-3 h-3 transition-all duration-500 ${
@@ -73,7 +74,7 @@ const ModalNavBar = () => {
             <SlCup className="w-[1.5rem] h-[1.5rem]" />
           </Link>
           <HiMenu
-            onClick={() => {
+            onClick={() => {0
               setIsOpen(true);
             }}
             className="w-[1.5rem] h-[1.5rem] absolute z-20 top-3 right-3 opacity-90"

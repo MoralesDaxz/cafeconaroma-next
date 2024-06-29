@@ -10,7 +10,7 @@ const NavBar = () => {
   const { windowWidth, windowScroll } = useControlDisplay();
   return (
 
-      <div className="text-lg fixed z-10 w-full bg-[#2B2A2B] h-16 flex justify-evenly items-center ">
+      <div className="text-lg fixed z-10 min-w-[330px] w-full bg-[#2B2A2B] h-16 flex justify-evenly items-center ">
         <Link href={"/"} className="flex items-center gap-2">
           {windowWidth > 1000 && (
             <h2 className=" text-2xl">cafeconaroma.com</h2>

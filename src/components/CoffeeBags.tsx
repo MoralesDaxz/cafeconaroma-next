@@ -1,24 +1,64 @@
 "use client";
 import { useProducts } from "@/context/GetProducts";
 import Image from "next/image";
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import Loader from "./Loader";
-import { putLocalStorage } from "@/utils/localItems";
-
+import { addLocalStorage } from "@/utils/localItems";
+import { usePayProducts } from "@/context/PayCoffee";
 
 type NumberBags = {
   units: number;
 };
+type Local = {
+  id?: string;
+  img?: string;
+  name?: string;
+  price?: number;
+  units?: number;
+};
 
 const CoffeeBags: FC<NumberBags> = ({ units }) => {
   const { coffee } = useProducts();
+  const { local, setLocal } = usePayProducts();
+  const [isCoffee, setIsCoffee] = useState(false);
+  const addLocalStorage = (
+    idArg?: string,
+    imgArg?: string,
+    nameArg?: string,
+    priceArg?: number
+  ) => {
+    /* Trabajamos con LS dentro de funcion, al montar el componente en primer vuelco nos dara error
+      Mientras que en la FN esperara a ser ejecutada con componente ya desplegado */
 
-  
+    const storedProducts = localStorage.getItem("coffee");
+    const products = storedProducts ? JSON.parse(storedProducts) : [];
+
+    /* Nuevo producto con argunmentos proporcionados */
+    const product = {
+      id: idArg,
+      image: imgArg,
+      name: nameArg,
+      units: 1,
+      price: priceArg,
+    };
+    /* Evaluamos si existe o no para agregar unidades*/
+    const existingProduct = products.find((item: Local) => item.id === idArg);
+    if (existingProduct) {
+      existingProduct.units += 1;
+    } else {
+      products.unshift(product);
+    }
+    localStorage.setItem("coffee", JSON.stringify(products));
+    return setLocal(products);
+  };
+useEffect(()=>{
+  setIsCoffee(coffee !== undefined ? true : false)
+},[coffee])
   return (
     <>
       <section className="w-full flex flex-wrap justify-center gap-3 text-[#181717]">
-        {coffee !== undefined ? (
-          coffee.map((item, index) => {
+        {isCoffee ? (
+          coffee?.map((item, index) => {
             if (index < units) {
               return (
                 <div
@@ -43,7 +83,7 @@ const CoffeeBags: FC<NumberBags> = ({ units }) => {
                     className="w-fit py-3 px-2 rounded-md bg-[#2a5b45b3] group-hover/bagCoffee:bg-[#2A5B45] text-white font-medium text-lg"
                     id={item._id}
                     onClick={() =>
-                      putLocalStorage(
+                      addLocalStorage(
                         item._id,
                         item.img_url,
                         item.brand,
