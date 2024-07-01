@@ -7,7 +7,6 @@ import { LuPhone } from "react-icons/lu";
 import { IoMailOutline } from "react-icons/io5";
 import { footerRoute, route } from "@/utils/boxRoutes";
 const Footer = () => {
-  const { windowWidth } = useControlDisplay();
   return (
     <section className="bg-[#201815] w-full flex flex-col justify-center sm:flex-row sm:justify-between sm:items-center p-5">
       <article className="sm:w-[40%] flex flex-col gap-3">

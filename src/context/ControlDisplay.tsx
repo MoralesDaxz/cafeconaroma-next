@@ -1,4 +1,5 @@
 "use client";
+/* Componente encargado del Display del dispositivo */
 import {
   useState,
   createContext,

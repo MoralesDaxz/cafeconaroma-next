@@ -1,4 +1,5 @@
 "use client";
+/* Componente encargado de obtener productos de la API */
 import { getCoffee } from "@/utils/apiGetCoffee";
 import {
   useState,
@@ -9,8 +10,6 @@ import {
   FC,
   useContext,
 } from "react";
-
-
 
 type Product = {
   _id?: string;
@@ -26,7 +25,6 @@ type ControlProps = {
   setCoffee: Dispatch<SetStateAction<Product[] | undefined>>;
 };
 
-/* const localInfo = localStorage.setItem('buys', JSON.stringify([])) */
 export const GetProducts = createContext<ControlProps>({
   coffee: [],
   setCoffee: () => {},
