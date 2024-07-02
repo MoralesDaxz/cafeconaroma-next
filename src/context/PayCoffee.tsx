@@ -27,6 +27,8 @@ interface PayProductsContextType {
   setTotal: Dispatch<SetStateAction<number>>;
   controlRender: number;
   setControlRender: Dispatch<SetStateAction<number>>;
+  quantity: number;
+  setQuantity: Dispatch<SetStateAction<number>>;
 }
 
 const defaultValue: PayProductsContextType = {
@@ -36,6 +38,8 @@ const defaultValue: PayProductsContextType = {
   setTotal: () => {},
   controlRender: 0,
   setControlRender: () => {},
+  quantity: 0,
+  setQuantity: () => {},
 };
 
 export const PayProducts = createContext(defaultValue);
@@ -44,18 +48,24 @@ export const PayProductsProvider: FC<{ children: React.ReactNode }> = ({
 }) => {
   const [local, setLocal] = useState<Product[]>(defaultValue.local);
   const [total, setTotal] = useState(0);
+  const [quantity, setQuantity] = useState(0);
   const [controlRender, setControlRender] = useState(0);
   useEffect(() => {
     const storedProducts = localStorage.getItem("coffee");
     const products = storedProducts ? JSON.parse(storedProducts) : [];
     setLocal(products);
+  
     return;
   }, []);
 
   useEffect(() => {
     const storedProducts = localStorage.getItem("coffee");
-    const products = storedProducts ? JSON.parse(storedProducts) : [];
+    const products:Product[] = storedProducts ? JSON.parse(storedProducts) : [];
     setLocal(products);
+    const quantityLS = products.reduce((sum, product) => {
+      return sum + product.units!;
+    }, 0);
+    setQuantity(quantityLS);
     return;
   }, [controlRender]);
   return (
@@ -67,6 +77,8 @@ export const PayProductsProvider: FC<{ children: React.ReactNode }> = ({
         setTotal,
         controlRender,
         setControlRender,
+        quantity,
+        setQuantity,
       }}
     >
       {children}

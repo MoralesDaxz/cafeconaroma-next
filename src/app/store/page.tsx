@@ -1,7 +1,6 @@
 import CardsInfo from "@/components/CardsInfo";
 import CoffeeBags from "@/components/CoffeeBags";
 import Footer from "@/components/Footer";
-import Link from "next/link";
 import React from "react";
 
 const page = () => {
