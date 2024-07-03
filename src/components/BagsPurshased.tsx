@@ -64,7 +64,7 @@ const BagsPurshased = () => {
               </div>
             </div>
             <p className="min-w-[50px] text-[1.1em]">
-              {bagCoffee.price! * bagCoffee.units!} €
+              {(bagCoffee.price! * bagCoffee.units!).toFixed(2).replace('.',',')} €
             </p>
 
           </div>
