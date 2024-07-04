@@ -16,6 +16,7 @@ const DisplayModalCar = () => {
   }, 0);
   useEffect(() => {
     setTotal(subTotal);
+    subTotal === 0 && setIsOpen(false)
   }, [subTotal]);
 
   return (

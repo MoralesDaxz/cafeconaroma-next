@@ -2,7 +2,6 @@
 import { usePayProducts } from "@/context/PayCoffee";
 import { addLocalStorage, removeLocalStorage } from "@/utils/localStorageItems";
 import React, { useEffect } from "react";
-import { LuShoppingCart } from "react-icons/lu";
 import { IoMdAddCircle } from "react-icons/io";
 import { IoMdRemoveCircle } from "react-icons/io";
 import Image from "next/image";

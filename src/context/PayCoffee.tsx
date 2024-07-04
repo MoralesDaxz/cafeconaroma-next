@@ -1,5 +1,6 @@
 "use client";
 
+import { generateNewInvoiceCode } from "@/utils/invoice";
 import { updateData } from "@/utils/localStorageItems";
 /* Componente encargado del manejo de LS, total, y  componente ModalCar */
 import {
@@ -52,24 +53,28 @@ export const PayProductsProvider: FC<{ children: React.ReactNode }> = ({
   const [total, setTotal] = useState(0);
   const [quantity, setQuantity] = useState(0);
   const [controlRender, setControlRender] = useState(0);
-
+  /* LS inicial */
   useEffect(() => {
     const storedProducts = localStorage.getItem("coffee");
     const products = storedProducts ? JSON.parse(storedProducts) : [];
     return setLocal(products);
   }, []);
 
+  /* Actualizacion de cantidades y precio */
   useEffect(() => {
     const storedProducts = localStorage.getItem("coffee");
     const products: Product[] = storedProducts
       ? JSON.parse(storedProducts)
       : [];
     setLocal(products);
-
     const quantityLS = products.reduce((sum, product) => {
       return sum + product.units!;
     }, 0);
-
+    const order ={
+      number: generateNewInvoiceCode(),
+      purshased: products,
+    };
+    
     updateData(products);
     return setQuantity(quantityLS);
   }, [controlRender]);

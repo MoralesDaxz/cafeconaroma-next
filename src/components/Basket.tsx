@@ -7,11 +7,10 @@ const Basket = () => {
   const { local, total, quantity } = usePayProducts();
 
 
-  
   return (
     <section className="pt-20 pb-6 bg-[white] min-h-screen w-full flex flex-col items-center gap-8">
       <h3 className="title text-[#2f5854] mt-8">Cesta ( {quantity} )</h3>
-      <article className="flex flex-col-reverse sm:flex-row sm:justify-center gap-3 px-4 w-full w-max-[1000px]">
+      <article className="relative flex flex-col-reverse sm:flex-row sm:justify-center gap-3 px-4 w-full w-max-[800px]">
         <section className="flex flex-col bg-[#2e2d2dd2] w-full sm:w-[60%] px-4 py-6 rounded-md gap-3">
           <div className="flex flex-col gap-3 pb-6 w-full">
             <h4 className="text-[1.1em] font-semibold">Seleccionar envío</h4>

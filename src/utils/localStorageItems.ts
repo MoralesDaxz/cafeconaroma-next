@@ -24,6 +24,7 @@ export const addLocalStorage = ({ bagCoffee }: Props) => {
     brand: bagCoffee.brand,
     units: 1,
     price: bagCoffee.price,
+    package:bagCoffee.package
   };
   /* Evaluamos si existe o no para agregar unidades*/
   const existingProduct = products.find(
@@ -56,15 +57,20 @@ export const getLocalStorage = () => {
   return products;
 };
 
-export async function updateData(newData:any) {
+export async function updateData(newData: any) {
   try {
-    const response = await fetch('/api/writeData', {
+    const response = await fetch('/api/writeOrder', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(newData)
+      body: JSON.stringify(newData),
     });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
     const result = await response.json();
     console.log(result);
   } catch (error) {

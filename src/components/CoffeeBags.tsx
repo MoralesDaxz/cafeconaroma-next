@@ -13,8 +13,7 @@ type NumberBags = {
 const CoffeeBags: FC<NumberBags> = ({ units }) => {
   const { coffee } = useProducts();
   const [isCoffee, setIsCoffee] = useState(false);
-  const { local, setLocal, total, controlRender, setControlRender } =
-    usePayProducts();
+  const { controlRender, setControlRender } = usePayProducts();
 
   useEffect(() => {
     setIsCoffee(coffee !== undefined ? true : false);

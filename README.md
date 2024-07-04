@@ -1,6 +1,32 @@
 Separar Funcion  
 De incrementar productos
 
+
+Modelo de Orders a implementar
+{
+  "orders": [
+    {
+      "order": "123",
+      "products": [
+        {
+          "_id": "choco250",
+          "img_url": "https://i.ibb.co/cQVJBvF/Choco.png",
+          "brand": "chocolate",
+          "units": 2,
+          "price": 7
+        },
+        {
+          "_id": "classic250",
+          "img_url": "https://i.ibb.co/HznwCrj/Classic.png",
+          "brand": "classic",
+          "units": 1,
+          "price": 5
+        }
+      ]
+    }
+  ]
+}
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
