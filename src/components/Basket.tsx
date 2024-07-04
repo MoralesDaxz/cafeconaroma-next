@@ -2,8 +2,12 @@
 import { usePayProducts } from "@/context/PayCoffee";
 import React from "react";
 import BagsPurshased from "./BagsPurshased";
+
 const Basket = () => {
   const { local, total, quantity } = usePayProducts();
+
+
+  
   return (
     <section className="pt-20 pb-6 bg-[white] min-h-screen w-full flex flex-col items-center gap-8">
       <h3 className="title text-[#2f5854] mt-8">Cesta ( {quantity} )</h3>
@@ -11,27 +15,24 @@ const Basket = () => {
         <section className="flex flex-col bg-[#2e2d2dd2] w-full sm:w-[60%] px-4 py-6 rounded-md gap-3">
           <div className="flex flex-col gap-3 pb-6 w-full">
             <h4 className="text-[1.1em] font-semibold">Seleccionar envío</h4>
-            <label className="flex justify-between items-center w-full">
-              <div className="flex gap-3">
+            <label className="flex items-center w-full">
+              <div className="w-full flex gap-3">
                 <input type="radio" className=" accent-[#2f5854] w-4" />
                 <span className="flex flex-col">
                   <p className=" font-medium">Envío 5 - 7 días</p>
                   <p className="text-[.8em]">Opción estándar sin seguimiento</p>
                 </span>
               </div>
-              <p className="text-[1em] font-semibold">Gratis</p>
+              <p className="text-[1em] font-semibold w-20 text-end">Gratis</p>
             </label>
           </div>
           <div className="flex flex-col gap-3 pb-6 w-full">
-            <label className="flex justify-between items-center w-full">
-              <div className="flex gap-3">
+            <label className="flex items-center w-full">
+              <div className="flex gap-3 w-full">
                 <input type="radio" className=" accent-[#2f5854] w-4" />
                 <span className="flex flex-col">
                   <p className=" font-medium">Envío urgente 24h</p>
-                  <p className="text-[.8em]">
-                    Recibe tu pedido en las siguientes 24h (Para pedidos
-                    realizados antes de las 13:00).
-                  </p>
+                  <p className="text-[.8em]">Recibe en las siguientes 24h.</p>
                 </span>
               </div>
               <p className="text-[1em] font-semibold w-20 text-end">9,00 €</p>

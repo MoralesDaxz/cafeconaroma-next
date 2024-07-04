@@ -1,3 +1,4 @@
+
 type Product = {
   _id?: string;
   available?: true;
@@ -54,3 +55,19 @@ export const getLocalStorage = () => {
   const products = storedProducts ? JSON.parse(storedProducts) : [];
   return products;
 };
+
+export async function updateData(newData:any) {
+  try {
+    const response = await fetch('/api/writeData', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newData)
+    });
+    const result = await response.json();
+    console.log(result);
+  } catch (error) {
+    console.error('Error al actualizar los datos:', error);
+  }
+}

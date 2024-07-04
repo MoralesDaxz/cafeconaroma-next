@@ -1,4 +1,6 @@
 "use client";
+
+import { updateData } from "@/utils/localStorageItems";
 /* Componente encargado del manejo de LS, total, y  componente ModalCar */
 import {
   useState,
@@ -50,23 +52,26 @@ export const PayProductsProvider: FC<{ children: React.ReactNode }> = ({
   const [total, setTotal] = useState(0);
   const [quantity, setQuantity] = useState(0);
   const [controlRender, setControlRender] = useState(0);
+
   useEffect(() => {
     const storedProducts = localStorage.getItem("coffee");
     const products = storedProducts ? JSON.parse(storedProducts) : [];
-    setLocal(products);
-  
-    return;
+    return setLocal(products);
   }, []);
 
   useEffect(() => {
     const storedProducts = localStorage.getItem("coffee");
-    const products:Product[] = storedProducts ? JSON.parse(storedProducts) : [];
+    const products: Product[] = storedProducts
+      ? JSON.parse(storedProducts)
+      : [];
     setLocal(products);
+
     const quantityLS = products.reduce((sum, product) => {
       return sum + product.units!;
     }, 0);
-    setQuantity(quantityLS);
-    return;
+
+    updateData(products);
+    return setQuantity(quantityLS);
   }, [controlRender]);
   return (
     <PayProducts.Provider
