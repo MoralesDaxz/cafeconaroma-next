@@ -18,7 +18,7 @@ const fetchMadridDateTime = async (): Promise<Date> => {
     try {
       const date = await fetchMadridDateTime();
       const formattedDate = formatDate(date);
-      const invoiceCode = `A001${formattedDate}-${correlative}`;
+      const invoiceCode = `E001${formattedDate}-${correlative}`;
       return invoiceCode;
     } catch (error) {
       console.error('Error generating invoice code:', error);

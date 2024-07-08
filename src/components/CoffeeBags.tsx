@@ -26,7 +26,7 @@ const CoffeeBags: FC<NumberBags> = ({ units }) => {
             if (index < units) {
               return (
                 <div
-                  className="w-[70%] sm:w-[40%] md:w-[20%]  border-2 border-[#e3ded7] hover:border-[#c5c0b8] hover:bg-[#e3ded7] rounded-md p-5 flex flex-col items-center group/bagCoffee gap-3 transition-all duration-500"
+                  className="w-[70%] sm:w-[40%] md:w-[20%]  border-2 border-[#e3ded7] hover:border-[#c5c0b8] hover:bg-[#e3ded7] rounded-md px-5 pt-2 flex flex-col items-center group/bagCoffee gap-3 transition-all duration-500"
                   key={index}
                 >
                   <h4 className="capitalize font-medium text-2xl ">
@@ -53,6 +53,9 @@ const CoffeeBags: FC<NumberBags> = ({ units }) => {
                   >
                     Añadir
                   </button>
+                  <p className="font-medium text-[.6em]">
+                    IVA incluido {bagCoffee.price! * 0.21} €
+                  </p>
                 </div>
               );
             }

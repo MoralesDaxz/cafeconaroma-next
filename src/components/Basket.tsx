@@ -1,11 +1,24 @@
 "use client";
 import { usePayProducts } from "@/context/PayCoffee";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import BagsPurshased from "./BagsPurshased";
 
 const Basket = () => {
-  const { local, total, quantity } = usePayProducts();
+  const { local, total, setTotal, controlRender, quantity } = usePayProducts();
+  const [urgent, setUrgent] = useState(false);
+  const [choise, setChoise] = useState(false);
 
+  const orderClient = {
+    delivery: urgent ? "urgente" : "normal",
+    payDelivery: urgent ? 9 : 0,
+    total: urgent ? total + 9 : total,
+  };
+  useEffect(() => {
+    const storedOrder = localStorage.getItem("order");
+    const putOrder = localStorage.setItem("order", JSON.stringify(orderClient));
+    const orderLS = storedOrder ? JSON.parse(storedOrder) : putOrder;
+    setTotal
+  });
 
   return (
     <section className="pt-20 pb-6 bg-[white] min-h-screen w-full flex flex-col items-center gap-8">
@@ -16,7 +29,14 @@ const Basket = () => {
             <h4 className="text-[1.1em] font-semibold">Seleccionar envío</h4>
             <label className="flex items-center w-full">
               <div className="w-full flex gap-3">
-                <input type="radio" className=" accent-[#2f5854] w-4" />
+                <input
+                  type="radio"
+                  className=" accent-[#2f5854] w-4"
+                  checked={!urgent}
+                  onChange={() => {
+                    setUrgent(false);
+                  }}
+                />
                 <span className="flex flex-col">
                   <p className=" font-medium">Envío 5 - 7 días</p>
                   <p className="text-[.8em]">Opción estándar sin seguimiento</p>
@@ -28,7 +48,14 @@ const Basket = () => {
           <div className="flex flex-col gap-3 pb-6 w-full">
             <label className="flex items-center w-full">
               <div className="flex gap-3 w-full">
-                <input type="radio" className=" accent-[#2f5854] w-4" />
+                <input
+                  type="radio"
+                  className=" accent-[#2f5854] w-4"
+                  checked={urgent}
+                  onChange={() => {
+                    setUrgent(true);
+                  }}
+                />
                 <span className="flex flex-col">
                   <p className=" font-medium">Envío urgente 24h</p>
                   <p className="text-[.8em]">Recibe en las siguientes 24h.</p>

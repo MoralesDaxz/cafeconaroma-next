@@ -20,7 +20,7 @@ const DisplayModalCar = () => {
   }, [subTotal]);
 
   return (
-    <div className="flex flex-col items-center rounded-md">
+    <div className="flex flex-col items-center rounded-md" onMouseLeave={()=>setIsOpen(false)}>
       {total > 0 && <IsModal isOpen={isOpen} setIsOpen={setIsOpen} />}
       {isOpen ? (
         <div className="flex flex-col items-center w-[85%] sm:w-[450px] h-[350px] overflow-y-auto fixed top-20 sm:top-20 z-20 sm:right-2 bg-[#00000098] backdrop-blur-md rounded-md transition-all duration-500">
@@ -32,7 +32,7 @@ const DisplayModalCar = () => {
             >
               <h4 className="text-center text-[1.4em]">Pagar</h4>
               <LuShoppingCart className="w-[30px] h-[30px]" />
-              <p className="text-[1.4em]">{total} €</p>
+              <p className="text-[1.4em]">{total.toFixed(2).replace(".",",")} €</p>
             </Link>
             <IoClose
               onClick={() => {

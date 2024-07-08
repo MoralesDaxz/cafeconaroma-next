@@ -39,7 +39,7 @@ export const GetProductsProvider: FC<{ children: React.ReactNode }> = ({
     getCoffee(url!).then((data: Product[]) => {
       setCoffee(data);
     });
-  }, []);
+  });
   return (
     <GetProducts.Provider
       value={{
