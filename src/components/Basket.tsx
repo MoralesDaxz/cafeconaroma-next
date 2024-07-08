@@ -17,11 +17,10 @@ const Basket = () => {
     const storedOrder = localStorage.getItem("order");
     const putOrder = localStorage.setItem("order", JSON.stringify(orderClient));
     const orderLS = storedOrder ? JSON.parse(storedOrder) : putOrder;
-    setTotal
   });
 
   return (
-    <section className="pt-20 pb-6 bg-[white] min-h-screen w-full flex flex-col items-center gap-8">
+    <section className="pt-10 sm:pt-20 bg-[white] min-h-screen w-full flex flex-col items-center gap-8">
       <h3 className="title text-[#2f5854] mt-8">Cesta ( {quantity} )</h3>
       <article className="relative flex flex-col-reverse sm:flex-row sm:justify-center gap-3 px-4 w-full w-max-[800px]">
         <section className="flex flex-col bg-[#2e2d2dd2] w-full sm:w-[60%] px-4 py-6 rounded-md gap-3">
@@ -81,7 +80,7 @@ const Basket = () => {
             </div>
             <div className="flex justify-between items-center text-[.9em] font-medium">
               <p className=" ">ENVIO</p>
-              <p>GRATIS?</p>
+              <p>{(urgent ? 9 : 0).toFixed(2).replace(".", ",")} €</p>
             </div>
             <span className="bg-[#615649] h-[1px] w-[90%] self-center"></span>
             <div className="flex justify-between items-center text-[.9em] font-medium">

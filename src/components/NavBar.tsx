@@ -5,7 +5,7 @@ import Link from "next/link";
 import React from "react";
 import { LuPhone } from "react-icons/lu";
 import { SlCup } from "react-icons/sl";
-
+import { TbCoffee } from "react-icons/tb";
 const NavBar = () => {
   const { windowWidth, windowScroll } = useControlDisplay();
   return (
@@ -15,7 +15,7 @@ const NavBar = () => {
           {windowWidth > 1000 && (
             <h2 className=" text-2xl">cafeconaroma.com</h2>
           )}
-          <SlCup className="w-[1.5rem] h-[1.5rem]" />
+          <TbCoffee className="w-[1.5rem] h-[1.5rem]" />
 
         </Link>
         

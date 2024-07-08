@@ -14,7 +14,7 @@ const footerRoute = [
   { link: "/cookies", title: "Cookies" },
 ];
 
-/* Get index route -> map.route "index + 1" */
+/* ModalNavBar -> map.route "index + 1" asignar estilos segun ruta*/
 function getRouteIndex(param: string) {
   switch (param) {
     case "/":

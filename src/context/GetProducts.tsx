@@ -1,6 +1,7 @@
 "use client";
+import { getCoffee } from "@/api/apiGetCoffee";
 /* Componente encargado de obtener productos de la API */
-import { getCoffee } from "@/utils/apiGetCoffee";
+
 import {
   useState,
   createContext,

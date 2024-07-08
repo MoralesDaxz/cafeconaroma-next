@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import { IoIosClose } from "react-icons/io";
 import { HiMenu } from "react-icons/hi";
 import { SlCup } from "react-icons/sl";
+import { TbCoffee } from "react-icons/tb";
 import { FaCircle } from "react-icons/fa6";
 import { usePathname } from "next/navigation";
 const ModalNavBar = () => {
@@ -69,9 +70,9 @@ const ModalNavBar = () => {
       )}
       {isOpen === false && (
         <div className="p-2">
-          <Link href={"/"} className="w-full flex items-center gap-2">
+          <Link href={"/"} className="w-fit flex items-center gap-2">
             <h2 className=" text-2xl">cafeconaroma.com</h2>
-            <SlCup className="w-[1.5rem] h-[1.5rem]" />
+            <TbCoffee className="w-[1.5rem] h-[1.5rem]" />
           </Link>
           <HiMenu
             onClick={() => {0

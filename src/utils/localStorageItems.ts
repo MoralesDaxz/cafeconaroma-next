@@ -11,6 +11,7 @@ type Product = {
 type Props = {
   bagCoffee: Product;
 };
+/* Agregar producto a LS */
 export const addLocalStorage = ({ bagCoffee }: Props) => {
   /* Trabajamos con LS dentro de funcion, al montar el componente en primer vuelco nos dara error
     Mientras que en la FN esperara a ser ejecutada con componente ya desplegado */
@@ -38,7 +39,7 @@ export const addLocalStorage = ({ bagCoffee }: Props) => {
   localStorage.setItem("coffee", JSON.stringify(products));
   return products;
 };
-
+/* Eliminar producto de LS */
 export const removeLocalStorage = ({ bagCoffee }: Props) => {
   const storedProducts = localStorage.getItem("coffee");
   const products = storedProducts ? JSON.parse(storedProducts) : [];
@@ -51,7 +52,8 @@ export const removeLocalStorage = ({ bagCoffee }: Props) => {
     return localStorage.setItem("coffee", JSON.stringify(filtered));
   }
 };
-export const getLocalStorage = () => {
+/* Informacion de LS */
+export const getCoffeeLocalStorage = () => {
   const storedProducts = localStorage.getItem("coffee");
   const products = storedProducts ? JSON.parse(storedProducts) : [];
   return products;

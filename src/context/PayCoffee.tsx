@@ -20,7 +20,16 @@ type Product = {
   package?: string;
   units?: number;
 };
-
+type TotalInitValue = {
+  delivery: string;
+  payDelivery: number;
+  total: number;
+};
+ type TotalInitValuee = {
+  delivery: "normal";
+  payDelivery: 0;
+  total: 0;
+}; 
 interface PayProductsContextType {
   local: Product[];
   setLocal: Dispatch<SetStateAction<Product[]>>;
@@ -30,6 +39,8 @@ interface PayProductsContextType {
   setControlRender: Dispatch<SetStateAction<number>>;
   quantity: number;
   setQuantity: Dispatch<SetStateAction<number>>;
+  ttotal: TotalInitValue;
+  setTtotal:  Dispatch<SetStateAction<TotalInitValue|undefined>>;
 }
 
 const defaultValue: PayProductsContextType = {
@@ -41,6 +52,8 @@ const defaultValue: PayProductsContextType = {
   setControlRender: () => {},
   quantity: 0,
   setQuantity: () => {},
+  ttotal: { delivery: "normal", payDelivery: 0, total: 0 },
+  setTtotal:()=>{},
 };
 
 export const PayProducts = createContext(defaultValue);
@@ -49,6 +62,7 @@ export const PayProductsProvider: FC<{ children: React.ReactNode }> = ({
 }) => {
   const [local, setLocal] = useState<Product[]>(defaultValue.local);
   const [total, setTotal] = useState(0);
+  const [ttotal, setTtotal] = useState<TotalInitValuee>({ delivery: "normal", payDelivery: 0, total: 0 });
   const [quantity, setQuantity] = useState(0);
   const [controlRender, setControlRender] = useState(0);
   /* LS inicial */
@@ -82,6 +96,8 @@ export const PayProductsProvider: FC<{ children: React.ReactNode }> = ({
         setControlRender,
         quantity,
         setQuantity,
+        ttotal,
+        setTtotal,
       }}
     >
       {children}
