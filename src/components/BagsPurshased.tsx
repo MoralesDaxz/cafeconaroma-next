@@ -7,18 +7,13 @@ import { IoMdRemoveCircle } from "react-icons/io";
 import Image from "next/image";
 
 const BagsPurshased = () => {
-  const { local, setTotal, controlRender, setControlRender } =
+  const {ttotal, controlRender, setControlRender } =
     usePayProducts();
-  const subTotal = local.reduce((sum, product) => {
-    return sum + product.units! * product.price!;
-  }, 0);
-  useEffect(() => {
-    setTotal(subTotal);
-  }, [subTotal]);
+
 
   return (
     <>
-      {local.map((bagCoffee, index) => {
+      {ttotal.product.map((bagCoffee, index) => {
         return (
           <div
             key={index}
@@ -63,7 +58,7 @@ const BagsPurshased = () => {
               </div>
             </div>
             <p className="min-w-[50px] text-[1.1em]">
-              {(bagCoffee.price! * bagCoffee.units!).toFixed(2).replace('.',',')} €
+              {(bagCoffee.units! * bagCoffee.price!).toFixed(2).replace('.',',')} €
             </p>
 
           </div>

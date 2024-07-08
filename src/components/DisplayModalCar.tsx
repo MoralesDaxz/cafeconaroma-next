@@ -9,19 +9,15 @@ import { LuShoppingCart } from "react-icons/lu";
 import BagsPurshased from "./BagsPurshased";
 
 const DisplayModalCar = () => {
-  const { local, total, setTotal } = usePayProducts();
+  const { local, total, ttotal, setTotal } = usePayProducts();
   const [isOpen, setIsOpen] = useState(false);
-  const subTotal = local.reduce((sum, product) => {
-    return sum + product.units! * product.price!;
-  }, 0);
-  useEffect(() => {
-    setTotal(subTotal);
-    subTotal === 0 && setIsOpen(false)
-  }, [subTotal]);
 
   return (
-    <div className="flex flex-col items-center rounded-md" onMouseLeave={()=>setIsOpen(false)}>
-      {total > 0 && <IsModal isOpen={isOpen} setIsOpen={setIsOpen} />}
+    <div
+      className="flex flex-col items-center rounded-md"
+      onMouseLeave={() => setIsOpen(false)}
+    >
+      {!isOpen && <IsModal isOpen={isOpen} setIsOpen={setIsOpen} />}
       {isOpen ? (
         <div className="flex flex-col items-center w-[85%] sm:w-[450px] h-[350px] overflow-y-auto fixed top-20 sm:top-20 z-20 sm:right-2 bg-[#00000098] backdrop-blur-md rounded-md transition-all duration-500">
           <div className="flex justify-center bg-[#13470f] w-full py-3">
@@ -32,7 +28,9 @@ const DisplayModalCar = () => {
             >
               <h4 className="text-center text-[1.4em]">Pagar</h4>
               <LuShoppingCart className="w-[30px] h-[30px]" />
-              <p className="text-[1.4em]">{total.toFixed(2).replace(".",",")} €</p>
+              <p className="text-[1.4em]">
+                {ttotal.total/* .toFixed(2).replace(".", ",") */} €
+              </p>
             </Link>
             <IoClose
               onClick={() => {
@@ -42,7 +40,7 @@ const DisplayModalCar = () => {
               title="Cerrar"
             />
           </div>
-          {total > 0 ? (
+          {ttotal.subtotal > 0 ? (
             <BagsPurshased />
           ) : (
             <p className=" mt-[30%] text-[1.2em]">Carrito vacio!</p>
