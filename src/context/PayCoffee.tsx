@@ -54,11 +54,16 @@ const defaultValue: PayProductsContextType = {
   setControlRender: () => {},
 
   ttotal: {
+    invoice: "",
+    identity: "",
+    date: "",
+    time: "",
+    office: "",
+    delivery: "normal",
     subtotal: 0,
     total: 0,
-    delivery: "normal",
-    payDelivery: 0,
     quantity: 0,
+    payDelivery: 0,
     product: [],
   },
   setTtotal: () => {},
@@ -72,11 +77,16 @@ export const PayProductsProvider: FC<{ children: React.ReactNode }> = ({
   const [local, setLocal] = useState<Product[]>([]);
   const [total, setTotal] = useState<number>(0);
   const [ttotal, setTtotal] = useState<TotalInitValue>({
+    invoice: "",
+    identity: "",
+    date: "",
+    time: "",
+    office: "",
     delivery: "normal",
     subtotal: 0,
+    total: 0,
     quantity: 0,
     payDelivery: 0,
-    total: 0,
     product: [],
   });
 
@@ -86,7 +96,7 @@ export const PayProductsProvider: FC<{ children: React.ReactNode }> = ({
     const storedProducts = localStorage.getItem("buy");
     const itemsLocalStorage: TotalInitValue = storedProducts
       ? JSON.parse(storedProducts)
-      : { product: [] };
+      :{ delivery: "normal", payDelivery: 0, subtotal: 0, total: 0, quantity: 0, product: [] };
     const balance = itemsLocalStorage.product.reduce(
       (sum, product) => {
         sum.quantityReduce += product.units!;
@@ -95,17 +105,15 @@ export const PayProductsProvider: FC<{ children: React.ReactNode }> = ({
       },
       { quantityReduce: 0, subtotalReduce: 0 }
     );
-    console.log("Balance", balance);
-    const obj = {
-      product: itemsLocalStorage.product,
+    const updatedTotal = itemsLocalStorage.payDelivery + balance.subtotalReduce;
+    const updatedState = {
+      ...itemsLocalStorage,
       quantity: balance.quantityReduce,
       subtotal: balance.subtotalReduce,
-      total: ttotal.payDelivery + ttotal.subtotal,
+      total: updatedTotal,
     };
-    const test = {...obj ,...itemsLocalStorage }
-    setTtotal({ ...ttotal, ...itemsLocalStorage});
-  
-    return localStorage.setItem("buy", JSON.stringify(test));
+    setTtotal(updatedState);
+  return  localStorage.setItem("buy", JSON.stringify(updatedState));
   };
   useEffect(() => {
     updateState();
@@ -114,7 +122,6 @@ export const PayProductsProvider: FC<{ children: React.ReactNode }> = ({
   /* LS inicial */
   useEffect(() => {
     updateState();
-    console.log(ttotal);
   }, [controlRender]);
 
   return (
