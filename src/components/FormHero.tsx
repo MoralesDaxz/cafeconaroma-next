@@ -3,7 +3,7 @@ import Link from "next/link";
 import React from "react";
 import { useForm } from "react-hook-form";
 
-const Form = () => {
+const FormHero = () => {
   const {
     register,
     handleSubmit,
@@ -88,4 +88,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default FormHero;

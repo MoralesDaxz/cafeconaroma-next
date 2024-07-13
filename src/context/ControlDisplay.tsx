@@ -1,4 +1,5 @@
 "use client";
+import { ControlProps } from "@/interfaces/interfaces";
 /* Componente encargado del Display del dispositivo */
 import {
   useState,
@@ -9,15 +10,6 @@ import {
   FC,
   useContext,
 } from "react";
-
-type ControlProps = {
-  closeModal: boolean;
-  setCloseModal: Dispatch<SetStateAction<boolean>>;
-  windowWidth: number;
-  setWindowWidth: Dispatch<SetStateAction<number>>;
-  windowScroll: number;
-  setWindowScroll: Dispatch<SetStateAction<number>>;
-};
 
 export const ControlDisplay = createContext<ControlProps>({
   closeModal: false,

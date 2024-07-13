@@ -44,7 +44,7 @@ const CoffeeBags: FC<NumberBags> = ({ units }) => {
                     {bagCoffee.price?.toFixed(2)} €
                   </p>
                   <button
-                    className="w-fit py-3 px-2 rounded-md bg-[#2a5b45b3] group-hover/bagCoffee:bg-[#2A5B45] text-white font-medium text-lg"
+                    className="transition-all duration-300 hover:scale-105 w-fit py-3 px-2 rounded-md bg-[#13470F] group-hover/bagCoffee:bg-[#1d6116] text-white font-medium text-lg"
                     id={bagCoffee._id}
                     onClick={() => {
                       addLocalStorage({ bagCoffee }),

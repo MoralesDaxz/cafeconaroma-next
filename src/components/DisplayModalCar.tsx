@@ -1,6 +1,6 @@
 "use client";
 import { usePayProducts } from "@/context/PayCoffee";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { IoClose } from "react-icons/io5";
 import IsModal from "./IsModal";
 
@@ -9,7 +9,8 @@ import { LuShoppingCart } from "react-icons/lu";
 import BagsPurshased from "./BagsPurshased";
 
 const DisplayModalCar = () => {
-  const { local, total, ttotal, setTotal } = usePayProducts();
+  const { buysLocalStorage } =
+    usePayProducts();
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -29,7 +30,7 @@ const DisplayModalCar = () => {
               <h4 className="text-center text-[1.4em]">Pagar</h4>
               <LuShoppingCart className="w-[30px] h-[30px]" />
               <p className="text-[1.4em]">
-                {ttotal.total/* .toFixed(2).replace(".", ",") */} €
+                {buysLocalStorage.total.toFixed(2).replace(".", ",")} €
               </p>
             </Link>
             <IoClose
@@ -40,7 +41,7 @@ const DisplayModalCar = () => {
               title="Cerrar"
             />
           </div>
-          {ttotal.subtotal > 0 ? (
+          {buysLocalStorage.subtotal > 0 ? (
             <BagsPurshased />
           ) : (
             <p className=" mt-[30%] text-[1.2em]">Carrito vacio!</p>

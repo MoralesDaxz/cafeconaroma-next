@@ -51,7 +51,7 @@ export const removeLocalStorage = ({ bagCoffee }: Props) => {
   if (existingProduct.units >= 1) {
     existingProduct.units -= 1;
     const filtered = itemsLocalStorage.product.filter((item: Product) => item.units! >= 1);
-    return localStorage.setItem("buy", JSON.stringify({ product: filtered }));
+    return localStorage.setItem("buy", JSON.stringify({ ...itemsLocalStorage, product: filtered }));
   }
 };
 /* Informacion de LS */

@@ -21,12 +21,12 @@ type Product = {
   package?: string;
 };
 
-type ControlProps = {
+type GetProps = {
   coffee: Product[] | undefined;
   setCoffee: Dispatch<SetStateAction<Product[] | undefined>>;
 };
 
-export const GetProducts = createContext<ControlProps>({
+export const GetProducts = createContext<GetProps>({
   coffee: [],
   setCoffee: () => {},
 });
@@ -53,4 +53,4 @@ export const GetProductsProvider: FC<{ children: React.ReactNode }> = ({
   );
 };
 // Crear un hook personalizado para usar los estados dentro de otros componentes
-export const useProducts = () => useContext<ControlProps>(GetProducts);
+export const useProducts = () => useContext<GetProps>(GetProducts);

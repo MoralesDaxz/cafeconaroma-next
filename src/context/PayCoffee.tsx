@@ -1,5 +1,10 @@
 "use client";
 
+import {
+  PayProductsContextType,
+  Product,
+  TotalInitValue,
+} from "@/interfaces/interfaces";
 /* Componente encargado del manejo de LS, total, y  componente ModalCar */
 import {
   useState,
@@ -7,53 +12,17 @@ import {
   useEffect,
   FC,
   useContext,
-  SetStateAction,
-  Dispatch,
 } from "react";
-
-type Product = {
-  _id?: string;
-  available?: true;
-  brand?: string;
-  img_url?: string;
-  price?: number;
-  package?: string;
-  units?: number;
-};
-type TotalInitValue = {
-  invoice?: string;
-  identity?: string;
-  date?: string;
-  time?: string;
-  office?: string;
-  delivery: string;
-  payDelivery: number;
-  subtotal: number;
-  total: number;
-  quantity: number;
-  product: Product[];
-};
-
-interface PayProductsContextType {
-  local: Product[];
-  setLocal: Dispatch<SetStateAction<Product[]>>;
-  total: number;
-  setTotal: Dispatch<SetStateAction<number>>;
-  controlRender: number;
-  setControlRender: Dispatch<SetStateAction<number>>;
-  ttotal: TotalInitValue;
-  setTtotal: Dispatch<SetStateAction<TotalInitValue>>;
-}
 
 const defaultValue: PayProductsContextType = {
   local: [],
   setLocal: () => {},
   total: 0,
-  setTotal: () => {},
+  sebuysLocalStorage: () => {},
   controlRender: 0,
   setControlRender: () => {},
 
-  ttotal: {
+  buysLocalStorage: {
     invoice: "",
     identity: "",
     date: "",
@@ -66,7 +35,7 @@ const defaultValue: PayProductsContextType = {
     payDelivery: 0,
     product: [],
   },
-  setTtotal: () => {},
+  setbuysLocalStorage: () => {},
 };
 
 export const PayProducts = createContext<PayProductsContextType>(defaultValue);
@@ -75,8 +44,8 @@ export const PayProductsProvider: FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [local, setLocal] = useState<Product[]>([]);
-  const [total, setTotal] = useState<number>(0);
-  const [ttotal, setTtotal] = useState<TotalInitValue>({
+  const [total, sebuysLocalStorage] = useState<number>(0);
+  const [buysLocalStorage, setbuysLocalStorage] = useState<TotalInitValue>({
     invoice: "",
     identity: "",
     date: "",
@@ -96,7 +65,14 @@ export const PayProductsProvider: FC<{ children: React.ReactNode }> = ({
     const storedProducts = localStorage.getItem("buy");
     const itemsLocalStorage: TotalInitValue = storedProducts
       ? JSON.parse(storedProducts)
-      :{ delivery: "normal", payDelivery: 0, subtotal: 0, total: 0, quantity: 0, product: [] };
+      : {
+          delivery: "normal",
+          payDelivery: 0,
+          subtotal: 0,
+          total: 0,
+          quantity: 0,
+          product: [],
+        };
     const balance = itemsLocalStorage.product.reduce(
       (sum, product) => {
         sum.quantityReduce += product.units!;
@@ -112,8 +88,8 @@ export const PayProductsProvider: FC<{ children: React.ReactNode }> = ({
       subtotal: balance.subtotalReduce,
       total: updatedTotal,
     };
-    setTtotal(updatedState);
-  return  localStorage.setItem("buy", JSON.stringify(updatedState));
+    setbuysLocalStorage(updatedState);
+    return localStorage.setItem("buy", JSON.stringify(updatedState));
   };
   useEffect(() => {
     updateState();
@@ -130,11 +106,11 @@ export const PayProductsProvider: FC<{ children: React.ReactNode }> = ({
         local,
         setLocal,
         total,
-        setTotal,
+        sebuysLocalStorage,
         controlRender,
         setControlRender,
-        ttotal,
-        setTtotal,
+        buysLocalStorage,
+        setbuysLocalStorage,
       }}
     >
       {children}

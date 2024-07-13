@@ -1,53 +1,50 @@
 "use client";
 import { usePayProducts } from "@/context/PayCoffee";
 import { addLocalStorage, removeLocalStorage } from "@/utils/localStorageItems";
-import React, { useEffect } from "react";
+import React from "react";
 import { IoMdAddCircle } from "react-icons/io";
 import { IoMdRemoveCircle } from "react-icons/io";
 import Image from "next/image";
 
 const BagsPurshased = () => {
-  const {ttotal, controlRender, setControlRender } =
+  const { buysLocalStorage, controlRender, setControlRender } =
     usePayProducts();
-
-
   return (
     <>
-      {ttotal.product.map((bagCoffee, index) => {
+      {buysLocalStorage.product.map((bagCoffee, index) => {
         return (
           <div
             key={index}
             className="w-full px-2 py-4 flex items-center justify-between border-b-[1px] border-[#615649]"
           >
             <div className="flex items-center gap-2">
-
-            <IoMdRemoveCircle
-              onClick={() => {
-                removeLocalStorage({ bagCoffee });
-                setControlRender(controlRender + 1);
-              }}
-              className="w-[30px] h-[30px] opacity-80 hover:opacity-100 cursor-pointer"
-              color="#fcf6f6f1"
-            />
-            <div className="relative w-[70px] h-[70px]">
-              <p className="absolute top-0 right-0 rounded-full bg-[#13470f] w-6 h-6 flex items-center justify-center">
-                {bagCoffee.units}
-              </p>
-              <Image
-                src={bagCoffee.img_url!}
-                width={70}
-                height={70}
-                alt={`${bagCoffee.brand}_image`}
-              />
-            </div>
-            <IoMdAddCircle
-              onClick={() => {
-                addLocalStorage({ bagCoffee }),
+              <IoMdRemoveCircle
+                onClick={() => {
+                  removeLocalStorage({ bagCoffee });
                   setControlRender(controlRender + 1);
-              }}
-              className="w-[30px] h-[30px] opacity-80 hover:opacity-100 cursor-pointer"
-              color="#fcf6f6f1"
-            />
+                }}
+                className="transition-all duration-300 hover:scale-90 w-[30px] h-[30px] opacity-80 hover:opacity-100 cursor-pointer"
+                color="#fcf6f6f1"
+              />
+              <div className="relative w-[70px] h-[70px]">
+                <p className="absolute top-0 right-0 rounded-full bg-[#13470f] w-6 h-6 flex items-center justify-center">
+                  {bagCoffee.units}
+                </p>
+                <Image
+                  src={bagCoffee.img_url!}
+                  width={70}
+                  height={70}
+                  alt={`${bagCoffee.brand}_image`}
+                />
+              </div>
+              <IoMdAddCircle
+                onClick={() => {
+                  addLocalStorage({ bagCoffee }),
+                    setControlRender(controlRender + 1);
+                }}
+                className="transition-all duration-300 hover:scale-90 w-[30px] h-[30px] opacity-80 hover:opacity-100 cursor-pointer"
+                color="#fcf6f6f1"
+              />
             </div>
             <div className="flex items-center justify-center gap-3">
               <div className="flex flex-col items-center justify-center gap-2">
@@ -58,9 +55,11 @@ const BagsPurshased = () => {
               </div>
             </div>
             <p className="min-w-[50px] text-[1.1em]">
-              {(bagCoffee.units! * bagCoffee.price!).toFixed(2).replace('.',',')} €
+              {(bagCoffee.units! * bagCoffee.price!)
+                .toFixed(2)
+                .replace(".", ",")}{" "}
+              €
             </p>
-
           </div>
         );
       })}

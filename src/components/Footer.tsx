@@ -1,8 +1,6 @@
 "use client";
-import { useControlDisplay } from "@/context/ControlDisplay";
 import Link from "next/link";
 import React from "react";
-import { SlCup } from "react-icons/sl";
 import { LuPhone } from "react-icons/lu";
 import { IoMailOutline } from "react-icons/io5";
 import { footerRoute, route } from "@/utils/boxRoutes";
