@@ -29,7 +29,7 @@ const NavBar = () => {
         </div>
       )}
       <Link href={"/login"}>
-        <p className="font-semibold py-2 px-6 bg-[#515051] flex items-center justify-center rounded">
+        <p className="font-semibold py-2 px-4 bg-[#515051] flex items-center justify-center rounded">
           Iniciar sesión
         </p>
       </Link>

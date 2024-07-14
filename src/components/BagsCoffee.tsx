@@ -10,7 +10,7 @@ type NumberBags = {
   units: number;
 };
 
-const CoffeeBags: FC<NumberBags> = ({ units }) => {
+const BagsCoffee: FC<NumberBags> = ({ units }) => {
   const { coffee } = useProducts();
   const [isCoffee, setIsCoffee] = useState(false);
   const { controlRender, setControlRender } = usePayProducts();
@@ -68,4 +68,4 @@ const CoffeeBags: FC<NumberBags> = ({ units }) => {
   );
 };
 
-export default CoffeeBags;
+export default BagsCoffee;

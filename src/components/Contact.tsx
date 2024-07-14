@@ -1,7 +1,7 @@
 import React from "react";
 import { IoMailOutline } from "react-icons/io5";
 import { LuPhone } from "react-icons/lu";
-import Form from "./FormHero";
+import FormContact from "./FormHero";
 
 const Contact = () => {
   return (
@@ -32,7 +32,7 @@ const Contact = () => {
         </div>
       </article>
       <article className="sm:h-full w-full sm:min-w-[300px] sm:max-w-[580px]">
-        <Form />
+        <FormContact />
         {/* <Form/> */}
       </article>
     </section>

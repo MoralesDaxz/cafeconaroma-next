@@ -181,3 +181,48 @@ body {
 .submit:hover {
   background-color: #00bfff96;
 }
+
+.form div label {
+  position: relative;
+  border: 1px solid rgba(187, 187, 187, 0.397);
+  border-radius: 10px;
+}
+
+.form div label .input {
+  color: #313131;
+  width: 100%;
+  padding: 20px 05px 05px 10px;
+  outline: none;
+  background: transparent;
+  border: none;
+}
+.form div label:hover {
+  border: 1px solid rgba(107, 106, 106, 0.397);
+}
+.form div label:focus-within {
+  border: 1px solid rgba(42, 117, 71, 0.61);
+}
+
+.form div label .input + span {
+  color: rgb(1, 12, 4);
+  position: absolute;
+  left: 10px;
+  top: 0px;
+  font-size: 0.9em;
+  cursor: text;
+  transition: 0.3s ease;
+  background-color: #fff;
+}
+
+.form div label .input:placeholder-shown + span {
+  top: 12.5px;
+  font-size: 0.9em;
+}
+
+.form div label .input:focus + span,
+.form div label .input:valid + span {
+  top: -7px;
+  font-size: 0.8em;
+  font-weight: 600;
+  padding: 0px 5px;
+}

@@ -2,8 +2,10 @@
 import { usePayProducts } from "@/context/PayCoffee";
 import React, { useEffect, useState } from "react";
 import BagsPurshased from "./BagsPurshased";
-import Link from "next/link";
 
+import Link from "next/link";
+import { IoArrowBack } from "react-icons/io5";
+import PayModalFixed from "./PayModalFixed";
 const Basket = () => {
   const { buysLocalStorage, setControlRender, controlRender } =
     usePayProducts();
@@ -27,7 +29,13 @@ const Basket = () => {
   }, [urgent || controlRender]);
 
   return (
-    <section className="pt-10 sm:pt-20 bg-[white] min-h-screen w-full flex flex-col items-center gap-8">
+    <section className="pt-10 sm:pt-20 pb-2 bg-[white] min-h-screen w-full flex flex-col items-center gap-8">
+      <Link
+        href={"/store"}
+        className="text-black absolute top-14 sm:top-20 left-2 flex gap-2"
+      >
+        <IoArrowBack /> Volver
+      </Link>
       <h3 className="title text-[#2f5854] mt-8">
         Cesta ( {buysLocalStorage.quantity} )
       </h3>
@@ -78,49 +86,22 @@ const Basket = () => {
             <BagsPurshased />
           </div>
         </section>
-
-        <section className="relative w-full sm:w-[40%] mr-8">
-          <div className="sm:fixed bg-[#f6f5f3] sm:w-[40%] flex flex-col text-black p-6 rounded-md h-fit gap-4 ">
-            <h4 className="text-[1.1em] font-semibold">Total de sus compras</h4>
-            <span className="bg-[#615649] h-[1px] w-[90%] self-center"></span>
-            <div className="flex justify-between items-center text-[.9em] font-medium">
-              <p className=" ">SUBTOTAL</p>
-              <p>{buysLocalStorage.subtotal.toFixed(2).replace(".", ",")} €</p>
-            </div>
-            <div className="flex justify-between items-center text-[.9em] font-medium">
-              <p className=" ">ENVIO</p>
-              <p>
-                {buysLocalStorage.payDelivery.toFixed(2).replace(".", ",")} €
-              </p>
-            </div>
-
-            <span className="bg-[#615649] h-[1px] w-[90%] self-center"></span>
-            <div className="flex justify-between items-center text-[.6em] font-medium">
-              <p className="">Incluye IVA 21%</p>
-              <p>
-                {(buysLocalStorage.total * 0.21).toFixed(2).replace(".", ",")} €
-              </p>
-            </div>
-            <div className="flex justify-between items-center text-[.9em] font-medium">
-              <p className="">TOTAL</p>
-              <p>{buysLocalStorage.total.toFixed(2).replace(".", ",")} €</p>
-            </div>
-            <div className="flex justify-end mt-3 font-medium gap-3 text-white">
-              <Link
-                href={"/store"}
-                className="p-2 bg-[#13470F] hover:bg-[#1d6116] hover:scale-105 rounded-md transition-all duration-300"
-              >
-                Volver a tienda
-              </Link>
-              <Link
-                href={"/checkout"}
-                className="p-2 bg-[#13470F] hover:bg-[#1d6116] hover:scale-105 rounded-md transition-all duration-300"
-              >
-                Pagar
-              </Link>
-            </div>
+        <PayModalFixed>
+          <div className="flex justify-end mt-3 font-medium gap-4 text-white">
+            <Link
+              href={"/checkout"}
+              className="p-2 bg-[#13470F] hover:bg-[#1d6116] hover:scale-105 rounded-md transition-all duration-300"
+            >
+              Pagar
+            </Link>
+            <Link
+              href={"/store"}
+              className="p-2 text-[#13470F] hover:scale-105 rounded-md transition-all duration-300"
+            >
+              Volver a tienda
+            </Link>
           </div>
-        </section>
+        </PayModalFixed>
       </article>
     </section>
   );
