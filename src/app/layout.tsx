@@ -5,8 +5,7 @@ import { ControlDisplayProvider } from "@/context/ControlDisplay";
 import DisplayNavBar from "@/components/DisplayNavBar";
 import CopyRight from "@/components/CopyRight";
 import { GetProductsProvider } from "@/context/GetProducts";
-import { PayProducts, PayProductsProvider } from "@/context/PayCoffee";
-
+import { PayProductsProvider } from "@/context/PayCoffee";
 
 const outfit = Outfit({ subsets: ["latin"] });
 

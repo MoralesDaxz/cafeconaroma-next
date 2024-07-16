@@ -1,24 +1,18 @@
 "use client";
 import { SpainCommunities } from "@/utils/information";
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, FormProvider, useFormContext } from "react-hook-form";
 
-const FormSendCheckout = () => {
+const FormSendCheckout = ({hand,register}) => {
   const [comunitySpain, setComunitySpain] = useState("");
   const [province, setProvince] = useState("");
-  console.log(comunitySpain);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm(/* { defaultValues: { email: "", msg: "" } } */);
   return (
     <form
       className="form rounded-md sm:h-full mb-1"
-      onSubmit={handleSubmit((data) => {
+       onSubmit={hand((data) => {
         console.log(data);
-      })}
+      })} 
     >
       <h2 className="pl-2 font-medium text-lg">Dirección de envío</h2>
       <label>
@@ -43,7 +37,6 @@ const FormSendCheckout = () => {
         />
         <span className="select-none">Email</span>
       </label>
-
       <label>
         <input
           className="input"
@@ -57,8 +50,16 @@ const FormSendCheckout = () => {
       <label>
         <select
           className="input"
-          onChange={(e) => setComunitySpain(e.currentTarget.value)}
+          /* onChange={(e) => setComunitySpain(e.currentTarget.value)} */
+          value={comunitySpain}
+          required
+          {...register("comunity",{
+            onchange:(e)=>setComunitySpain(e.currentTarget.value)}
+          )}
         >
+          <option value={""} disabled>
+            Comunidad
+          </option>
           {SpainCommunities.map((comunity, index) => {
             return (
               <option key={index} value={comunity.comunidad}>
@@ -71,8 +72,18 @@ const FormSendCheckout = () => {
       </label>
       {comunitySpain !== "" && (
         <label>
-          <select className="input">
-            {SpainCommunities.map((comunity, index) => {
+          <select
+            className="input"
+           /*  onChange={(e) => setProvince(e.currentTarget.value)} */
+            value={province}
+            required
+            {...register("province"),{
+              onchange:(e)=>setComunitySpain(e.currentTarget.value)}}
+          >
+            <option value={""} disabled>
+              Província
+            </option>
+            {SpainCommunities.map((comunity) => {
               if (comunity.comunidad === comunitySpain) {
                 return comunity.provincias.map((prov, i) => {
                   return (
@@ -86,50 +97,53 @@ const FormSendCheckout = () => {
           </select>
           <span className="select-none">Província</span>
         </label>
-        
       )}
-        <label>
-        <input
-          className="input"
-          type="text"
-          placeholder=""
-          required
-          {...register("street")}
-        />
-        <span className="select-none">Calle</span>
-      </label>
-      <div className="w-full flex gap-1">
-      <label>
-        <input
-          className="input"
-          type="text"
-          placeholder=""
-          required
-          {...register("code")}
-        />
-        <span className="select-none">Cód. postal</span>
-      </label>
-      <label>
-        <input
-          className="input"
-          type="text"
-          placeholder=""
-          required
-          {...register("plant")}
-        />
-        <span className="select-none">Planta</span>
-      </label>
-      <label>
-        <input
-          className="input"
-          type="text"
-          placeholder=""
-          required
-          {...register("door")}
-        />
-        <span className="select-none">Puerta</span>
-      </label>
-      </div>
+      {province !== "" && (
+        <>
+          <label>
+            <input
+              className="input"
+              type="text"
+              placeholder=""
+              required
+              {...register("street")}
+            />
+            <span className="select-none">Calle</span>
+          </label>
+          <div className="w-full flex gap-1">
+            <label>
+              <input
+                className="input"
+                type="text"
+                placeholder=""
+                required
+                {...register("code")}
+              />
+              <span className="select-none">Cód. postal</span>
+            </label>
+            <label>
+              <input
+                className="input"
+                type="text"
+                placeholder=""
+                required
+                {...register("plant")}
+              />
+              <span className="select-none">Planta</span>
+            </label>
+            <label>
+              <input
+                className="input"
+                type="text"
+                placeholder=""
+                required
+                {...register("door")}
+              />
+              <span className="select-none">Puerta</span>
+            </label>
+          </div>
+        </>
+      )}
     </form>
   );
 };
