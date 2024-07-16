@@ -1,10 +1,10 @@
-import Basket from "@/components/Basket";
+import Successful from "@/components/successful";
 import React from "react";
 
 const page = () => {
   return (
     <>
-      <Basket />
+      <Successful />
     </>
   );
 };

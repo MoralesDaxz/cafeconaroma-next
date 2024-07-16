@@ -5,20 +5,6 @@ import React from "react";
 import { IoArrowBack } from "react-icons/io5";
 
 const page = () => {
-/*   const methods = useForm({
-    defaultValues: {
-      payClient: "",
-      name: "",
-      mail: "",
-      phone: "",
-      comunity: "",
-      province: "",
-      street: "",
-      code: "",
-      plant: "",
-      door: "",
-    },
-  }); */
   return (
 
     <section className="pt-10 sm:pt-20 pb-2 bg-[white] min-h-screen w-full flex flex-col items-center">

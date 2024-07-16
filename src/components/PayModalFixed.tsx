@@ -1,6 +1,5 @@
 "use client";
 import { usePayProducts } from "@/context/PayCoffee";
-import Link from "next/link";
 import React, { FC, ReactNode } from "react";
 type Props = {
   children?: ReactNode;
@@ -19,7 +18,7 @@ const PayModalFixed: FC<Props> = ({ children }) => {
         </div>
         <div className="flex justify-between items-center text-[.9em] font-medium">
           <p className=" ">ENVIO</p>
-          <p>{buysLocalStorage.payDelivery.toFixed(2).replace(".", ",")} €</p>
+          <p>{buysLocalStorage.sent.payDelivery?.toFixed(2).replace(".", ",")} €</p>
         </div>
 
         <span className="bg-[#615649] h-[1px] w-[90%] self-center"></span>

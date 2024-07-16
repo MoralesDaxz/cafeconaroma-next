@@ -2,7 +2,6 @@
 import { usePayProducts } from "@/context/PayCoffee";
 import React, { useEffect, useState } from "react";
 import BagsPurshased from "./BagsPurshased";
-
 import Link from "next/link";
 import { IoArrowBack } from "react-icons/io5";
 import PayModalFixed from "./PayModalFixed";
@@ -10,23 +9,23 @@ const Basket = () => {
   const { buysLocalStorage, setControlRender, controlRender } =
     usePayProducts();
   const [urgent, setUrgent] = useState(
-    buysLocalStorage.delivery === "urgente" ? true : false
+    buysLocalStorage.sent.delivery === "urgente" ? true : false
   );
 
   const updatePayProducts = () => {
     const storedProducts = localStorage.getItem("buy");
     const itemsLocalStorage = storedProducts
       ? JSON.parse(storedProducts)
-      : { subtotal: 0, total: 0, quantity: 0, product: [] };
-    itemsLocalStorage.delivery = urgent ? "urgente" : "normal";
-    itemsLocalStorage.payDelivery = urgent ? 9 : 0;
+      : { subtotal: 0, total: 0, quantity: 0, product: [],sent:{} };
+    itemsLocalStorage.sent.delivery = urgent ? "urgente" : "normal";
+    itemsLocalStorage.sent.payDelivery = urgent ? 9 : 0;
     localStorage.setItem("buy", JSON.stringify(itemsLocalStorage));
     return setControlRender(controlRender + 1);
   };
 
   useEffect(() => {
     updatePayProducts();
-  }, [urgent || controlRender]);
+  }, [urgent]);
 
   return (
     <section className="pt-10 sm:pt-20 pb-2 bg-[white] min-h-screen w-full flex flex-col items-center gap-8">

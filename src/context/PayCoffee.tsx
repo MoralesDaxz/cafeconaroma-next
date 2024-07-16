@@ -6,13 +6,7 @@ import {
   TotalInitValue,
 } from "@/interfaces/interfaces";
 /* Componente encargado del manejo de LS, total, y  componente ModalCar */
-import {
-  useState,
-  createContext,
-  useEffect,
-  FC,
-  useContext,
-} from "react";
+import { useState, createContext, useEffect, FC, useContext } from "react";
 
 const defaultValue: PayProductsContextType = {
   local: [],
@@ -24,16 +18,14 @@ const defaultValue: PayProductsContextType = {
 
   buysLocalStorage: {
     invoice: "",
-    identity: "",
     date: "",
     time: "",
     office: "",
-    delivery: "normal",
     subtotal: 0,
     total: 0,
     quantity: 0,
-    payDelivery: 0,
     product: [],
+    sent: { delivery: "normal", payDelivery: 0 },
   },
   setbuysLocalStorage: () => {},
 };
@@ -47,16 +39,14 @@ export const PayProductsProvider: FC<{ children: React.ReactNode }> = ({
   const [total, sebuysLocalStorage] = useState<number>(0);
   const [buysLocalStorage, setbuysLocalStorage] = useState<TotalInitValue>({
     invoice: "",
-    identity: "",
     date: "",
     time: "",
     office: "",
-    delivery: "normal",
     subtotal: 0,
     total: 0,
     quantity: 0,
-    payDelivery: 0,
     product: [],
+    sent: { delivery: "normal", payDelivery: 0 },
   });
 
   const [controlRender, setControlRender] = useState<number>(0);
@@ -66,12 +56,11 @@ export const PayProductsProvider: FC<{ children: React.ReactNode }> = ({
     const itemsLocalStorage: TotalInitValue = storedProducts
       ? JSON.parse(storedProducts)
       : {
-          delivery: "normal",
-          payDelivery: 0,
           subtotal: 0,
           total: 0,
           quantity: 0,
           product: [],
+          sent:{ delivery: "normal", payDelivery: 0 },
         };
     const balance = itemsLocalStorage.product.reduce(
       (sum, product) => {
@@ -81,7 +70,10 @@ export const PayProductsProvider: FC<{ children: React.ReactNode }> = ({
       },
       { quantityReduce: 0, subtotalReduce: 0 }
     );
-    const updatedTotal = itemsLocalStorage.payDelivery + balance.subtotalReduce;
+
+
+    
+    const updatedTotal = itemsLocalStorage.sent.payDelivery! + balance.subtotalReduce;
     const updatedState = {
       ...itemsLocalStorage,
       quantity: balance.quantityReduce,
@@ -120,6 +112,3 @@ export const PayProductsProvider: FC<{ children: React.ReactNode }> = ({
 
 // Crear un hook personalizado para usar los estados dentro de otros componentes
 export const usePayProducts = () => useContext(PayProducts);
-
-/* Actualizacion de cantidades y precio */
-/*    */

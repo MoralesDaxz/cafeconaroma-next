@@ -1,24 +1,19 @@
 "use client";
 import React, { useState } from "react";
 import PayModalFixed from "./PayModalFixed";
-import FormSendCheckout from "./FormSendCheckout";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { SpainCommunities } from "@/utils/information";
+import { usePayProducts } from "@/context/PayCoffee";
+import { TotalInitValue } from "@/interfaces/interfaces";
 
-type Pay = {
-  payClient: string;
-  name: string;
-  mail: string;
-  phone: string;
-  comunity: string;
-  provincee: string;
-  street: string;
-  code: string;
-  plant: string;
-  door: string;
-};
 const ChoosePay = () => {
+  const {
+    buysLocalStorage,
+    setbuysLocalStorage,
+    setControlRender,
+    controlRender,
+  } = usePayProducts();
   const [comunitySpain, setComunitySpain] = useState("");
   const [province, setProvince] = useState("");
   const [inputKind, setInputKind] = useState("");
@@ -27,15 +22,17 @@ const ChoosePay = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
-      payClient: "",
+      payTipe: "",
       name: "",
+      identity:"",
       mail: "",
       phone: "",
       comunity: "",
-      provincee: "",
+      province: "",
       street: "",
       code: "",
       plant: "",
@@ -43,8 +40,24 @@ const ChoosePay = () => {
     },
   });
 
+  const clearForm = () => {
+    setComunitySpain("");
+    setProvince("");
+    setInputKind("");
+    reset();
+  };
+
   const submitForm = handleSubmit((data) => {
     console.log(data);
+    const storedProducts = localStorage.getItem("buy");
+    const itemsLocalStorage: TotalInitValue = JSON.parse(storedProducts!);
+    const sentData = { sent: { ...itemsLocalStorage.sent, ...data } };
+    const updatedState = { ...itemsLocalStorage, ...sentData };
+    setbuysLocalStorage(updatedState);
+    localStorage.setItem("buy", JSON.stringify(updatedState));
+    /* navigate por aqui a success */
+    /* clearForm(); */
+    return;
   });
 
   return (
@@ -63,7 +76,8 @@ const ChoosePay = () => {
               type="radio"
               onClick={() => setInputKind("tarjeta")}
               checked={inputKind === "tarjeta"}
-              {...register("payClient", { value: "card" })}
+              {...register("payTipe")}
+              value={"card"}
             />
             <span className=" text-[1em]">
               <p className="font-medium">Tarjeta de débito</p>
@@ -86,7 +100,8 @@ const ChoosePay = () => {
               type="radio"
               onClick={() => setInputKind("transferencia")}
               checked={inputKind === "transferencia"}
-              {...register("payClient", { value: "transfer" })}
+              {...register("payTipe")}
+              value={"transfer"}
             />
             <span className=" text-[1em] font-medium">
               <p>Transferencia bancaria</p>
@@ -117,7 +132,8 @@ const ChoosePay = () => {
               type="radio"
               onClick={() => setInputKind("bizum")}
               checked={inputKind === "bizum"}
-              {...register("payClient", { value: "bizum" })}
+              {...register("payTipe")}
+              value={"bizum"}
             />
             <span className=" text-[1em]">
               <p className="font-medium">Bizum</p>
@@ -146,6 +162,18 @@ const ChoosePay = () => {
             <label className="float-label-container">
               <input
                 className="input"
+                type="text"
+                placeholder=""
+                minLength={4}
+                maxLength={50}
+                required
+                {...register("identity")}
+              />
+              <span className="select-none">Identificacion</span>
+            </label>
+            <label className="float-label-container">
+              <input
+                className="input"
                 type="email"
                 placeholder=""
                 required
@@ -166,15 +194,14 @@ const ChoosePay = () => {
             <label className="float-label-container">
               <select
                 className="input"
-                value={comunitySpain}
                 required
                 {...register("comunity", {
                   onChange: (e) => setComunitySpain(e.currentTarget.value),
-                
+                  onBlur: (e) => setComunitySpain(e.currentTarget.value),
                 })}
               >
                 <option value={""} disabled>
-                  -
+                  Seleccione
                 </option>
                 {SpainCommunities.map((comunity, index) => {
                   return (
@@ -186,22 +213,20 @@ const ChoosePay = () => {
               </select>
               <span className="select-none">Comunidad</span>
             </label>
-          
+            {comunitySpain !== "" && (
               <label className="float-label-container">
                 <select
                   className="input"
-                  value={province}
                   required
-                  {...(register("provincee"),
-                  {
+                  {...register("province", {
                     onChange: (e) => setProvince(e.currentTarget.value),
-                    onBlur(event) {setProvince(event.currentTarget.value)
-                    
+                    onBlur(event) {
+                      setProvince(event.currentTarget.value);
                     },
                   })}
                 >
                   <option value={""} disabled>
-                    -
+                    Seleccione
                   </option>
                   {SpainCommunities.map((comunity) => {
                     if (comunity.comunidad === comunitySpain) {
@@ -217,7 +242,8 @@ const ChoosePay = () => {
                 </select>
                 <span className="select-none">Província</span>
               </label>
-         
+            )}
+
             {province !== "" && (
               <>
                 <label className="float-label-container">
@@ -271,7 +297,7 @@ const ChoosePay = () => {
         <PayModalFixed>
           <div className="flex justify-end mt-3 font-medium gap-4 text-white">
             <Link
-              href={"/checkout"}
+              href={"/success"}
               className="p-2 bg-[#13470F] hover:bg-[#1d6116] hover:scale-105 rounded-md transition-all duration-300"
               onClick={() => submitForm()}
             >
