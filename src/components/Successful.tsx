@@ -7,7 +7,7 @@ const Successful = () => {
   const { buysLocalStorage, setControlRender, controlRender } =
     usePayProducts();
   return (
-    <section className="pt-10 sm:pt-20 pb-2 bg-[white] min-h-screen w-full flex flex-col items-center gap-8">
+    <section className="pt-10 sm:pt-20 pb-2 bg-[white] text-black min-h-screen w-full flex flex-col items-center gap-8">
       <h2>Pedido Nº</h2>
       <p>Estaras recibiendo tu pedido  </p>
       <div>

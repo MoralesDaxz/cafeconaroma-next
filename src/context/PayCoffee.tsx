@@ -17,10 +17,6 @@ const defaultValue: PayProductsContextType = {
   setControlRender: () => {},
 
   buysLocalStorage: {
-    invoice: "",
-    date: "",
-    time: "",
-    office: "",
     subtotal: 0,
     total: 0,
     quantity: 0,
@@ -38,10 +34,6 @@ export const PayProductsProvider: FC<{ children: React.ReactNode }> = ({
   const [local, setLocal] = useState<Product[]>([]);
   const [total, sebuysLocalStorage] = useState<number>(0);
   const [buysLocalStorage, setbuysLocalStorage] = useState<TotalInitValue>({
-    invoice: "",
-    date: "",
-    time: "",
-    office: "",
     subtotal: 0,
     total: 0,
     quantity: 0,

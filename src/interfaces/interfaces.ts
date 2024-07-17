@@ -28,9 +28,8 @@ type Pay = {
 
 /* PayCoffee */
 type TotalInitValue = {
-  invoice?: string;
-  date?: string;
-  time?: string;
+  date?:string;
+  time?:string;
   office?: string;
   subtotal: number;
   total: number;

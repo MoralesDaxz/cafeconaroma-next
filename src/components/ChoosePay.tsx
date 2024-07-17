@@ -6,6 +6,12 @@ import { useForm } from "react-hook-form";
 import { SpainCommunities } from "@/utils/information";
 import { usePayProducts } from "@/context/PayCoffee";
 import { TotalInitValue } from "@/interfaces/interfaces";
+import { newOrder } from "@/api/apiGetCoffee";
+import {
+  displayCurrentTime,
+  formatDate,
+  generateInvoiceCode,
+} from "@/utils/invoice";
 
 const ChoosePay = () => {
   const {
@@ -28,7 +34,7 @@ const ChoosePay = () => {
     defaultValues: {
       payTipe: "",
       name: "",
-      identity:"",
+      identity: "",
       mail: "",
       phone: "",
       comunity: "",
@@ -47,17 +53,28 @@ const ChoosePay = () => {
     reset();
   };
 
-  const submitForm = handleSubmit((data) => {
-    console.log(data);
+  const submitForm = handleSubmit(async (data) => {
     const storedProducts = localStorage.getItem("buy");
     const itemsLocalStorage: TotalInitValue = JSON.parse(storedProducts!);
-    const sentData = { sent: { ...itemsLocalStorage.sent, ...data } };
-    const updatedState = { ...itemsLocalStorage, ...sentData };
+    const time = { time: await displayCurrentTime() };
+    const date = { date: await generateInvoiceCode() };
+    const office = { office: "E001" };
+    const sentData = { sent: { ...itemsLocalStorage.sent } };
+    const updatedState = {
+      ...itemsLocalStorage,
+      ...sentData,
+      ...time,
+      ...date,
+      ...office,
+    };
     setbuysLocalStorage(updatedState);
     localStorage.setItem("buy", JSON.stringify(updatedState));
+    const order = await newOrder(updatedState);
+    console.log("State", updatedState);
+
     /* navigate por aqui a success */
     /* clearForm(); */
-    return;
+    return order
   });
 
   return (
@@ -297,7 +314,7 @@ const ChoosePay = () => {
         <PayModalFixed>
           <div className="flex justify-end mt-3 font-medium gap-4 text-white">
             <Link
-              href={"/success"}
+              href={""}
               className="p-2 bg-[#13470F] hover:bg-[#1d6116] hover:scale-105 rounded-md transition-all duration-300"
               onClick={() => submitForm()}
             >
