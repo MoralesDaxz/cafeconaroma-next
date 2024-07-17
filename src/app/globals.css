@@ -108,6 +108,7 @@ body {
 
 /* Clase general para el contenedor del input y el span */
 .float-label-container {
+  width: 100%;
   position: relative;
   margin-bottom: 20px;
 }
@@ -144,7 +145,6 @@ body {
   font-size: 0.9em;
   cursor: text;
   transition: 0.3s ease;
-  background-color: #fff;
   padding: 0 5px;
   pointer-events: none; /* Evitar que el span interfiera con los clics del usuario */
 }

@@ -12,6 +12,7 @@ import {
   formatDate,
   generateInvoiceCode,
 } from "@/utils/invoice";
+import ExclamationError from "./ExclamationError";
 
 const ChoosePay = () => {
   const {
@@ -23,14 +24,12 @@ const ChoosePay = () => {
   const [comunitySpain, setComunitySpain] = useState("");
   const [province, setProvince] = useState("");
   const [inputKind, setInputKind] = useState("");
-  const borderStyle =
-    "border-b-[3px] border-r-[1px] border-l-[3px] border-t-[1px] border-green-600 rounded-md opacity-100";
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm({
+  } = useForm(/* {
     defaultValues: {
       payTipe: "",
       name: "",
@@ -44,7 +43,9 @@ const ChoosePay = () => {
       plant: "",
       door: "",
     },
-  });
+  } */);
+
+  const borderStyle = `border-b-[3px] border-r-[1px] border-l-[3px] border-t-[1px] border-green-600 rounded-md opacity-100`;
 
   const clearForm = () => {
     setComunitySpain("");
@@ -54,34 +55,47 @@ const ChoosePay = () => {
   };
 
   const submitForm = handleSubmit(async (data) => {
-    const storedProducts = localStorage.getItem("buy");
+    if (!errors) {
+      const storedProducts = localStorage.getItem("buy");
     const itemsLocalStorage: TotalInitValue = JSON.parse(storedProducts!);
-    const time = { time: await displayCurrentTime() };
-    const date = { date: await generateInvoiceCode() };
-    const office = { office: "E001" };
-    const sentData = { sent: { ...itemsLocalStorage.sent } };
+    const updateStore = {
+      time: await displayCurrentTime(),
+      date: await generateInvoiceCode(),
+      office: "E001",
+      sent: { ...itemsLocalStorage.sent, ...data },
+    };
     const updatedState = {
       ...itemsLocalStorage,
-      ...sentData,
-      ...time,
-      ...date,
-      ...office,
+      ...updateStore,
     };
     setbuysLocalStorage(updatedState);
     localStorage.setItem("buy", JSON.stringify(updatedState));
     const order = await newOrder(updatedState);
+    const newInvoice = {
+      invoice: order.invoice,
+      products: order.product,
+      comunity: order.sent.comunity,
+      province: order.sent.province,
+      name: order.sent.name,
+    };
+
+    localStorage.setItem("invoice", JSON.stringify(newInvoice));
     console.log("State", updatedState);
     console.log("Order", order);
 
     /* navigate por aqui a success */
     /* clearForm(); */
-    return order
+    return order;
+    }console.log(errors);
+    
+    
   });
 
   return (
     <article className="flex flex-col sm:flex-row gap-3 px-4 w-full w-max-[800px]">
       <section className="flex flex-col bg-[#2e2d2dd2] w-full sm:w-[60%] pt-4 rounded-md gap-4 px-1">
         <h2 className="pl-2 font-medium text-lg">Seleccionar método de pago</h2>
+        {inputKind == "" ? <ExclamationError /> : ""}
         <form className="flex flex-col gap-3">
           <div
             className={`flex items-center pl-2 py-2 gap-3 ${
@@ -89,7 +103,6 @@ const ChoosePay = () => {
             }`}
           >
             <input
-              required
               className="h-4 w-4 accent-[#2A5B45] cursor-pointer "
               type="radio"
               onClick={() => setInputKind("tarjeta")}
@@ -113,7 +126,6 @@ const ChoosePay = () => {
             }`}
           >
             <input
-              required
               className=" h-4 w-4 accent-[#2A5B45] cursor-pointer"
               type="radio"
               onClick={() => setInputKind("transferencia")}
@@ -145,7 +157,6 @@ const ChoosePay = () => {
             }`}
           >
             <input
-              required
               className=" h-4 w-4 accent-[#2A5B45] cursor-pointer"
               type="radio"
               onClick={() => setInputKind("bizum")}
@@ -163,152 +174,166 @@ const ChoosePay = () => {
               )}
             </span>
           </div>
-          <div className="bg-[white] text-[black] w-full p-4 flex flex-col justify-center mb-2 rounded-md">
-            <h2 className="pl-2 font-medium text-lg">Dirección de envío</h2>
-            <label className="float-label-container">
-              <input
-                className="input"
-                type="text"
-                placeholder=""
-                minLength={4}
-                maxLength={50}
-                required
-                {...register("name")}
-              />
-              <span className="select-none">Nombre completo</span>
-            </label>
-            <label className="float-label-container">
-              <input
-                className="input"
-                type="text"
-                placeholder=""
-                minLength={4}
-                maxLength={50}
-                required
-                {...register("identity")}
-              />
-              <span className="select-none">Identificacion</span>
-            </label>
-            <label className="float-label-container">
-              <input
-                className="input"
-                type="email"
-                placeholder=""
-                required
-                {...register("mail")}
-              />
-              <span className="select-none">Email</span>
-            </label>
-            <label className="float-label-container">
-              <input
-                className="input"
-                type="tel"
-                placeholder=""
-                required
-                {...register("phone")}
-              />
-              <span className="select-none">Telefono</span>
-            </label>
-            <label className="float-label-container">
-              <select
-                className="input"
-                required
-                {...register("comunity", {
-                  onChange: (e) => setComunitySpain(e.currentTarget.value),
-                  onBlur: (e) => setComunitySpain(e.currentTarget.value),
-                })}
-              >
-                <option value={""} disabled>
-                  Seleccione
-                </option>
-                {SpainCommunities.map((comunity, index) => {
-                  return (
-                    <option key={index} value={comunity.comunidad}>
-                      {comunity.comunidad}
-                    </option>
-                  );
-                })}
-              </select>
-              <span className="select-none">Comunidad</span>
-            </label>
-            {comunitySpain !== "" && (
+
+          <p className="text-black text-lg">Aqui</p>
+
+          {inputKind !== "" && (
+            <div className="bg-[white] text-[black] w-full p-4 flex flex-col justify-center mb-2 rounded-md">
+              <h2 className="pl-2 font-medium text-lg">Facturación</h2>
+              <label className="float-label-container">
+                <input
+                  className="input"
+                  type="text"
+                  minLength={4}
+                  maxLength={50}
+                  {...register("name")}
+                  placeholder=""
+                />
+                <span className="">Nombre completo</span>
+                {/* {errors?.name && (
+                  <span className="">No hay nada en nombre</span>
+                )} */}
+              </label>
+              <label className="float-label-container">
+                <input
+                  className="input"
+                  type="text"
+                  placeholder=""
+                  minLength={4}
+                  maxLength={50}
+                  {...register("identity")}
+                />
+                <span className="select-none">Identificacion</span>
+                {errors.identity && <ExclamationError />}
+              </label>
+              <h2 className="pl-2 font-medium text-lg">Dirección de envío</h2>
+              <label className="float-label-container">
+                <input
+                  className="input"
+                  type="email"
+                  placeholder=""
+                  {...register("mail")}
+                />
+                <span className="select-none">Email</span>
+                {errors.mail && <ExclamationError />}
+              </label>
+              <label className="float-label-container">
+                <input
+                  className="input"
+                  type="tel"
+                  placeholder=""
+                  {...register("phone")}
+                />
+                <span className="select-none">Telefono</span>
+                {errors.phone && <ExclamationError />}
+              </label>
               <label className="float-label-container">
                 <select
                   className="input"
                   required
-                  {...register("province", {
-                    onChange: (e) => setProvince(e.currentTarget.value),
-                    onBlur(event) {
-                      setProvince(event.currentTarget.value);
-                    },
+                  {...register("comunity", {
+                    onChange: (e) => setComunitySpain(e.currentTarget.value),
+                    onBlur: (e) => setComunitySpain(e.currentTarget.value),
                   })}
                 >
                   <option value={""} disabled>
                     Seleccione
                   </option>
-                  {SpainCommunities.map((comunity) => {
-                    if (comunity.comunidad === comunitySpain) {
-                      return comunity.provincias.map((prov, i) => {
-                        return (
-                          <option key={i} value={prov}>
-                            {prov}
-                          </option>
-                        );
-                      });
-                    }
+                  {SpainCommunities.map((comunity, index) => {
+                    return (
+                      <option key={index} value={comunity.comunidad}>
+                        {comunity.comunidad}
+                      </option>
+                    );
                   })}
                 </select>
-                <span className="select-none">Província</span>
+                <span className="select-none">Comunidad</span>
+                {errors.comunity && <ExclamationError />}
               </label>
-            )}
-
-            {province !== "" && (
-              <>
+              {comunitySpain !== "" && (
                 <label className="float-label-container">
-                  <input
+                  <select
                     className="input"
-                    type="text"
-                    placeholder=""
                     required
-                    {...register("street")}
-                  />
-                  <span className="select-none">Calle</span>
+                    {...register("province", {
+                      onChange: (e) => setProvince(e.currentTarget.value),
+                      onBlur(event) {
+                        setProvince(event.currentTarget.value);
+                      },
+                    })}
+                  >
+                    <option value={""} disabled>
+                      Seleccione
+                    </option>
+                    {SpainCommunities.map((comunity) => {
+                      if (comunity.comunidad === comunitySpain) {
+                        return comunity.provincias.map((prov, i) => {
+                          return (
+                            <option key={i} value={prov}>
+                              {prov}
+                            </option>
+                          );
+                        });
+                      }
+                    })}
+                  </select>
+                  <span className="select-none">Província</span>
+                  {errors.province && <ExclamationError />}
                 </label>
-                <div className="w-full flex gap-1">
+              )}
+
+              {province !== "" && (
+                <>
                   <label className="float-label-container">
                     <input
                       className="input"
                       type="text"
                       placeholder=""
                       required
-                      {...register("code")}
+                      {...register("street")}
                     />
-                    <span className="select-none">Cód. postal</span>
+                    <span className="select-none">Calle</span>
+                    {errors.street && <ExclamationError />}
                   </label>
-                  <label className="float-label-container">
-                    <input
-                      className="input"
-                      type="text"
-                      placeholder=""
-                      required
-                      {...register("plant")}
-                    />
-                    <span className="select-none">Planta</span>
-                  </label>
-                  <label className="float-label-container">
-                    <input
-                      className="input"
-                      type="text"
-                      placeholder=""
-                      required
-                      {...register("door")}
-                    />
-                    <span className="select-none">Puerta</span>
-                  </label>
-                </div>
-              </>
-            )}
-          </div>
+                  <div className="w-full flex gap-1">
+                    <label className="float-label-container">
+                      <input
+                        className="input"
+                        type="text"
+                        placeholder=""
+                        required
+                        {...register("code")}
+                      />
+                      <span className="select-none">Cód. postal</span>
+                      {errors.code && <ExclamationError />}
+                    </label>
+                    <label className="float-label-container">
+                      <input
+                        className="input"
+                        type="text"
+                        placeholder=""
+                        required
+                        {...register("plant")}
+                      />
+                      <span className="select-none">Planta</span>
+                      {errors.plant && <ExclamationError />}
+                    </label>
+                    <label className="float-label-container">
+                      <input
+                        className="input"
+                        type="text"
+                        placeholder=""
+                        required
+                        {...register("door")}
+                      />
+                      <span className="select-none">Puerta</span>
+                      {errors.door && <ExclamationError />}
+                    </label>
+                  </div>
+                </>
+              )}
+            </div>
+          )}
         </form>
       </section>
       <section className="w-full sm:w-[40%] mr-8 rounded-md">
@@ -317,7 +342,7 @@ const ChoosePay = () => {
             <Link
               href={"/checkout"}
               className="p-2 bg-[#13470F] hover:bg-[#1d6116] hover:scale-105 rounded-md transition-all duration-300"
-              onClick={() => submitForm()}
+              onClick={() =>  submitForm()}
             >
               Pagar
             </Link>

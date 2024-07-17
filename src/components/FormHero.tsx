@@ -11,12 +11,12 @@ const FormContact = () => {
   } = useForm(/* { defaultValues: { email: "", msg: "" } } */);
   return (
     <form
-      className="form rounded-md sm:rounded-none sm:h-full"
+      className="form rounded-md sm:rounded-none sm:h-full flex flex-col items-center justify-center w-full"
       onSubmit={handleSubmit((data) => {
         console.log(data);
       })}
     >
-      <label>
+      <label className="float-label-container">
         <input
           className="input"
           type="text"
@@ -26,10 +26,10 @@ const FormContact = () => {
           required
           {...register("name")}
         />
-        <span className="select-none">Nombre completo</span>
+        <span className="select-none bg-[#E2DFD7] rounded-3xl">Nombre completo</span>
       </label>
 
-      <label>
+      <label className="float-label-container">
         <input
           className="input"
           type="email"
@@ -37,10 +37,10 @@ const FormContact = () => {
           required
           {...register("mail")}
         />
-        <span className="select-none">Email</span>
+        <span className="select-none bg-[#E2DFD7] rounded-3xl">Email</span>
       </label>
 
-      <label>
+      <label className="float-label-container">
         <input
           className="input"
           type="tel"
@@ -48,17 +48,17 @@ const FormContact = () => {
           required
           {...register("phone")}
         />
-        <span className="select-none">Telefono</span>
+        <span className="select-none bg-[#E2DFD7] rounded-3xl">Telefono</span>
       </label>
 
-      <label>
+      <label className="float-label-container">
         <textarea
           className="input"
           placeholder=""
           required
           {...register("details")}
         />
-        <span className="select-none">¿Cómo podemos ayudarte?</span>
+        <span className="select-none bg-[#E2DFD7] rounded-3xl">¿Cómo podemos ayudarte?</span>
       </label>
       <div className="flex gap-2">
         <input
@@ -68,11 +68,11 @@ const FormContact = () => {
           {...register("terms")}
         />
         <span className="text-[.8em]">
-          Acepto la{" "}
+          Acepto la
           <Link href={"#privacity"} className="underline">
             Política de Privacidad
-          </Link>{" "}
-          y los{" "}
+          </Link>
+          y los
           <Link href={"#terms"} className="underline">
             Términos y condiciones
           </Link>
