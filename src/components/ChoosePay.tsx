@@ -71,6 +71,7 @@ const ChoosePay = () => {
     localStorage.setItem("buy", JSON.stringify(updatedState));
     const order = await newOrder(updatedState);
     console.log("State", updatedState);
+    console.log("Order", order);
 
     /* navigate por aqui a success */
     /* clearForm(); */
@@ -314,7 +315,7 @@ const ChoosePay = () => {
         <PayModalFixed>
           <div className="flex justify-end mt-3 font-medium gap-4 text-white">
             <Link
-              href={""}
+              href={"/checkout"}
               className="p-2 bg-[#13470F] hover:bg-[#1d6116] hover:scale-105 rounded-md transition-all duration-300"
               onClick={() => submitForm()}
             >

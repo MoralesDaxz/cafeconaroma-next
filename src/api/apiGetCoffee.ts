@@ -10,21 +10,23 @@ const getCoffee = async (url: string) => {
 
 const newOrder = async (data: TotalInitValue) => {
   try {
-    const response = await fetch(postApi, {
+    const response = await fetch('https://api-order-cafeconaroma.onrender.com/new', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-
       },
-      /* mode: 'no-cors', */
       body: JSON.stringify(data),
+      
     });
-    const resp = await response.json().then();
+
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status} ${response.statusText}`);
+    }
+
+    const resp = await response.json();
     return resp;
-    // Assuming the server responds with a message
   } catch (error) {
-    console.error(error);
-    // Handle error if needed
+    console.error('Error al realizar el POST:', error);
   }
 };
 
