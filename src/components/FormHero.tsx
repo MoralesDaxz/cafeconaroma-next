@@ -11,7 +11,7 @@ const FormContact = () => {
   } = useForm(/* { defaultValues: { email: "", msg: "" } } */);
   return (
     <form
-      className="form rounded-md sm:rounded-none sm:h-full flex flex-col items-center justify-center w-full"
+      className="bg-white text-black px-6 py-4 rounded-md  flex flex-col gap-3 items-center justify-center w-full"
       onSubmit={handleSubmit((data) => {
         console.log(data);
       })}
@@ -26,7 +26,9 @@ const FormContact = () => {
           required
           {...register("name")}
         />
-        <span className="select-none bg-[#E2DFD7] rounded-3xl">Nombre completo</span>
+        <span className="select-none bg-[white] rounded-3xl">
+          Nombre completo
+        </span>
       </label>
 
       <label className="float-label-container">
@@ -37,7 +39,7 @@ const FormContact = () => {
           required
           {...register("mail")}
         />
-        <span className="select-none bg-[#E2DFD7] rounded-3xl">Email</span>
+        <span className="select-none bg-[white] rounded-3xl">Email</span>
       </label>
 
       <label className="float-label-container">
@@ -48,7 +50,7 @@ const FormContact = () => {
           required
           {...register("phone")}
         />
-        <span className="select-none bg-[#E2DFD7] rounded-3xl">Telefono</span>
+        <span className="select-none bg-[white] rounded-3xl">Telefono</span>
       </label>
 
       <label className="float-label-container">
@@ -58,7 +60,9 @@ const FormContact = () => {
           required
           {...register("details")}
         />
-        <span className="select-none bg-[#E2DFD7] rounded-3xl">¿Cómo podemos ayudarte?</span>
+        <span className="select-none bg-[white] rounded-3xl">
+          ¿Cómo podemos ayudarte?
+        </span>
       </label>
       <div className="flex gap-2">
         <input
@@ -68,11 +72,11 @@ const FormContact = () => {
           {...register("terms")}
         />
         <span className="text-[.8em]">
-          Acepto la
+          Acepto la &nbsp;
           <Link href={"#privacity"} className="underline">
             Política de Privacidad
           </Link>
-          y los
+          &nbsp;y los&nbsp;
           <Link href={"#terms"} className="underline">
             Términos y condiciones
           </Link>
@@ -82,7 +86,7 @@ const FormContact = () => {
       <input
         type="submit"
         value={"Enviar"}
-        className="self-center sm:self-start w-[40%] sm:w-fit bg-[#2B5A45] text-[#f4f7f3] p-4 sm:p-2 rounded-md"
+        className="self-center sm:self-start w-[40%] sm:w-fit bg-[#2B5A45] text-[#f4f7f3] p-4 sm:p-2 rounded-md cursor-pointer"
       />
     </form>
   );

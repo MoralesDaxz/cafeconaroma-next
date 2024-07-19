@@ -9,7 +9,10 @@ type Product = {
   package?: string;
   units?: number;
 };
-
+/* Add, sub, bags */
+type Bag = {
+  bagCoffee: Product;
+};
 type Pay = {
   payClient?: string;
   name?: string;
@@ -21,15 +24,40 @@ type Pay = {
   code?: string;
   plant?: string;
   door?: string;
-  identity?:string;
-  delivery: string;
-  payDelivery: number;
+  anyMore?: string;
+  identity?: string;
+  delivery?: string;
+  payDelivery?: number;
 };
-
+/* Form ChoosePay */
+type ChoosePayFormData = {
+  payTipe: string;
+  name: string;
+  identity: string;
+  mail: string;
+  phone: string;
+  comunity: string;
+  province: string;
+  street: string;
+  code: string;
+  plant: string;
+  door: string;
+  anyMore: string;
+};
+/* Successfull */
+type Order = {
+  invoice?: string;
+  product?: Product[];
+  comunity?: string;
+  province?: string;
+  name?: string;
+  extra?: string;
+  delivery?: string;
+};
 /* PayCoffee */
 type TotalInitValue = {
-  date?:string;
-  time?:string;
+  date?: string;
+  time?: string;
   office?: string;
   subtotal: number;
   total: number;
@@ -38,10 +66,6 @@ type TotalInitValue = {
   sent: Pay;
 };
 interface PayProductsContextType {
-  local: Product[];
-  setLocal: Dispatch<SetStateAction<Product[]>>;
-  total: number;
-  sebuysLocalStorage: Dispatch<SetStateAction<number>>;
   controlRender: number;
   setControlRender: Dispatch<SetStateAction<number>>;
   buysLocalStorage: TotalInitValue;
@@ -57,4 +81,12 @@ type ControlProps = {
   setWindowScroll: Dispatch<SetStateAction<number>>;
 };
 
-export type { Product, TotalInitValue, PayProductsContextType, ControlProps };
+export type {
+  Product,
+  TotalInitValue,
+  PayProductsContextType,
+  ControlProps,
+  ChoosePayFormData,
+  Order,
+  Bag
+};

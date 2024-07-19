@@ -1,23 +1,8 @@
+import { Bag, Product } from "@/interfaces/interfaces";
 
-type Product = {
-  _id?: string;
-  available?: true;
-  brand?: string;
-  img_url?: string;
-  price?: number;
-  package?: string;
-  units?: number;
-};
-type Props = {
-  bagCoffee: Product;
-};
 /* Agregar producto a LS */
-export const addLocalStorage = ({ bagCoffee }: Props) => {
-  /* Trabajamos con LS dentro de funcion, al montar el componente en primer vuelco nos dara error
-    Mientras que en la FN esperara a ser ejecutada con componente ya desplegado */
-  const storedProducts = localStorage.getItem("buy");
-  const itemsLocalStorage = storedProducts ? JSON.parse(storedProducts) : { product: [] };
-
+export const AddToLocal = ({ bagCoffee }: Bag) => {
+  const itemsLocalStorage = getKeyLocal("buy");
   /* Nuevo producto con argunmentos proporcionados */
   const coffee = {
     _id: bagCoffee._id,
@@ -25,7 +10,7 @@ export const addLocalStorage = ({ bagCoffee }: Props) => {
     brand: bagCoffee.brand,
     units: 1,
     price: bagCoffee.price,
-    package: bagCoffee.package
+    package: bagCoffee.package,
   };
   /* Evaluamos si existe o no para agregar unidades*/
   const existingProduct = itemsLocalStorage.product.find(
@@ -36,37 +21,60 @@ export const addLocalStorage = ({ bagCoffee }: Props) => {
   } else {
     itemsLocalStorage.product.unshift(coffee);
   }
-  localStorage.setItem("buy", JSON.stringify(itemsLocalStorage));
-  return /* products; */
+  return localStorage.setItem("buy", JSON.stringify(itemsLocalStorage));
 };
 
-
 /* Eliminar producto de LS */
-export const removeLocalStorage = ({ bagCoffee }: Props) => {
-  const storedProducts = localStorage.getItem("buy");
-  const itemsLocalStorage = storedProducts ? JSON.parse(storedProducts) : { product: [] };
+export const SubsToLocal = ({ bagCoffee }: Bag) => {
+  const itemsLocalStorage = getKeyLocal("buy");
   const existingProduct = itemsLocalStorage.product.find(
     (item: Product) => item._id === bagCoffee._id
   );
   if (existingProduct.units >= 1) {
     existingProduct.units -= 1;
-    const filtered = itemsLocalStorage.product.filter((item: Product) => item.units! >= 1);
-    return localStorage.setItem("buy", JSON.stringify({ ...itemsLocalStorage, product: filtered }));
+    const filtered = itemsLocalStorage.product.filter(
+      (item: Product) => item.units! >= 1
+    );
+    const newData = {...itemsLocalStorage, product: filtered }
+    return localStorage.setItem(
+      "buy",
+      JSON.stringify(newData)
+    );
   }
 };
 /* Informacion de LS */
-export const getCoffeeLocalStorage = () => {
-  const storedProducts = localStorage.getItem("buy");
-  const itemsLocalStorage = storedProducts ? JSON.parse(storedProducts) : { product: [] };
-  return itemsLocalStorage;
+export const getKeyLocal = (keyLocal: string) => {
+  const itemsReset = {
+    subtotal: 0,
+    total: 0,
+    quantity: 0,
+    product: [],
+    sent: { delivery: "normal", payDelivery: 0 },
+  }; /* Default, generamos en LS un valor para empezar, si no existe */
+  const storedProducts = localStorage.getItem(keyLocal);
+  const buyLocal = storedProducts ? JSON.parse(storedProducts) : itemsReset;
+  const getKeyLS = JSON.parse(
+    storedProducts!
+  ); /* Obtener key de LS segun Key */
+  return keyLocal === "buy" ? buyLocal : getKeyLS;
+};
+export const resetBuyLocal = () => {
+  const itemsReset = {
+    subtotal: 0,
+    total: 0,
+    quantity: 0,
+    product: [],
+    sent: { delivery: "normal", payDelivery: 0 },
+  }; /* Deafult, para iniciar nueva operacion en 0 */
+  return localStorage.setItem("buy", JSON.stringify(itemsReset));
 };
 
 export async function updateData(newData: any) {
   try {
-    const response = await fetch('/api/writeOrder', {
-      method: 'POST',
+    const response = await fetch("/api/writeOrder", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(newData),
     });
@@ -78,6 +86,6 @@ export async function updateData(newData: any) {
     const result = await response.json();
     console.log(result);
   } catch (error) {
-    console.error('Error al actualizar los datos:', error);
+    console.error("Error al actualizar los datos:", error);
   }
 }

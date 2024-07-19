@@ -3,7 +3,7 @@ import { useProducts } from "@/context/GetProducts";
 import Image from "next/image";
 import React, { FC, useEffect, useState } from "react";
 import Loader from "./Loader";
-import { addLocalStorage } from "@/utils/localStorageItems";
+import { AddToLocal } from "@/utils/localStorageItems";
 import { usePayProducts } from "@/context/PayCoffee";
 
 type NumberBags = {
@@ -26,7 +26,7 @@ const BagsCoffee: FC<NumberBags> = ({ units }) => {
             if (index < units) {
               return (
                 <div
-                  className="w-[70%] sm:w-[40%] md:w-[20%]  border-2 border-[#e3ded7] hover:border-[#c5c0b8] hover:bg-[#e3ded7] rounded-md px-5 pt-2 flex flex-col items-center group/bagCoffee gap-3 transition-all duration-500"
+                  className="w-[40%] md:w-[20%]  border-2 border-[#e3ded7] hover:border-[#c5c0b8] hover:bg-[#e3ded7] rounded-md px-5 pt-2 flex flex-col items-center group/bagCoffee gap-3 transition-all duration-500"
                   key={index}
                 >
                   <h4 className="capitalize font-medium text-2xl ">
@@ -47,7 +47,7 @@ const BagsCoffee: FC<NumberBags> = ({ units }) => {
                     className="transition-all duration-300 hover:scale-105 w-fit py-3 px-2 rounded-md bg-[#13470F] group-hover/bagCoffee:bg-[#1d6116] text-white font-medium text-lg"
                     id={bagCoffee._id}
                     onClick={() => {
-                      addLocalStorage({ bagCoffee }),
+                      AddToLocal({ bagCoffee }),
                         setControlRender(controlRender + 1);
                     }}
                   >

@@ -5,31 +5,30 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { SpainCommunities } from "@/utils/information";
 import { usePayProducts } from "@/context/PayCoffee";
-import { TotalInitValue } from "@/interfaces/interfaces";
+import { ChoosePayFormData, TotalInitValue } from "@/interfaces/interfaces";
 import { newOrder } from "@/api/apiGetCoffee";
+import { displayCurrentTime, generateInvoiceCode } from "@/utils/invoice";
+import ErrorModalForm from "./ErrorModalForm";
 import {
-  displayCurrentTime,
-  formatDate,
-  generateInvoiceCode,
-} from "@/utils/invoice";
-import ExclamationError from "./ExclamationError";
+  getKeyLocal,
+  resetBuyLocal,
+} from "@/utils/localStorageItems";
+import { useRouter } from "next/navigation";
 
 const ChoosePay = () => {
-  const {
-    buysLocalStorage,
-    setbuysLocalStorage,
-    setControlRender,
-    controlRender,
-  } = usePayProducts();
+  const { setbuysLocalStorage, controlRender, setControlRender } =
+    usePayProducts();
+  const borderStyle = `border-b-[3px] border-r-[1px] border-l-[3px] border-t-[1px] border-green-600 rounded-md opacity-100`;
   const [comunitySpain, setComunitySpain] = useState("");
   const [province, setProvince] = useState("");
   const [inputKind, setInputKind] = useState("");
+  const router = useRouter();
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm(/* {
+  } = useForm({
     defaultValues: {
       payTipe: "",
       name: "",
@@ -42,10 +41,9 @@ const ChoosePay = () => {
       code: "",
       plant: "",
       door: "",
+      anyMore: "",
     },
-  } */);
-
-  const borderStyle = `border-b-[3px] border-r-[1px] border-l-[3px] border-t-[1px] border-green-600 rounded-md opacity-100`;
+  });
 
   const clearForm = () => {
     setComunitySpain("");
@@ -54,49 +52,44 @@ const ChoosePay = () => {
     reset();
   };
 
-  const submitForm = handleSubmit(async (data) => {
-    if (!errors) {
-      const storedProducts = localStorage.getItem("buy");
-    const itemsLocalStorage: TotalInitValue = JSON.parse(storedProducts!);
-    const updateStore = {
+  const onForm = async (data: ChoosePayFormData) => {
+    const itemsLocalStorage: TotalInitValue = getKeyLocal("buy");
+    const items = {
       time: await displayCurrentTime(),
       date: await generateInvoiceCode(),
       office: "E001",
       sent: { ...itemsLocalStorage.sent, ...data },
     };
-    const updatedState = {
+    const updateData = {
       ...itemsLocalStorage,
-      ...updateStore,
+      ...items,
     };
-    setbuysLocalStorage(updatedState);
-    localStorage.setItem("buy", JSON.stringify(updatedState));
-    const order = await newOrder(updatedState);
+    /*    setbuysLocalStorage(updateData);
+    localStorage.setItem("buy", JSON.stringify(updateData)); */
+    /* POST -> Enviamos datos a DB recibimos copia de item creado */
+    const order = await newOrder(updateData);
+    /* Tratamos datos necesarios */
     const newInvoice = {
       invoice: order.invoice,
-      products: order.product,
+      product: order.product,
       comunity: order.sent.comunity,
       province: order.sent.province,
       name: order.sent.name,
+      extra: order.sent.anyMore,
+      delivery:order.sent.delivery
     };
 
-    localStorage.setItem("invoice", JSON.stringify(newInvoice));
-    console.log("State", updatedState);
-    console.log("Order", order);
-
-    /* navigate por aqui a success */
-    /* clearForm(); */
-    return order;
-    }console.log(errors);
-    
-    
-  });
-
+    localStorage.setItem("invoice",JSON.stringify(newInvoice)); /* Datos para utilizar en Successfull extrayendo desde LS - invoice */
+    resetBuyLocal(); /* Limpiamos LS - buy */
+    setControlRender(controlRender + 1); /* Controlamos Estado global actualizamos segun LS - buy Limpio */
+    clearForm();/* Limpiamos Form */
+    return router.push("/success");
+  };
   return (
     <article className="flex flex-col sm:flex-row gap-3 px-4 w-full w-max-[800px]">
       <section className="flex flex-col bg-[#2e2d2dd2] w-full sm:w-[60%] pt-4 rounded-md gap-4 px-1">
         <h2 className="pl-2 font-medium text-lg">Seleccionar método de pago</h2>
-        {inputKind == "" ? <ExclamationError /> : ""}
-        <form className="flex flex-col gap-3">
+        <form onSubmit={handleSubmit(onForm)} className="flex flex-col gap-3">
           <div
             className={`flex items-center pl-2 py-2 gap-3 ${
               inputKind === "tarjeta" ? borderStyle : "opacity-70"
@@ -107,7 +100,9 @@ const ChoosePay = () => {
               type="radio"
               onClick={() => setInputKind("tarjeta")}
               checked={inputKind === "tarjeta"}
-              {...register("payTipe")}
+              {...register("payTipe", {
+                required: "Seleccione un metodo de pago",
+              })}
               value={"card"}
             />
             <span className=" text-[1em]">
@@ -130,7 +125,9 @@ const ChoosePay = () => {
               type="radio"
               onClick={() => setInputKind("transferencia")}
               checked={inputKind === "transferencia"}
-              {...register("payTipe")}
+              {...register("payTipe", {
+                required: "Seleccione un metodo de pago",
+              })}
               value={"transfer"}
             />
             <span className=" text-[1em] font-medium">
@@ -161,7 +158,9 @@ const ChoosePay = () => {
               type="radio"
               onClick={() => setInputKind("bizum")}
               checked={inputKind === "bizum"}
-              {...register("payTipe")}
+              {...register("payTipe", {
+                required: "Seleccione un metodo de pago",
+              })}
               value={"bizum"}
             />
             <span className=" text-[1em]">
@@ -175,57 +174,97 @@ const ChoosePay = () => {
             </span>
           </div>
 
-          <p className="text-black text-lg">Aqui</p>
-
           {inputKind !== "" && (
-            <div className="bg-[white] text-[black] w-full p-4 flex flex-col justify-center mb-2 rounded-md">
-              <h2 className="pl-2 font-medium text-lg">Facturación</h2>
+            <div className=" bg-[white] text-[black] w-full p-4 flex flex-col justify-center mb-2 rounded-md">
+              <h2 className="pl-2 font-medium text-lg mt-2 mb-4">
+                Facturación
+              </h2>
               <label className="float-label-container">
                 <input
+                  required
                   className="input"
                   type="text"
                   minLength={4}
                   maxLength={50}
-                  {...register("name")}
                   placeholder=""
+                  {...register("name", {
+                    pattern: {
+                      value:
+                        /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s[a-zA-ZÀ-ÿ\u00f1\u00d1]+)*$/,
+                      message: "Indicar solo caracteres. Ejemplo: Pedro Perez",
+                    },
+                  })}
                 />
-                <span className="">Nombre completo</span>
-                {/* {errors?.name && (
-                  <span className="">No hay nada en nombre</span>
-                )} */}
+                <span className="select-none bg-[white] rounded-3x">
+                  Nombre completo
+                </span>
+                {errors.name && <ErrorModalForm text={errors.name.message} />}
               </label>
               <label className="float-label-container">
                 <input
+                  required
                   className="input"
                   type="text"
                   placeholder=""
-                  minLength={4}
-                  maxLength={50}
-                  {...register("identity")}
+                  minLength={9}
+                  maxLength={9}
+                  {...register("identity", {
+                    pattern: {
+                      value: /^[A-Za-z]\d{7}[A-Za-z]$/,
+                      message: "Formato invalido. Ejemplo: Y1234567P",
+                    },
+                  })}
                 />
-                <span className="select-none">Identificacion</span>
-                {errors.identity && <ExclamationError />}
+                <span className="select-none bg-[white] rounded-3xl">
+                  Identificacion
+                </span>
+                {errors.identity && (
+                  <ErrorModalForm text={errors.identity.message} />
+                )}
               </label>
-              <h2 className="pl-2 font-medium text-lg">Dirección de envío</h2>
+              <h2 className="pl-2 font-medium text-lg mt-2 mb-4">
+                Dirección de envío
+              </h2>
               <label className="float-label-container">
                 <input
+                  required
                   className="input"
                   type="email"
                   placeholder=""
-                  {...register("mail")}
+                  {...register("mail", {
+                    pattern: {
+                      value:
+                        /^(([^<>()[\]\\.,;:\s@']+(\.[^<>()[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                      message: "Formato invalido. Ejemplo: example@exam.com",
+                    },
+                  })}
                 />
-                <span className="select-none">Email</span>
-                {errors.mail && <ExclamationError />}
+                <span className="select-none bg-[white] rounded-3xl">
+                  Email
+                </span>
+                {errors.mail && <ErrorModalForm text={errors.mail.message} />}
               </label>
               <label className="float-label-container">
                 <input
+                  required
                   className="input"
                   type="tel"
+                  minLength={9}
+                  maxLength={15}
                   placeholder=""
-                  {...register("phone")}
+                  {...register("phone", {
+                    pattern: {
+                      value:
+                        /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{3,4}$/im,
+                      message: "Formato invalido. Ejemplo: 612345678",
+                    },
+                  })}
+                  /* */
                 />
-                <span className="select-none">Telefono</span>
-                {errors.phone && <ExclamationError />}
+                <span className="select-none bg-[white] rounded-3xl">
+                  Telefono
+                </span>
+                {errors.phone && <ErrorModalForm text={errors.phone.message} />}
               </label>
               <label className="float-label-container">
                 <select
@@ -247,8 +286,10 @@ const ChoosePay = () => {
                     );
                   })}
                 </select>
-                <span className="select-none">Comunidad</span>
-                {errors.comunity && <ExclamationError />}
+                <span className="select-none bg-[white] rounded-3xl">
+                  Comunidad
+                </span>
+                {errors.comunity && <ErrorModalForm />}
               </label>
               {comunitySpain !== "" && (
                 <label className="float-label-container">
@@ -277,8 +318,10 @@ const ChoosePay = () => {
                       }
                     })}
                   </select>
-                  <span className="select-none">Província</span>
-                  {errors.province && <ExclamationError />}
+                  <span className="select-none bg-[white] rounded-3xl">
+                    Província
+                  </span>
+                  {errors.province && <ErrorModalForm />}
                 </label>
               )}
 
@@ -286,50 +329,85 @@ const ChoosePay = () => {
                 <>
                   <label className="float-label-container">
                     <input
+                      required
                       className="input"
                       type="text"
                       placeholder=""
-                      required
+                      minLength={5}
+                      maxLength={50}
                       {...register("street")}
                     />
-                    <span className="select-none">Calle</span>
-                    {errors.street && <ExclamationError />}
+                    <span className="select-none bg-[white] rounded-3xl">
+                      Calle
+                    </span>
+                    {errors.street && <ErrorModalForm />}
                   </label>
                   <div className="w-full flex gap-1">
                     <label className="float-label-container">
                       <input
+                        required
                         className="input"
                         type="text"
                         placeholder=""
-                        required
-                        {...register("code")}
+                        maxLength={7}
+                        {...register("code", {
+                          pattern: {
+                            value: /^\d{4,7}([-\s]?\d{3})?|[A-Za-z0-9]{6,8}$/,
+                            message: "Ejemplo: 28013, A1B 2C3",
+                          },
+                        })}
                       />
-                      <span className="select-none">Cód. postal</span>
-                      {errors.code && <ExclamationError />}
+                      <span className="select-none bg-[white] rounded-3xl">
+                        Cód. postal
+                      </span>
+                      {errors.code && (
+                        <ErrorModalForm text={errors.code.message} />
+                      )}
                     </label>
                     <label className="float-label-container">
                       <input
+                        required
                         className="input"
                         type="text"
                         placeholder=""
-                        required
+                        maxLength={3}
                         {...register("plant")}
                       />
-                      <span className="select-none">Planta</span>
-                      {errors.plant && <ExclamationError />}
+                      <span className="select-none bg-[white] rounded-3xl">
+                        Planta
+                      </span>
                     </label>
                     <label className="float-label-container">
                       <input
+                        required
                         className="input"
                         type="text"
                         placeholder=""
-                        required
+                        maxLength={4}
                         {...register("door")}
                       />
-                      <span className="select-none">Puerta</span>
-                      {errors.door && <ExclamationError />}
+                      <span className="select-none bg-[white] rounded-3xl">
+                        Puerta
+                      </span>
                     </label>
                   </div>
+                  <label className="float-label-container">
+                    <textarea
+                      className="input"
+                      placeholder=" Dinos si tienes alguna indicación extra."
+                      maxLength={150}
+                      {...register("anyMore")}
+                    />
+                    <span className="select-none bg-[white] rounded-3xl">
+                      ¿ Alguna indicación extra ?
+                    </span>
+                  </label>
+
+                  <input
+                    type="submit"
+                    value="Realizar pedido"
+                    className=" cursor-pointer my-4 self-center p-3 w-[40%] bg-green-600 text-white hover:text-black hover:bg-[#49df80] hover:scale-105 rounded-md transition-all duration-300"
+                  />
                 </>
               )}
             </div>
@@ -338,14 +416,7 @@ const ChoosePay = () => {
       </section>
       <section className="w-full sm:w-[40%] mr-8 rounded-md">
         <PayModalFixed>
-          <div className="flex justify-end mt-3 font-medium gap-4 text-white">
-            <Link
-              href={"/checkout"}
-              className="p-2 bg-[#13470F] hover:bg-[#1d6116] hover:scale-105 rounded-md transition-all duration-300"
-              onClick={() =>  submitForm()}
-            >
-              Pagar
-            </Link>
+          <div className="flex justify-end items-center mt-3 font-medium gap-3 text-white">
             <Link
               href={"/store"}
               className="p-2 text-[#13470F] hover:scale-105 rounded-md transition-all duration-300"

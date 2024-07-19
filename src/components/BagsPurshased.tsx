@@ -1,6 +1,6 @@
 "use client";
 import { usePayProducts } from "@/context/PayCoffee";
-import { addLocalStorage, removeLocalStorage } from "@/utils/localStorageItems";
+import { AddToLocal, SubsToLocal } from "@/utils/localStorageItems";
 import React from "react";
 import { IoMdAddCircle } from "react-icons/io";
 import { IoMdRemoveCircle } from "react-icons/io";
@@ -20,14 +20,14 @@ const BagsPurshased = () => {
             <div className="flex items-center gap-2">
               <IoMdRemoveCircle
                 onClick={() => {
-                  removeLocalStorage({ bagCoffee });
+                  SubsToLocal({ bagCoffee });
                   setControlRender(controlRender + 1);
                 }}
                 className="transition-all duration-300 hover:scale-90 w-[30px] h-[30px] opacity-80 hover:opacity-100 cursor-pointer"
                 color="#fcf6f6f1"
               />
               <div className="relative w-[70px] h-[70px]">
-                <p className="absolute top-0 right-0 rounded-full bg-[#13470f] w-6 h-6 flex items-center justify-center">
+                <p className="absolute top-0 right-0 rounded-full text-white bg-[#13470f] w-6 h-6 flex items-center justify-center">
                   {bagCoffee.units}
                 </p>
                 <Image
@@ -39,7 +39,7 @@ const BagsPurshased = () => {
               </div>
               <IoMdAddCircle
                 onClick={() => {
-                  addLocalStorage({ bagCoffee }),
+                  AddToLocal({ bagCoffee }),
                     setControlRender(controlRender + 1);
                 }}
                 className="transition-all duration-300 hover:scale-90 w-[30px] h-[30px] opacity-80 hover:opacity-100 cursor-pointer"
