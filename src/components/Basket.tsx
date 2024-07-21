@@ -5,21 +5,24 @@ import BagsPurshased from "./BagsPurshased";
 import Link from "next/link";
 import { IoArrowBack } from "react-icons/io5";
 import PayModalFixed from "./PayModalFixed";
+import { getKeyLocal } from "@/utils/localStorageItems";
 const Basket = () => {
-  const { buysLocalStorage, setControlRender, controlRender } =
-    usePayProducts();
+  const {
+    buysLocalStorage,
+    setbuysLocalStorage,
+    setControlRender,
+    controlRender,
+  } = usePayProducts();
   const [urgent, setUrgent] = useState(
     buysLocalStorage.sent.delivery === "urgente" ? true : false
   );
 
   const updatePayProducts = () => {
-    const storedProducts = localStorage.getItem("buy");
-    const itemsLocalStorage = storedProducts
-      ? JSON.parse(storedProducts)
-      : { subtotal: 0, total: 0, quantity: 0, product: [],sent:{} };
+    const itemsLocalStorage = getKeyLocal("buy");
     itemsLocalStorage.sent.delivery = urgent ? "urgente" : "normal";
     itemsLocalStorage.sent.payDelivery = urgent ? 9 : 0;
     localStorage.setItem("buy", JSON.stringify(itemsLocalStorage));
+    setbuysLocalStorage(itemsLocalStorage);
     return setControlRender(controlRender + 1);
   };
 
@@ -47,7 +50,7 @@ const Basket = () => {
                 <input
                   type="radio"
                   className=" accent-[#2f5854] w-4"
-                  checked={!urgent}
+                  checked={urgent === false}
                   onChange={() => {
                     setUrgent(false);
                   }}
@@ -66,7 +69,7 @@ const Basket = () => {
                 <input
                   type="radio"
                   className=" accent-[#2f5854] w-4"
-                  checked={urgent}
+                  checked={urgent === true}
                   onChange={() => {
                     setUrgent(true);
                   }}

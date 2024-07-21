@@ -1,66 +1,72 @@
 "use client";
-import { usePayProducts } from "@/context/PayCoffee";
+
 import { Order } from "@/interfaces/interfaces";
 import { getKeyLocal } from "@/utils/localStorageItems";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-
+import { TbCoffee } from "react-icons/tb";
 const Successful = () => {
   const [order, setOrder] = useState<Order>({ product: [] });
   useEffect(() => {
     const itemsLocalStorage = getKeyLocal("invoice");
     setOrder(itemsLocalStorage);
   }, []);
+  /* bajar text-[12px] se alarga la tabla */
   return (
-    <section className="pt-10 sm:pt-20 pb-2 bg-[white] text-black min-h-screen w-full flex flex-col items-center gap-8">
-      <p>Hola! {order.name}</p>
-      <h2>Tenemos su Pedido Nº {order.invoice}</h2>
-      {order.delivery === "normal" ? (
-        <p>Estarás recibiéndolo entre los próximos 5 a 7 días hábiles</p>
-      ) : (
-        <p>Estarás recibiéndolo en las próximas 24 Horas </p>
-      )}
-      <p>
-        Envio con destino a {order.comunity}, {order.province}.
-      </p>
+    <section className="pb-2 bg-[white] text-black min-h-screen w-full flex flex-col items-center justify-center">
+      <div className="w-[90%] sm:w-[50%] pt-6 pb-1 px-6 rounded-md bg-success flex flex-col">
+        <div className="w-full flex items-center justify-center gap-2">
+          <TbCoffee className="w-[1.8rem] h-[1.8rem]" />
+          <h2 className=" text-3xl font-semibold">Café con Aroma S.L.</h2>
+        </div>
+        <div className="self-center w-[70%] bg-[#eeebeba4] backdrop-blur-[2px] my-4 p-4 rounded-md">
+          <p>
+            <b>Hola!</b> {order.name}
+          </p>
+          <h2>
+            <b>Pedido Nº: </b>
+            {order.invoice}
+          </h2>
+          <p>
+            <b>Destino:</b> {order.comunity}, {order.province}.
+          </p>
+        </div>
 
-      <div>
-        {order.product?.map((bagCoffee, index) => {
-          return (
-            <div
-              key={index}
-              className="w-full px-2 py-4 flex items-center justify-between border-b-[1px] border-[#615649]"
-            >
-              <div className="flex items-center gap-2">
-                <div className="relative w-[70px] h-[70px]">
-                  <p className="absolute top-0 right-0 rounded-full text-white bg-[#13470f] w-6 h-6 flex items-center justify-center">
-                    {bagCoffee.units}
-                  </p>
-                  <Image
-                    src={bagCoffee.img_url!}
-                    width={70}
-                    height={70}
-                    alt={`${bagCoffee.brand}_image`}
-                  />
-                </div>
-              </div>
-              <div className="flex items-center justify-center gap-3">
-                <div className="flex flex-col items-center justify-center gap-2">
-                  <p className="w-[90px] text-[1.2em] capitalize text-center">
-                    {bagCoffee.brand}
-                  </p>
-                  <p className="text-[.9em] self-center">{bagCoffee.price} €</p>
-                </div>
-              </div>
-              <p className="min-w-[50px] text-[1.1em]">
-                {(bagCoffee.units! * bagCoffee.price!)
-                  .toFixed(2)
-                  .replace(".", ",")}{" "}
-                €
-              </p>
-            </div>
-          );
-        })}
+        <div className="w-full">
+          <table className="w-full table-border">
+            <tr>
+              <th>Cant.</th>
+              <th>Producto</th>
+              <th>Empaque</th>
+              <th>Valor</th>
+            </tr>
+            {order.product?.map((item, index) => {
+              return (
+                <tr
+                  className={index % 2 === 0 ? "bg-[#bad4af]" : ""}
+                  key={index}
+                >
+                  <td>{item.units}</td>
+                  <td className="capitalize">{item.brand}</td>
+                  <td>{item.package} gr</td>
+                  <td>
+                    {(item.units! * item.price!).toFixed(2).replace(".", ",")} €
+                  </td>
+                </tr>
+              );
+            })}
+          </table>
+        </div>
+
+        {order.delivery === "normal" ? (
+          <p className="text-sm text-center mt-4">
+            <i>Estarás recibiéndolo entre los próximos 5 a 7 días hábiles</i>
+          </p>
+        ) : (
+          <p className="text-sm text-center mt-4">
+            <i>Estarás recibiéndolo en las próximas 24 Horas</i>
+          </p>
+        )}
       </div>
     </section>
   );

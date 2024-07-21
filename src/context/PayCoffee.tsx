@@ -2,7 +2,6 @@
 /* Componente encargado del manejo de LS, total, y componente ModalCar */
 import {
   PayProductsContextType,
-  Product,
   TotalInitValue,
 } from "@/interfaces/interfaces";
 import { getKeyLocal } from "@/utils/localStorageItems";

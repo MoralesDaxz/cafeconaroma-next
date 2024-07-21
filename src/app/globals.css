@@ -136,7 +136,7 @@ body {
   border-color: rgba(42, 117, 71, 0.61);
 }
 
-/* Estilo del span */
+/* Estilo del span para que funciones debe estar INPUT - REQUIRED*/ 
 .float-label-container .input + span {
   color: rgb(1, 12, 4);
   position: absolute;
@@ -161,4 +161,15 @@ body {
   top: -7px;
   font-size: 0.8em;
   font-weight: 600;
+}
+/* Bg Successfull en Factura */
+.bg-success {
+  background-repeat: no-repeat;
+  background-size:contain;
+  background: url("../assets//images/marco-hojas.png");
+  background-position: center;
+  background-color: #dad8bc;
+}
+.table-border table, th, td {
+  border: 1px solid black;
 }

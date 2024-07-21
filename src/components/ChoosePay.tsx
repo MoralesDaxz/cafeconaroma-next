@@ -9,11 +9,9 @@ import { ChoosePayFormData, TotalInitValue } from "@/interfaces/interfaces";
 import { newOrder } from "@/api/apiGetCoffee";
 import { displayCurrentTime, generateInvoiceCode } from "@/utils/invoice";
 import ErrorModalForm from "./ErrorModalForm";
-import {
-  getKeyLocal,
-  resetBuyLocal,
-} from "@/utils/localStorageItems";
+import { getKeyLocal, resetBuyLocal } from "@/utils/localStorageItems";
 import { useRouter } from "next/navigation";
+import Loader from "./Loader";
 
 const ChoosePay = () => {
   const { setbuysLocalStorage, controlRender, setControlRender } =
@@ -22,6 +20,7 @@ const ChoosePay = () => {
   const [comunitySpain, setComunitySpain] = useState("");
   const [province, setProvince] = useState("");
   const [inputKind, setInputKind] = useState("");
+  const [loadingOrderApi, setLoadingOrderApi] = useState(false);
   const router = useRouter();
   const {
     register,
@@ -68,22 +67,33 @@ const ChoosePay = () => {
     localStorage.setItem("buy", JSON.stringify(updateData)); */
     /* POST -> Enviamos datos a DB recibimos copia de item creado */
     const order = await newOrder(updateData);
-    /* Tratamos datos necesarios */
-    const newInvoice = {
-      invoice: order.invoice,
-      product: order.product,
-      comunity: order.sent.comunity,
-      province: order.sent.province,
-      name: order.sent.name,
-      extra: order.sent.anyMore,
-      delivery:order.sent.delivery
-    };
+    setLoadingOrderApi(true);
+    if (order) {
+      /* Tratamos datos necesarios */
 
-    localStorage.setItem("invoice",JSON.stringify(newInvoice)); /* Datos para utilizar en Successfull extrayendo desde LS - invoice */
-    resetBuyLocal(); /* Limpiamos LS - buy */
-    setControlRender(controlRender + 1); /* Controlamos Estado global actualizamos segun LS - buy Limpio */
-    clearForm();/* Limpiamos Form */
-    return router.push("/success");
+      const newInvoice = {
+        invoice: order.invoice,
+        product: order.product,
+        total: order.total,
+        comunity: order.sent.comunity,
+        province: order.sent.province,
+        name: order.sent.name,
+        extra: order.sent.anyMore,
+        delivery: order.sent.delivery,
+      };
+
+      localStorage.setItem(
+        "invoice",
+        JSON.stringify(newInvoice)
+      ); /* Datos para utilizar en Successfull extrayendo desde LS - invoice */
+      resetBuyLocal(); /* Limpiamos LS - buy */
+      setControlRender(
+        controlRender + 1
+      ); /* Controlamos Estado global actualizamos segun LS - buy Limpio */
+      clearForm(); /* Limpiamos Form */
+      setLoadingOrderApi(false);
+      return router.push("/success");
+    }
   };
   return (
     <article className="flex flex-col sm:flex-row gap-3 px-4 w-full w-max-[800px]">
@@ -404,6 +414,7 @@ const ChoosePay = () => {
                   </label>
 
                   <input
+                    disabled={loadingOrderApi}
                     type="submit"
                     value="Realizar pedido"
                     className=" cursor-pointer my-4 self-center p-3 w-[40%] bg-green-600 text-white hover:text-black hover:bg-[#49df80] hover:scale-105 rounded-md transition-all duration-300"
@@ -425,6 +436,7 @@ const ChoosePay = () => {
             </Link>
           </div>
         </PayModalFixed>
+        {loadingOrderApi && <Loader />}
       </section>
     </article>
   );
