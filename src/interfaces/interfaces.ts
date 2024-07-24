@@ -53,6 +53,7 @@ type Order = {
   name?: string;
   extra?: string;
   delivery?: string;
+  code?:string;
 };
 /* PayCoffee */
 type TotalInitValue = {

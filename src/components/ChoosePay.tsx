@@ -14,8 +14,7 @@ import { useRouter } from "next/navigation";
 import Loader from "./Loader";
 
 const ChoosePay = () => {
-  const { setbuysLocalStorage, controlRender, setControlRender } =
-    usePayProducts();
+  const { controlRender, setControlRender } = usePayProducts();
   const borderStyle = `border-b-[3px] border-r-[1px] border-l-[3px] border-t-[1px] border-green-600 rounded-md opacity-100`;
   const [comunitySpain, setComunitySpain] = useState("");
   const [province, setProvince] = useState("");
@@ -52,6 +51,7 @@ const ChoosePay = () => {
   };
 
   const onForm = async (data: ChoosePayFormData) => {
+    setLoadingOrderApi(true);
     const itemsLocalStorage: TotalInitValue = getKeyLocal("buy");
     const items = {
       time: await displayCurrentTime(),
@@ -67,16 +67,15 @@ const ChoosePay = () => {
     localStorage.setItem("buy", JSON.stringify(updateData)); */
     /* POST -> Enviamos datos a DB recibimos copia de item creado */
     const order = await newOrder(updateData);
-    setLoadingOrderApi(true);
     if (order) {
       /* Tratamos datos necesarios */
-
       const newInvoice = {
         invoice: order.invoice,
         product: order.product,
         total: order.total,
         comunity: order.sent.comunity,
         province: order.sent.province,
+        code: order.sent.code,
         name: order.sent.name,
         extra: order.sent.anyMore,
         delivery: order.sent.delivery,
@@ -413,11 +412,16 @@ const ChoosePay = () => {
                     </span>
                   </label>
 
+                  {loadingOrderApi && <Loader text={"Cargando pedido..."} />}
                   <input
                     disabled={loadingOrderApi}
                     type="submit"
                     value="Realizar pedido"
-                    className=" cursor-pointer my-4 self-center p-3 w-[40%] bg-green-600 text-white hover:text-black hover:bg-[#49df80] hover:scale-105 rounded-md transition-all duration-300"
+                    className={
+                      loadingOrderApi
+                        ? "opacity-0"
+                        : "opacity-100 cursor-pointer my-4 self-center p-3 w-[40%] bg-green-600 text-white hover:text-black hover:bg-[#49df80] hover:scale-105 rounded-md transition-all duration-300"
+                    }
                   />
                 </>
               )}
@@ -428,15 +432,16 @@ const ChoosePay = () => {
       <section className="w-full sm:w-[40%] mr-8 rounded-md">
         <PayModalFixed>
           <div className="flex justify-end items-center mt-3 font-medium gap-3 text-white">
-            <Link
-              href={"/store"}
-              className="p-2 text-[#13470F] hover:scale-105 rounded-md transition-all duration-300"
-            >
-              Volver a tienda
-            </Link>
+            {!loadingOrderApi && (
+              <Link
+                href={"/store"}
+                className="p-2 text-[#13470F] hover:scale-105 rounded-md transition-all duration-300"
+              >
+                Volver a tienda
+              </Link>
+            )}
           </div>
         </PayModalFixed>
-        {loadingOrderApi && <Loader />}
       </section>
     </article>
   );

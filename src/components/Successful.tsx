@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import { TbCoffee } from "react-icons/tb";
 const Successful = () => {
   const [order, setOrder] = useState<Order>({ product: [] });
+
   useEffect(() => {
     const itemsLocalStorage = getKeyLocal("invoice");
     setOrder(itemsLocalStorage);
@@ -14,7 +15,7 @@ const Successful = () => {
   /* bajar text-[12px] se alarga la tabla */
   return (
     <section className="pb-2 bg-[white] text-black min-h-screen w-full flex flex-col items-center justify-center">
-      <div className="w-[90%] sm:w-[50%] pt-6 pb-1 px-6 rounded-md bg-success flex flex-col">
+      <div className="w-[90%] sm:w-[60%] pt-6 pb-1 px-6 rounded-md bg-success flex flex-col">
         <div className="w-full flex items-center justify-center gap-2">
           <TbCoffee className="w-[1.8rem] h-[1.8rem]" />
           <h2 className=" text-3xl font-semibold">Café con Aroma S.L.</h2>
@@ -28,33 +29,38 @@ const Successful = () => {
             {order.invoice}
           </h2>
           <p>
-            <b>Destino:</b> {order.comunity}, {order.province}.
+            <b>Destino:</b> {order.comunity}, {order.province}, {order.code}.
           </p>
         </div>
 
         <div className="w-full">
           <table className="w-full table-border">
-            <tr>
-              <th>Cant.</th>
-              <th>Producto</th>
-              <th>Empaque</th>
-              <th>Valor</th>
-            </tr>
-            {order.product?.map((item, index) => {
-              return (
-                <tr
-                  className={index % 2 === 0 ? "bg-[#bad4af]" : ""}
-                  key={index}
-                >
-                  <td>{item.units}</td>
-                  <td className="capitalize">{item.brand}</td>
-                  <td>{item.package} gr</td>
-                  <td>
-                    {(item.units! * item.price!).toFixed(2).replace(".", ",")} €
-                  </td>
-                </tr>
-              );
-            })}
+            <thead>
+              <tr>
+                <th>Cant.</th>
+                <th>Producto</th>
+                <th>Empaque</th>
+                <th>Valor</th>
+              </tr>
+            </thead>
+            <tbody>
+              {order.product?.map((item, index) => {
+                return (
+                  <tr
+                    className={index % 2 === 0 ? "bg-[#bad4af]" : ""}
+                    key={index}
+                  >
+                    <td>{item.units}</td>
+                    <td className="capitalize">{item.brand}</td>
+                    <td>{item.package} gr</td>
+                    <td>
+                      {(item.units! * item.price!).toFixed(2).replace(".", ",")}{" "}
+                      €
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
           </table>
         </div>
 

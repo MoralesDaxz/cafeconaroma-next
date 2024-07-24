@@ -61,7 +61,7 @@ const BagsCoffee: FC<NumberBags> = ({ units }) => {
             }
           })
         ) : (
-          <Loader />
+          <Loader text="Cargando..." />
         )}
       </section>
     </>
