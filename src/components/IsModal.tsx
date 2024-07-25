@@ -12,7 +12,7 @@ const IsModal: FC<Props> = ({ isOpen, setIsOpen }) => {
   const { windowWidth } = useControlDisplay();
   return (
     <>
-      {isOpen === false && (
+      {!isOpen && (
         <div
           className={`fixed z-20 ${
             windowWidth > 750 ? "top-4 " : "top-14 "

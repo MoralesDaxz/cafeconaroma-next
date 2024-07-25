@@ -8,17 +8,19 @@ import { HiMenu } from "react-icons/hi";
 import { TbCoffee } from "react-icons/tb";
 import { FaCircle } from "react-icons/fa6";
 import { usePathname } from "next/navigation";
-const ModalNavBar = () => {
+const NavBarMovil = () => {
   const path = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [indexRoute, setIndexRoute] = useState(-1);
+
   useEffect(() => {
     setIndexRoute(getRouteIndex(path));
   }, [path]);
+
   return (
     <>
       {isOpen && (
-        <div className="text-lg fixed z-30 min-w-[330px] w-full bg-[#2B2A2B] flex flex-col items-start justify-start gap-10 min-h-screen pt-4 px-2">
+        <div className="text-lg fixed z-30 min-w-[330px] w-full bg-[#2b2a2bf6] flex flex-col items-start justify-start gap-10 min-h-screen pt-4 px-2">
           <Link
             className="bg-[#515051] font-semibold py-3 px-6  flex items-center rounded"
             href={"/login"}
@@ -50,7 +52,6 @@ const ModalNavBar = () => {
                   className="flex items-center justify-between gap-4 py-2"
                   key={index}
                   href={item.link}
-                  onClick={() => setIsOpen(false)}
                 >
                   <FaCircle
                     className={`w-3 h-3 transition-all duration-500 ${
@@ -86,4 +87,4 @@ const ModalNavBar = () => {
   );
 };
 
-export default ModalNavBar;
+export default NavBarMovil;

@@ -1,5 +1,5 @@
 "use client";
-import { getCoffee } from "@/api/apiGetCoffee";
+
 /* Componente encargado de obtener productos de la API */
 
 import {
@@ -36,11 +36,14 @@ export const GetProductsProvider: FC<{ children: React.ReactNode }> = ({
 }) => {
   const [coffee, setCoffee] = useState<Product[]>();
   const url = process.env.NEXT_PUBLIC_URL_API_COFFEE;
+ 
   useEffect(() => {
-    getCoffee(url!).then((data: Product[]) => {
-      setCoffee(data);
-    });
-  });
+    (async () => {
+      const promise = await fetch(url!);
+      const response = await promise.json();
+      return setCoffee(response.products);
+    })();
+  }, []);
   return (
     <GetProducts.Provider
       value={{

@@ -15,7 +15,7 @@ const Contact = () => {
           formulario y te responderemos lo antes posible.
         </p>
         <p>
-          También puedes ponerte en contacto con nosotros en nuestra dirección o
+          También nos puedes encontrar en la siguiente dirección o
           a través del teléfono de la tienda.
         </p>
         <div className="flex flex-col">

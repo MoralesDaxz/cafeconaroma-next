@@ -26,8 +26,8 @@ const BagsPurshased = () => {
                 className="transition-all duration-300 hover:scale-90 w-[30px] h-[30px] opacity-80 hover:opacity-100 cursor-pointer"
                 color="#fcf6f6f1"
               />
-              <div className="relative w-[70px] h-[70px]">
-                <p className="absolute top-0 right-0 rounded-full text-white bg-[#13470f] w-6 h-6 flex items-center justify-center">
+              <div className="relative w-[40px] h-[40px] sm:w-[70px] sm:h-[70px]">
+                <p className="absolute top-0 right-0 rounded-full text-white bg-[#13470f] w-4 h-4 text-xs sm:text-sm sm:w-6 sm:h-6 flex items-center justify-center">
                   {bagCoffee.units}
                 </p>
                 <Image

@@ -2,8 +2,8 @@
 import { useControlDisplay } from "@/context/ControlDisplay";
 import React from "react";
 import NavBar from "./NavBar";
-import ModalNavBar from "./ModalNavBar";
 import DisplayModalCar from "./DisplayModalCar";
+import NavBarMovil from "./NavBarMovil";
 
 const DisplayNavBar = () => {
   const { windowWidth } = useControlDisplay();
@@ -11,7 +11,7 @@ const DisplayNavBar = () => {
   return (
     <div>
       <DisplayModalCar />
-      {windowWidth > 750 ? <NavBar /> : <ModalNavBar />}
+      {windowWidth > 750 ? <NavBar /> : <NavBarMovil />}
     </div>
   );
 };

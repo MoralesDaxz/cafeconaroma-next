@@ -54,6 +54,7 @@ type Order = {
   extra?: string;
   delivery?: string;
   code?:string;
+  total?:number
 };
 /* PayCoffee */
 type TotalInitValue = {

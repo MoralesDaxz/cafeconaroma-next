@@ -165,11 +165,11 @@ body {
 /* Bg Successfull en Factura */
 .bg-success {
   background-repeat: no-repeat;
-  background-size:cover;
+  background-size:90%;
   background: url("../assets//images/marco-hojas.png");
-  background-position: top;
-  background-color: #dad8bc;
+  background-position:top;
+ /*  background-color: #dad8bc; */
 }
-.table-border table, th, td {
+/* .table-border table, th, td {
   border: 1px solid black;
-}
+} */

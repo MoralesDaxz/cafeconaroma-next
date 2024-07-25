@@ -90,12 +90,15 @@ const Basket = () => {
         </section>
         <PayModalFixed>
           <div className="flex justify-end mt-3 font-medium gap-4 text-white">
-            <Link
-              href={"/checkout"}
-              className="p-2 bg-[#13470F] hover:bg-[#1d6116] hover:scale-105 rounded-md transition-all duration-300"
-            >
-              Pagar
-            </Link>
+            {buysLocalStorage.subtotal > 0 && (
+              <Link
+                href={"/checkout"}
+                className="p-2 bg-[#13470F] hover:bg-[#1d6116] hover:scale-105 rounded-md transition-all duration-300"
+              >
+                Pagar
+              </Link>
+            )}
+
             <Link
               href={"/store"}
               className="p-2 text-[#13470F] hover:scale-105 rounded-md transition-all duration-300"

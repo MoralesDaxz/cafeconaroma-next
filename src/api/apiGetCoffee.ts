@@ -1,16 +1,10 @@
 import { TotalInitValue } from "@/interfaces/interfaces";
 
-const postApi = "https://api-order-cafeconaroma.onrender.com/new"
-
-const getCoffee = async (url: string) => {
-  const promise = await fetch(url);
-  const response = await promise.json();
-  return response.products;
-};
+const postApi = process.env.NEXT_PUBLIC_URL_API_ORDER_NEW
 
 const newOrder = async (data: TotalInitValue) => {
   try {
-    const response = await fetch('https://api-order-cafeconaroma.onrender.com/new', {
+    const response = await fetch(postApi!, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -30,4 +24,4 @@ const newOrder = async (data: TotalInitValue) => {
   }
 };
 
-export { getCoffee, newOrder };
+export { newOrder };

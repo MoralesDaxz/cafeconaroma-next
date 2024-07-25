@@ -2,7 +2,7 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div className='pt-20'>Suscription</div>
+    <section className='pt-20'>Suscription</section>
   )
 }
 
