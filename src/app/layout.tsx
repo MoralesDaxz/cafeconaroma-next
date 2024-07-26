@@ -1,6 +1,7 @@
 import { Outfit } from "next/font/google";
 import "./globals.css";
 import "../assets/css/loader.css";
+import "../assets/css/carousel.css";
 import { ControlDisplayProvider } from "@/context/ControlDisplay";
 import DisplayNavBar from "@/components/DisplayNavBar";
 import CopyRight from "@/components/CopyRight";

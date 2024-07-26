@@ -170,6 +170,13 @@ body {
   background-position:top;
  /*  background-color: #dad8bc; */
 }
-/* .table-border table, th, td {
-  border: 1px solid black;
+/* .bg-cup-hands{
+  background-repeat: no-repeat;
+  background-size:cover;
+  background: url("../assets//images/cup-contact.png");
+  background-position:center;
 } */
+ .box-shadow{
+  box-shadow:  7px 7px 23px #9f9f9f,
+             -7px -7px 23px #ffffff;
+ }

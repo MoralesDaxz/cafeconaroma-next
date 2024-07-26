@@ -33,7 +33,6 @@ const Contact = () => {
       </article>
       <article className="w-full sm:min-w-[300px] sm:max-w-[580px] flex items-center justify-center">
         <FormContact />
-        {/* <Form/> */}
       </article>
     </section>
   );
