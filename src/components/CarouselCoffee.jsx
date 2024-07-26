@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
+import { Navigation, Pagination, Scrollbar, A11y,Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -11,16 +11,18 @@ const CarouselCoffee = () => {
   return (
     <Swiper
     // install Swiper modules
-    modules={[Navigation, Pagination, Scrollbar, A11y]}
+    modules={[Navigation, Pagination, Scrollbar, A11y,Autoplay]}
     spaceBetween={50}
-    slidesPerView={3}
+    slidesPerView={2}
+    loop={true}
+    autoplay={{delay:2500,pauseOnMouseEnter:true}}
     navigation
     pagination={{ clickable: true }}
     scrollbar={{ draggable: true }}
-    onSwiper={(swiper) => console.log(swiper)}
-    onSlideChange={() => console.log('slide change')}
+    pauseOnMouseEnter={true}
+  
   >
-    <SwiperSlide ><p className="h-[150px] w-[150px]">Slide 1</p></SwiperSlide>
+    <SwiperSlide><p className="h-[150px] w-[150px]">Slide 1</p></SwiperSlide>
     <SwiperSlide><p className="h-[150px] w-[150px]">Slide 2</p></SwiperSlide>
     <SwiperSlide><p className="h-[150px] w-[150px]">Slide 3</p></SwiperSlide>
     <SwiperSlide><p className="h-[150px] w-[150px]">Slide 4</p></SwiperSlide>
