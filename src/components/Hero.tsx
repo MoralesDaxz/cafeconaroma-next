@@ -23,7 +23,7 @@ const Hero = () => {
         <div className="flex items-center gap-2">
           <Link
             className="bg-[#1F1914] px-2 sm:px-3 py-2 rounded text-center md:text-lg"
-            href={"/origins"}
+            href={"/"}
           >
             Descubrir Orígenes
           </Link>
