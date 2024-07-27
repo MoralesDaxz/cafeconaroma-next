@@ -26,18 +26,15 @@ export const ControlDisplayProvider: FC<{ children: React.ReactNode }> = ({
   const [windowWidth, setWindowWidth] = useState<number>(0);
   const [windowScroll, setWindowScroll] = useState<number>(0);
   useEffect(() => {
-
     if (typeof window !== "undefined") {
       setWindowWidth(window.innerWidth * 1);
 
       const handleResize = () => {
-        setWindowWidth(window.innerWidth * 1);
-        return;
+        return setWindowWidth(window.innerWidth * 1);
       };
 
       const handleScroll = () => {
-        setWindowScroll(window.scrollY);
-        return;
+        return setWindowScroll(window.scrollY);
       };
       window.addEventListener("resize", () => handleResize());
       window.addEventListener("scroll", () => handleScroll());
@@ -47,6 +44,7 @@ export const ControlDisplayProvider: FC<{ children: React.ReactNode }> = ({
         window.removeEventListener("scroll", () => handleScroll());
       };
     }
+    return;
   }, []);
   return (
     <ControlDisplay.Provider

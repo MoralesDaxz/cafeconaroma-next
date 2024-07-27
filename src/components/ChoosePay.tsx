@@ -93,6 +93,7 @@ const ChoosePay = () => {
       setLoadingOrderApi(false);
       return router.push("/success");
     }
+    return;
   };
   return (
     <article className="flex flex-col sm:flex-row gap-3 px-4 w-full w-max-[800px]">

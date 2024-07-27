@@ -53,16 +53,14 @@ const DisplayModalCar = () => {
             ) : (
               <TbShoppingCart className="w-[30px] h-[30px]" />
             )}
-            <p>
-              Compra {buysLocalStorage.subtotal.toFixed(2).replace(".", ",")} €
-            </p>
+            <p>{buysLocalStorage.subtotal.toFixed(2).replace(".", ",")} €</p>
             <p>+</p>
             <p>
               Envio{" "}
               {buysLocalStorage.sent.delivery !== "normal"
                 ? buysLocalStorage.sent.payDelivery
                     ?.toFixed(2)
-                    .replace(".", ",") + " €"
+                    .replace(".", ",") + "  €"
                 : "Gratis"}
             </p>
           </div>

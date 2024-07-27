@@ -24,7 +24,6 @@ export const PayProducts = createContext<PayProductsContextType>(defaultValue);
 export const PayProductsProvider: FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-
   const [controlRender, setControlRender] = useState<number>(0);
   const [buysLocalStorage, setbuysLocalStorage] = useState<TotalInitValue>({
     subtotal: 0,
@@ -33,7 +32,7 @@ export const PayProductsProvider: FC<{ children: React.ReactNode }> = ({
     product: [],
     sent: { delivery: "normal", payDelivery: 0 },
   });
-/* Actualizamos ESTADO "Funcionalidad" y LocalStorage "DB - Local" */
+  /* Actualizamos ESTADO "Funcionalidad" y LocalStorage "DB - Local" */
   const updateGlobal = () => {
     const itemsLocalStorage: TotalInitValue = getKeyLocal("buy");
     const balance = itemsLocalStorage.product.reduce(
@@ -46,7 +45,7 @@ export const PayProductsProvider: FC<{ children: React.ReactNode }> = ({
     );
 
     const updatedTotal =
-      itemsLocalStorage.sent.payDelivery! + balance.subtotalReduce;
+      itemsLocalStorage?.sent.payDelivery + balance.subtotalReduce;
     const updatedState = {
       ...itemsLocalStorage,
       quantity: balance.quantityReduce,
@@ -57,12 +56,12 @@ export const PayProductsProvider: FC<{ children: React.ReactNode }> = ({
     return localStorage.setItem("buy", JSON.stringify(updatedState));
   };
   useEffect(() => {
-    updateGlobal();
+    return updateGlobal();
   }, []);
 
   /* LS inicial */
   useEffect(() => {
-    updateGlobal();
+    return updateGlobal();
   }, [controlRender]);
 
   return (

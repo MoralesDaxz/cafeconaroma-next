@@ -94,4 +94,48 @@ const SpainCommunities = [
     provincias: ["Melilla"]
   }
 ];
-export { questions,SpainCommunities };
+const userFarmer =[
+  {
+    name:"Ana Iko",
+    contry:"Colombia",
+    location:"Antioquia",
+    pic:"https://i.ibb.co/6NtKmvf/ana81.jpg",
+    farm:"https://i.ibb.co/FwS0FBr/ana81-finca.jpg",
+  },
+  {
+    name:"Carlos Pond",
+    contry:"Colombia",
+    location:"Cauca",
+    pic:"https://i.ibb.co/khC4J4b/carlos22.jpg",
+    farm:"https://i.ibb.co/g6rzC7L/carlos22-finca.jpg",
+  },
+  {
+    name:"Carla Zet",
+    contry:"Indonesia",
+    location:"Sedoa",
+    pic:"https://i.ibb.co/K2bsZfv/carla90.jpg",
+    farm:"https://i.ibb.co/LnTrHGc/carla90-finca.jpg",
+  },
+  {
+    name:"Julio Torrex",
+    contry:"Venezuela",
+    location:"Tachira",
+    pic:"https://i.ibb.co/qnjrYNy/julio4.jpg",
+    farm:"https://i.ibb.co/vXP80p0/julio4-finca.jpg",
+  },
+  {
+    name:"Jose Ford",
+    contry:"Colombia",
+    location:"Santa Marta",
+    pic:"https://i.ibb.co/80Lmwkn/jose43.jpg",
+    farm:"https://i.ibb.co/C51GFfd/jose43-finca.jpg",
+  },
+  {
+    name:"Pedro Wang",
+    contry:"Colombia",
+    location:"Antioquia",
+    pic:"https://i.ibb.co/P1xVNNj/pedro7.jpg",
+    farm:"https://i.ibb.co/4Rptfm1/pedro7-finca.jpg",
+  },
+]
+export { questions,SpainCommunities, userFarmer };

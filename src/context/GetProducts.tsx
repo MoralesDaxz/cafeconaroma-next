@@ -36,18 +36,20 @@ export const GetProductsProvider: FC<{ children: React.ReactNode }> = ({
 }) => {
   const [coffee, setCoffee] = useState<Product[]>();
   const url = process.env.NEXT_PUBLIC_URL_API_COFFEE;
- 
+
   useEffect(() => {
-    (async () => {
+    const getProduct = async () => {
       try {
         const promise = await fetch(url!);
-      const response = await promise.json();
-      return setCoffee(response.products);
+        const response = await promise.json();
+        return setCoffee(response.products);
       } catch (error) {
         /* Podriamos generar una pagina 404 */
         console.log(error);
       }
-    })();
+    };
+    getProduct();
+    return;
   }, []);
   return (
     <GetProducts.Provider

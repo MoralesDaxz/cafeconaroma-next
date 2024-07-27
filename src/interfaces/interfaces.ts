@@ -27,7 +27,7 @@ type Pay = {
   anyMore?: string;
   identity?: string;
   delivery?: string;
-  payDelivery?: number;
+  payDelivery: number;
 };
 /* Form ChoosePay */
 type ChoosePayFormData = {

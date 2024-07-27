@@ -9,7 +9,7 @@ const Successful = () => {
 
   useEffect(() => {
     const itemsLocalStorage = getKeyLocal("invoice");
-    setOrder(itemsLocalStorage);
+    return setOrder(itemsLocalStorage);
   }, []);
   return (
     <section className="pb-2 bg-[#051307] text-black min-h-screen w-full flex flex-col items-center justify-center">
@@ -26,12 +26,16 @@ const Successful = () => {
           <p className="capitalize">
             <b>Hola!</b> {order.name}
           </p>
-          <h2>
+          <p>
             <b>Pedido Nº: </b>
             {order.invoice}
-          </h2>
+          </p>
           <p>
             <b>Destino:</b> {order.comunity}, {order.province}, {order.code}.
+          </p>
+          <p className="capitalize">
+            <b>Entrega: </b>
+            {order.delivery}
           </p>
         </div>
 
@@ -69,15 +73,18 @@ const Successful = () => {
             </tbody>
             <tfoot className="py-2 border-[1px] border-[#eeecec]">
               <tr>
-                <td colSpan={2} className="py-1 text-center italic text-xs">valor de esta compra incluye iva</td>
-                <td className="py-1 text-center text-base font-medium">Total</td>
+                <td colSpan={2} className="py-1 text-center italic text-xs">
+                  valor de esta compra incluye iva
+                </td>
+                <td className="py-1 text-center text-base font-medium">
+                  Total
+                </td>
                 <td className="py-1 text-center text-base font-medium">
                   {order.total?.toFixed(2).replace(".", ",")} €
                 </td>
               </tr>
             </tfoot>
           </table>
-         
         </div>
 
         {order.delivery === "normal" ? (
