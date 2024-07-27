@@ -49,8 +49,8 @@ export const GetProductsProvider: FC<{ children: React.ReactNode }> = ({
       }
     };
     getProduct();
-    return;
-  }, []);
+    return; 
+  });
   return (
     <GetProducts.Provider
       value={{

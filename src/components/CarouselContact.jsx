@@ -4,7 +4,7 @@ const CarouselContact = () => {
   return (
     <>
       <section>
-        <div class="slider">
+        {/* <div class="slider">
           <a name="img_1">
             <img src="https://images.unsplash.com/photo-1525382455947-f319bc05fb35?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" />
           </a>
@@ -34,7 +34,7 @@ const CarouselContact = () => {
           <li>
             <a href="#img_4"></a>
           </li>
-        </ul>
+        </ul> */}
       </section>
     </>
   );
