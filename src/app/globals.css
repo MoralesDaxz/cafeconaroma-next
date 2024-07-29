@@ -8,6 +8,7 @@
   box-sizing: border-box;
   line-height: 1.2;
 }
+
 :root {
   --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 0, 0, 0;
@@ -25,16 +26,15 @@ html {
   scroll-behavior: smooth;
   --scroll-behavior-duration: 1s;
 }
+
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
+  background: linear-gradient(to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
   min-width: 330px;
 }
+
 /* ::-webkit-scrollbar {
   height: 5px;
   width: 5px;
@@ -55,6 +55,7 @@ body {
     text-wrap: balance;
   }
 }
+
 /* NavBar Movil */
 .chooseRoute {
   height: 12px;
@@ -73,6 +74,7 @@ body {
     box-shadow: 0 0 0 14px #69ffa800;
   }
 }
+
 .title {
   text-align: center;
   font-size: 1.5rem;
@@ -84,26 +86,15 @@ body {
   background-color: #190f0ccb;
   background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Page-1' fill='none' fill-rule='evenodd'%3E%3Cg id='brick-wall' fill='%232c302c' fill-opacity='0.4'%3E%3Cpath d='M0 0h42v44H0V0zm1 1h40v20H1V1zM0 23h20v20H0V23zm22 0h20v20H22V23z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
-/*Bg - CardsInfo  */
-.bgCards {
-  position: relative; /* Necesario para que el pseudo-elemento se posicione correctamente */
-  overflow: hidden; /* Asegura que el pseudo-elemento no se salga del contenedor */
-}
 
-.bgCards::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
+/*Bg - Companies  */
+.bg-companies {
   width: 100%;
-  height: 100%;
-  background-image: url("../assets/images/cards-coffee-seed.jpg");
-  background-attachment: fixed; /* Parallax */
+  background-image: url("../assets/images/companies/bg-parallax.jpg"),.5;/* Ajusta el valor de opacidad según sea necesario */
+  background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  opacity: 0.3; /* Ajusta este valor para cambiar la opacidad */
-  z-index: 0; /* Coloca el pseudo-elemento detrás del contenido */
 }
 
 /* Clase general para el contenedor del input y el span */
@@ -136,8 +127,8 @@ body {
   border-color: rgba(42, 117, 71, 0.61);
 }
 
-/* Estilo del span para que funciones debe estar INPUT - REQUIRED*/ 
-.float-label-container .input + span {
+/* Estilo del span para que funciones debe estar INPUT - REQUIRED*/
+.float-label-container .input+span {
   color: rgb(1, 12, 4);
   position: absolute;
   left: 10px;
@@ -146,29 +137,32 @@ body {
   cursor: text;
   transition: 0.3s ease;
   padding: 0 5px;
-  pointer-events: none; /* Evitar que el span interfiera con los clics del usuario */
+  pointer-events: none;
+  /* Evitar que el span interfiera con los clics del usuario */
 }
 
 /* Estilo del span cuando el input está vacío y no tiene focus */
-.float-label-container .input:placeholder-shown + span {
+.float-label-container .input:placeholder-shown+span {
   top: 12.5px;
   font-size: 0.9em;
 }
 
 /* Estilo del span cuando el input tiene focus o es válido */
-.float-label-container .input:focus + span,
-.float-label-container .input:valid + span {
+.float-label-container .input:focus+span,
+.float-label-container .input:valid+span {
   top: -7px;
   font-size: 0.8em;
   font-weight: 600;
 }
+
 /* Bg Successfull en Factura */
 .bg-success {
   background-repeat: no-repeat;
-  background-size:90%;
+  background-size: 90%;
   background: url("../assets//images/marco-hojas.png");
-  background-position:top;
+  background-position: top;
 }
+
 .bg-companies {
   position: relative;
   width: 100%;
@@ -186,19 +180,20 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  opacity: 0.8; /* Ajusta el valor de opacidad según sea necesario */
+  opacity: 0.8;
+  /* Ajusta el valor de opacidad según sea necesario */
   z-index: -1;
 }
 
 /* Asegúrate de que el contenido dentro de .bg-companies esté en un contexto superior al pseudo-elemento */
-.bg-companies > * {
+.bg-companies>* {
   position: relative;
   z-index: 1;
 }
+
 /* Bg - Companies */
- .box-shadow{
-  box-shadow:  7px 7px 23px #9f9f9f,
-             -7px -7px 23px #ffffff;
+.box-shadow {
+  box-shadow: 7px 7px 23px #9f9f9f,
+    -7px -7px 23px #ffffff;
 
- }
-
+}

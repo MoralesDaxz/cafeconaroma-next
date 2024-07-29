@@ -10,16 +10,14 @@ const page = () => {
     <section className="pt-20 md:pt-28 min-h-screen w-full bg-companies text-black flex flex-col items-center gap-5">
       <h1 className="title">Dirigido a compañias</h1>
 
-      <article className="px-5 flex flex-col items-center gap-3">
+      <article className="px-5 flex flex-col items-center gap-3 w-[90%]">
 
-        <div>
-          <p>
+        <div className="flex p-2  backdrop-blur-sm rounded">
+          <p className="">
             Café con Aroma se compromete a ofrecerte granos de café de la más
             alta calidad a precios competitivos. Nuestra selección cuidadosa y
             procesos de tostado aseguran un producto excepcional en cada
-            entrega. Al combinar calidad superior con precios atractivos, te
-            ayudamos a destacarte en el mercado y a satisfacer a tus clientes
-            más exigentes. Elige la mejor relación calidad-precio con nosotros.
+            entrega. 
           </p>
           <Image
             src={coffeePic}
@@ -28,6 +26,9 @@ const page = () => {
             className="w-[250]"
             alt="clean-coffee"
           />
+          <p>Al combinar calidad superior con precios atractivos, te
+            ayudamos a destacarte en el mercado y a satisfacer a tus clientes
+            más exigentes. Elige la mejor relación calidad-precio con nosotros.</p>
         </div>
         <div>
           <p>

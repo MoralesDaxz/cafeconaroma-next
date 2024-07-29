@@ -19,16 +19,16 @@ import { BiSolidQuoteAltLeft } from "react-icons/bi";
 const CarouselCoffee = () => {
   return (
     <Swiper
-      className="w-[90%] self-center mt-10 mb-4 text-black"
-      effect="coverflow"
+      className="w-[90%] h-auto self-center mt-10 mb-4 text-black"
+      effect="slide"
       spaceBetween={10}
-      coverflowEffect={{
-        rotate: 50,
+      /* coverflowEffect={{
+        rotate: 30,
         stretch: 0,
-        depth: 100,
+        depth: 50,
         modifier: 1,
         slideShadows: false,
-      }}
+      }} */
       breakpoints={{
         640: {
           slidesPerView: 2,
@@ -61,10 +61,10 @@ const CarouselCoffee = () => {
       {userFarmer.map((item, i) => {
         return (
           <SwiperSlide
-            className="w-fit h-[180px] [background:radial-gradient(125%_125%_at_50%_10%,#ffffffc4_40%,#2ddb45_100%)] p-1 rounded-md"
+            className="w-fit h-[280px] [background:radial-gradient(125%_125%_at_50%_10%,#ffffffc4_40%,#2ddb45_100%)] p-1 rounded-md"
             key={i}
           >
-            <div className="flex gap-1 w-full">
+            <div className="flex gap-1 w-full h-full">
               <div className="w-[50%] pt-2 flex flex-col justify-around items-center gap-3">
                 <span className=" flex w-full">
                   <BiSolidQuoteAltLeft
@@ -85,11 +85,11 @@ const CarouselCoffee = () => {
                   <p className=" font-medium text-center">{item.name}</p>
                 </span>
               </div>
-              <div className="w-[50%]">
+              <div className="w-[50%] h-full flex items-center justify-center">
                 <Image
                   src={item.farm}
                   alt={item.name}
-                  className="abolute top-0 left-0 right-0 bottom-0 h-[150px] w-fit mx-auto my-auto rounded-md"
+                  className=" h-[180px] w-fit mx-auto my-auto rounded-md"
                   width={500}
                   height={500}
                 />
