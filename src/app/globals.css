@@ -180,7 +180,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  opacity: 0.8;
+  opacity: 0.5;
   /* Ajusta el valor de opacidad según sea necesario */
   z-index: -1;
 }
@@ -194,6 +194,6 @@ body {
 /* Bg - Companies */
 .box-shadow {
   box-shadow: 7px 7px 23px #9f9f9f,
-    -7px -7px 23px #ffffff;
+    -7px -7px 23px #969494;
 
 }
