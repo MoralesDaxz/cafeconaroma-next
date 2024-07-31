@@ -19,7 +19,7 @@ import { BiSolidQuoteAltLeft } from "react-icons/bi";
 const CarouselCoffee = () => {
   return (
     <Swiper
-      className="w-[90%] h-auto self-center mt-10 mb-4 text-black"
+      className="w-[90%] lg:w-[70%] h-auto self-center mt-10 mb-4 text-black"
       effect="slide"
       spaceBetween={10}
       /* coverflowEffect={{
