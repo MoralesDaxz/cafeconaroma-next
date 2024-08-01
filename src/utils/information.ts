@@ -94,6 +94,7 @@ const SpainCommunities = [
     provincias: ["Melilla"]
   }
 ];
+
 const userFarmer =[
   {
     name:"Ana Iko",
@@ -133,7 +134,7 @@ const userFarmer =[
     location:"Santa Marta",
     pic:"https://i.ibb.co/80Lmwkn/jose43.jpg",
     farm:"https://i.ibb.co/C51GFfd/jose43-finca.jpg",
-     comment:"Orgullosos de ver cuanto gusta nuestro café fuera de nuestras fronteras."
+     comment:"Dando a conocer nuestro café fuera de nuestras fronteras."
   },
   {
     name:"Pedro Wang",
@@ -143,5 +144,40 @@ const userFarmer =[
     farm:"https://i.ibb.co/4Rptfm1/pedro7-finca.jpg",
     comment:"Todo el sabor que esperas de un café por la mañana, aquí lo tenemos."
   },
-]
-export { questions,SpainCommunities, userFarmer };
+];
+
+const logos = [
+  "https://cdn.svgporn.com/logos/anthropic-icon.svg",
+  "https://cdn.svgporn.com/logos/async-api.svg",
+  "https://cdn.svgporn.com/logos/sonarcloud.svg",
+  "https://cdn.svgporn.com/logos/cube.svg",
+  "https://cdn.svgporn.com/logos/volar.svg",
+  "https://cdn.svgporn.com/logos/meta.svg",
+  "https://cdn.svgporn.com/logos/gradio.svg",
+  "https://cdn.svgporn.com/logos/mistral-ai.svg",
+  "https://cdn.svgporn.com/logos/android-vertical.svg",
+  "https://cdn.svgporn.com/logos/angular.svg",
+  "https://cdn.svgporn.com/logos/apache-flink.svg",
+  "https://cdn.svgporn.com/logos/apache-spark.svg",
+  "https://cdn.svgporn.com/logos/fastapi.svg",
+  "https://cdn.svgporn.com/logos/google-palm.svg",
+  "https://cdn.svgporn.com/logos/presto.svg",
+  "https://cdn.svgporn.com/logos/qdrant.svg",
+  "https://cdn.svgporn.com/logos/google-play-console.svg",
+  "https://cdn.svgporn.com/logos/obsidian.svg",
+  "https://cdn.svgporn.com/logos/webgpu.svg",
+  "https://cdn.svgporn.com/logos/dailydev.svg",
+  "https://cdn.svgporn.com/logos/zapier.svg",
+
+  "https://cdn.svgporn.com/logos/katalon.svg",
+  "https://cdn.svgporn.com/logos/rush.svg",
+  "https://cdn.svgporn.com/logos/qwik.svg",
+  "https://cdn.svgporn.com/logos/keydb.svg",
+  "https://cdn.svgporn.com/logos/amex.svg",
+  "https://cdn.svgporn.com/logos/microsoft-windows.svg",
+  "https://cdn.svgporn.com/logos/openapi.svg",
+  "https://cdn.svgporn.com/logos/risingwave.svg",
+  "https://cdn.svgporn.com/logos/netlify.svg",
+];
+
+export { questions,SpainCommunities, userFarmer, logos };

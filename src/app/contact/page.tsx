@@ -3,6 +3,7 @@ import Image from "next/image";
 import React from "react";
 import cupCoffee from "@/assets/images/contact-cup.jpg";
 const page = () => {
+
   return (
     <section className="pt-20 md:pt-28 min-h-screen w-full bg-white text-black flex flex-col justify-between items-center gap-5">
       <h1 className="text-center mb-6 title">Contacta con Aroma Café</h1>

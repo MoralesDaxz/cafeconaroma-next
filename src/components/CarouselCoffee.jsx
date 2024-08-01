@@ -19,7 +19,7 @@ import { BiSolidQuoteAltLeft } from "react-icons/bi";
 const CarouselCoffee = () => {
   return (
     <Swiper
-      className="w-[90%] lg:w-[70%] h-auto self-center mt-10 mb-4 text-black"
+      className="w-full h-auto self-center mt-10 mb-4 text-black"
       effect="slide"
       spaceBetween={10}
       /* coverflowEffect={{
@@ -61,7 +61,7 @@ const CarouselCoffee = () => {
       {userFarmer.map((item, i) => {
         return (
           <SwiperSlide
-            className="w-fit h-[280px] [background:radial-gradient(125%_125%_at_50%_10%,#ffffffc4_40%,#2ddb45_100%)] p-1 rounded-md"
+            className="w-fit h-[17.5rem] [background:radial-gradient(125%_125%_at_50%_10%,#ffffffc4_40%,#2ddb45_100%)] p-1 rounded-md"
             key={i}
           >
             <div className="flex gap-1 w-full h-full">
@@ -70,7 +70,7 @@ const CarouselCoffee = () => {
                   <BiSolidQuoteAltLeft
                     width={80}
                     color="green"
-                    className="w-[50px]"
+                    className="w-[3rem]"
                   />
                   <p className="text-sm">{item.comment}</p>
                 </span>
@@ -89,7 +89,7 @@ const CarouselCoffee = () => {
                 <Image
                   src={item.farm}
                   alt={item.name}
-                  className=" h-[180px] w-fit mx-auto my-auto rounded-md"
+                  className=" h-[11rem] w-fit mx-auto my-auto rounded-md"
                   width={500}
                   height={500}
                 />

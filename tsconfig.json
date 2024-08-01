@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/CarouselContact.jsx", "src/components/CarouselCoffee.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/CarouselContact.jsx", "src/components/CarouselCoffee.jsx", "src/components/CarouselAllies.tsx"],
   "exclude": ["node_modules"]
 }
