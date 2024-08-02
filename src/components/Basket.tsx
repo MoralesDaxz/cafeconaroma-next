@@ -31,14 +31,14 @@ const Basket = () => {
   }, [urgent]);
 
   return (
-    <section className="pt-10 sm:pt-20 pb-2 bg-[white] min-h-screen w-full flex flex-col items-center gap-8">
+    <section className="pt-20 md:pt-28 pb-2 bg-[white] min-h-screen w-full flex flex-col items-center gap-8">
       <Link
         href={"/store"}
         className="text-black absolute top-14 sm:top-20 left-2 flex gap-2"
       >
         <IoArrowBack /> Volver
       </Link>
-      <h3 className="title text-[#2f5854] mt-8">
+      <h3 className="title text-[#0c1225] mt-8">
         Cesta ( {buysLocalStorage.quantity} )
       </h3>
       <article className="relative flex flex-col-reverse sm:flex-row sm:justify-center gap-3 px-4 w-full w-max-[800px]">

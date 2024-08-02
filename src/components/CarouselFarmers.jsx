@@ -1,14 +1,7 @@
 "use client";
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import {
-  Navigation,
-  Pagination,
-  Scrollbar,
-  A11y,
-  Autoplay,
-  EffectCoverflow,
-} from "swiper/modules";
+import { Pagination, Scrollbar, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -16,19 +9,12 @@ import "swiper/css/scrollbar";
 import { userFarmer } from "@/utils/information";
 import Image from "next/image";
 import { BiSolidQuoteAltLeft } from "react-icons/bi";
-const CarouselCoffee = () => {
+const CarouselFarmers = () => {
   return (
     <Swiper
       className="w-full h-auto self-center mt-10 mb-4 text-black"
       effect="slide"
       spaceBetween={10}
-      /* coverflowEffect={{
-        rotate: 30,
-        stretch: 0,
-        depth: 50,
-        modifier: 1,
-        slideShadows: false,
-      }} */
       breakpoints={{
         640: {
           slidesPerView: 2,
@@ -45,18 +31,10 @@ const CarouselCoffee = () => {
       }}
       loop={true}
       autoplay={{ delay: 4000, pauseOnMouseEnter: true }}
-      /*   navigation */
       pagination={{ clickable: true }}
       scrollbar={{ draggable: true }}
       pauseOnMouseEnter={true}
-      modules={[
-        EffectCoverflow,
-        Navigation,
-        Pagination,
-        Scrollbar,
-        A11y,
-        Autoplay,
-      ]}
+      modules={[Pagination, Scrollbar, Autoplay]}
     >
       {userFarmer.map((item, i) => {
         return (
@@ -102,4 +80,4 @@ const CarouselCoffee = () => {
   );
 };
 
-export default CarouselCoffee;
+export default CarouselFarmers;

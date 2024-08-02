@@ -15,13 +15,6 @@
   --background-end-rgb: 0, 0, 0;
 }
 
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-} */
 html {
   scroll-behavior: smooth;
   --scroll-behavior-duration: 1s;
@@ -35,21 +28,13 @@ body {
   min-width: 330px;
 }
 
-/* ::-webkit-scrollbar {
-  height: 5px;
-  width: 5px;
-  background: var(--background);
+/* Sombra contact */
+.box-shadow {
+  box-shadow: 7px 7px 23px #9f9f9f,
+    -7px -7px 23px #969494;
 }
 
-::-webkit-scrollbar-thumb {
-  background: var(--accent);
-  -webkit-border-radius: 1ex;
-}
 
-::-webkit-scrollbar-corner {
-  background: var(--background);
-}
- */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -75,6 +60,47 @@ body {
   }
 }
 
+.barHidden {
+  --scrollbar-thumb-color: #71B774CC;
+  --scrollbar-track-color: #A1A1AA1F;
+  --scrollbar-border-color: #FFFFFF12;
+  --scrollbar-corner-color: #FFFFFF6B;
+}
+
+.barHidden::-webkit-scrollbar-button {
+  background: var(--scrollbar-button-color, #3F3F46);
+  border: var(--scrollbar-border-thickness, 3px) solid var(--scrollbar-border-color, rgb(255, 255, 255));
+  border-radius: var(--scrollbar-border-radius, 4px);
+}
+
+.barHidden::-webkit-scrollbar {
+  width: var(--scrollbar-width, 20px);
+  height: var(--scrollbar-height, 20px);
+}
+
+.barHidden::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb-color, #3B82F6);
+  border: var(--scrollbar-border-thickness, 3px) solid var(--scrollbar-border-color, rgb(255, 255, 255));
+  border-radius: var(--scrollbar-border-radius, 4px);
+}
+
+.barHidden::-webkit-scrollbar-track {
+  background: var(--scrollbar-track-color, #A1A1AA);
+}
+
+.barHidden::-webkit-scrollbar-corner {
+  background: var(--scrollbar-corner-color, #FFFFFF);
+  border: var(--scrollbar-border-thickness, 3px) solid var(--scrollbar-border-color, rgb(255, 255, 255));
+  border-radius: var(--scrollbar-border-radius, 4px);
+}
+
+.barHidden::-webkit-scrollbar-button:vertical:start:increment,
+#preview::-webkit-scrollbar-button:vertical:end:decrement,
+#preview::-webkit-scrollbar-button:horizontal:start:increment,
+#preview::-webkit-scrollbar-button:horizontal:end:decrement {
+  display: var(--show-double-buttons, none);
+}
+
 .title {
   text-align: center;
   font-size: 1.5rem;
@@ -89,8 +115,10 @@ body {
 
 /*Bg - CardsInfo  */
 .bgCards {
-  position: relative; /* Necesario para que el pseudo-elemento se posicione correctamente */
-  overflow: hidden; /* Asegura que el pseudo-elemento no se salga del contenedor */
+  position: relative;
+  /* Necesario para que el pseudo-elemento se posicione correctamente */
+  overflow: hidden;
+  /* Asegura que el pseudo-elemento no se salga del contenedor */
 }
 
 .bgCards::before {
@@ -101,15 +129,18 @@ body {
   width: 100%;
   height: 100%;
   background-image: url("../assets/images/cards-coffee-seed.jpg");
-  background-attachment: fixed; /* Parallax */
+  background-attachment: fixed;
+  /* Parallax */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  opacity: 0.4; /* Ajusta este valor para cambiar la opacidad */
-  z-index: 0; /* Coloca el pseudo-elemento detrás del contenido */
+  opacity: 0.4;
+  /* Ajusta este valor para cambiar la opacidad */
+  z-index: 0;
+  /* Coloca el pseudo-elemento detrás del contenido */
 }
 
-/* Clase general para el contenedor del input y el span */
+/* FORM - Clase general para el contenedor del input y el span */
 .float-label-container {
   width: 100%;
   position: relative;
@@ -203,9 +234,31 @@ body {
   z-index: 1;
 }
 
-/* Bg - Companies */
-.box-shadow {
-  box-shadow: 7px 7px 23px #9f9f9f,
-    -7px -7px 23px #969494;
+/* Bg - Us */
+.bg-us {
+  position: relative;
+  width: 100%;
+}
 
+.bg-us::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../assets/images/us/bg-mountain.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.5;
+  /* Ajusta el valor de opacidad según sea necesario */
+  z-index: -1;
+}
+
+/* Asegúrate de que el contenido dentro de .bg-companies esté en un contexto superior al pseudo-elemento */
+.bg-us>* {
+  position: relative;
+  z-index: 1;
 }

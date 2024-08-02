@@ -95,54 +95,54 @@ const SpainCommunities = [
   }
 ];
 
-const userFarmer =[
+const userFarmer = [
   {
-    name:"Ana Iko",
-    contry:"Colombia",
-    location:"Antioquia",
-    pic:"https://i.ibb.co/6NtKmvf/ana81.jpg",
-    farm:"https://i.ibb.co/FwS0FBr/ana81-finca.jpg",
-    comment:"Trabajamos día a día por mantener ese sabor y calidad tradicional."
+    name: "Ana Iko",
+    contry: "Colombia",
+    location: "Antioquia",
+    pic: "https://i.ibb.co/6NtKmvf/ana81.jpg",
+    farm: "https://i.ibb.co/FwS0FBr/ana81-finca.jpg",
+    comment: "Trabajamos día a día por mantener ese sabor y calidad tradicional."
   },
   {
-    name:"Carlos Pond",
-    contry:"Colombia",
-    location:"Cauca",
-    pic:"https://i.ibb.co/khC4J4b/carlos22.jpg",
-    farm:"https://i.ibb.co/g6rzC7L/carlos22-finca.jpg",
-    comment:"Aroma Café es una ventana al mundo para nuestro producto."
+    name: "Carlos Pond",
+    contry: "Colombia",
+    location: "Cauca",
+    pic: "https://i.ibb.co/khC4J4b/carlos22.jpg",
+    farm: "https://i.ibb.co/g6rzC7L/carlos22-finca.jpg",
+    comment: "Aroma Café es una ventana al mundo para nuestro producto."
   },
   {
-    name:"Carla Zet",
-    contry:"Indonesia",
-    location:"Sedoa",
-    pic:"https://i.ibb.co/K2bsZfv/carla90.jpg",
-    farm:"https://i.ibb.co/LnTrHGc/carla90-finca.jpg",
-     comment:"Es un privilegio trabajar al lado de otros productores de alta categoría."
+    name: "Carla Zet",
+    contry: "Indonesia",
+    location: "Sedoa",
+    pic: "https://i.ibb.co/K2bsZfv/carla90.jpg",
+    farm: "https://i.ibb.co/LnTrHGc/carla90-finca.jpg",
+    comment: "Es un privilegio trabajar al lado de otros productores de alta categoría."
   },
   {
-    name:"Julio Torrex",
-    contry:"Venezuela",
-    location:"Tachira",
-    pic:"https://i.ibb.co/qnjrYNy/julio4.jpg",
-    farm:"https://i.ibb.co/vXP80p0/julio4-finca.jpg",
-     comment:"Todo nuestro amor y esfuerzo en cada grano."
+    name: "Julio Torrex",
+    contry: "Venezuela",
+    location: "Tachira",
+    pic: "https://i.ibb.co/qnjrYNy/julio4.jpg",
+    farm: "https://i.ibb.co/vXP80p0/julio4-finca.jpg",
+    comment: "Todo nuestro amor y esfuerzo en cada grano."
   },
   {
-    name:"Jose Ford",
-    contry:"Colombia",
-    location:"Santa Marta",
-    pic:"https://i.ibb.co/80Lmwkn/jose43.jpg",
-    farm:"https://i.ibb.co/C51GFfd/jose43-finca.jpg",
-     comment:"Dando a conocer nuestro café fuera de nuestras fronteras."
+    name: "Jose Ford",
+    contry: "Colombia",
+    location: "Santa Marta",
+    pic: "https://i.ibb.co/80Lmwkn/jose43.jpg",
+    farm: "https://i.ibb.co/C51GFfd/jose43-finca.jpg",
+    comment: "Dando a conocer nuestro café fuera de nuestras fronteras."
   },
   {
-    name:"Pedro Wang",
-    contry:"Colombia",
-    location:"Antioquia",
-    pic:"https://i.ibb.co/P1xVNNj/pedro7.jpg",
-    farm:"https://i.ibb.co/4Rptfm1/pedro7-finca.jpg",
-    comment:"Todo el sabor que esperas de un café por la mañana, aquí lo tenemos."
+    name: "Pedro Wang",
+    contry: "Colombia",
+    location: "Antioquia",
+    pic: "https://i.ibb.co/P1xVNNj/pedro7.jpg",
+    farm: "https://i.ibb.co/4Rptfm1/pedro7-finca.jpg",
+    comment: "Todo el sabor que esperas de un café por la mañana, aquí lo tenemos."
   },
 ];
 
@@ -168,7 +168,6 @@ const logos = [
   "https://cdn.svgporn.com/logos/webgpu.svg",
   "https://cdn.svgporn.com/logos/dailydev.svg",
   "https://cdn.svgporn.com/logos/zapier.svg",
-
   "https://cdn.svgporn.com/logos/katalon.svg",
   "https://cdn.svgporn.com/logos/rush.svg",
   "https://cdn.svgporn.com/logos/qwik.svg",
@@ -179,5 +178,23 @@ const logos = [
   "https://cdn.svgporn.com/logos/risingwave.svg",
   "https://cdn.svgporn.com/logos/netlify.svg",
 ];
+const galeryUs = [
+  "https://i.ibb.co/4sj9TNt/client.jpg",
+  "https://i.ibb.co/jWD0sD5/coffee-farmer.jpg",
+  "https://i.ibb.co/gvG8cYd/farmer1.jpg",
+  "https://i.ibb.co/T19zpPp/farmer2.jpg",
+  "https://i.ibb.co/T0LQrwh/pic.jpg",
+  "https://i.ibb.co/0GcPhdr/hot.jpg",
+  "https://i.ibb.co/YPZsGYm/grain.jpg",
+  "https://i.ibb.co/q71mRkb/toast.jpg",
+  "https://i.ibb.co/mXH71Gn/team.jpg",
+  "https://i.ibb.co/7vWvx40/meet.jpg",
+  "https://i.ibb.co/G2sNcR7/farmer.jpg",
+  "https://i.ibb.co/4SHDDqY/front.jpg",
+  "https://i.ibb.co/MhrnG5x/pic2.jpg",
+  "https://i.ibb.co/Fqw2wL6/cold-coffee.jpg",
+  "https://i.ibb.co/rbLbSt0/work.jpg",
+];
 
-export { questions,SpainCommunities, userFarmer, logos };
+
+export { questions, SpainCommunities, userFarmer, logos, galeryUs };

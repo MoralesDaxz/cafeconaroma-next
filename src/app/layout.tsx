@@ -1,7 +1,8 @@
 import { Outfit } from "next/font/google";
 import "./globals.css";
-import "../assets/css/loader.css";
-import "../assets/css/carousel.css";
+import "@/assets/css/loader.css";
+import "@/assets/css/carousel.css";
+import "@/assets/css/galeryGrid.css";
 import { ControlDisplayProvider } from "@/context/ControlDisplay";
 import DisplayNavBar from "@/components/DisplayNavBar";
 import CopyRight from "@/components/CopyRight";
@@ -25,8 +26,7 @@ export default function RootLayout({
         />
 
         <meta name="description" content="Café de Primera" />
-        <meta property="og:url" content="" />
-        {/* Cuando surja el Deploy */}
+        <meta property="og:url" content="Aqui el contenido de URL" />
         <meta property="og:title" content="Café con Aroma" />
         <meta
           property="og:description"

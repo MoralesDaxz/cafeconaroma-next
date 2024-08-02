@@ -53,8 +53,8 @@ const CarouselAllies = () => {
             >
               <Image
                 src={item}
-                width={100}
-                height={100}
+                width={0}
+                height={0}
                 alt={item}
                 className="min-w-[4rem] min-h-[4rem] m-auto"
               />

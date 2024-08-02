@@ -14,7 +14,7 @@ const NavBarMovil = () => {
   const [indexRoute, setIndexRoute] = useState(-1);
 
   useEffect(() => {
-    setIndexRoute(getRouteIndex(path));
+   return setIndexRoute(getRouteIndex(path!));
   }, [path]);
 
   return (
@@ -69,7 +69,7 @@ const NavBarMovil = () => {
         </div>
       )}
       {isOpen === false && (
-        <div className="p-2">
+        <div className="bg-[#2B2A2B]  p-2">
           <Link href={"/"} className="w-fit flex items-center gap-2">
             <h2 className=" text-2xl">cafeconaroma.com</h2>
             <TbCoffee className="w-[1.5rem] h-[1.5rem]" />

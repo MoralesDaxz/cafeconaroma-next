@@ -45,7 +45,7 @@ export const GetProductsProvider: FC<{ children: React.ReactNode }> = ({
         return setCoffee(response.products);
       } catch (error) {
         /* Podriamos generar una pagina 404 */
-        console.log(error);
+       return  console.log(error);
       }
     };
     getProduct();

@@ -1,4 +1,4 @@
-import CarouselCoffee from "@/components/CarouselCoffee";
+import CarouselFarmers from "@/components/CarouselFarmers";
 import Image from "next/image";
 import React from "react";
 import coffeePic from "@/assets/images/companies/clean-coffee.jpg";
@@ -15,7 +15,7 @@ const page = () => {
     "bg-[#ffffffbb] backdrop-blur-[2px] rounded-tr-[90px] rounded-tl-[90px] rounded-bl-[90px] p-8";
   return (
     <section className="pt-20 md:pt-28 min-h-screen w-full bg-companies text-black flex flex-col items-center gap-5 px-5">
-      <h1 className="title text-white">Dirigido a compañias</h1>
+      <h1 className="title text-[#0c1225] pb-10">Dirigido a compañias</h1>
       <article
         className={
           "w-full md:w-[95%] lg:w-[80%] flex flex-col items-center text-center [background:radial-gradient(125%_125%_at_50%_10%,#e9eee9b4_40%,#2ddb45_100%)] " +
@@ -25,7 +25,7 @@ const page = () => {
         <CarouselAllies />
         <h2 className="w-[80%] text-base sm:text-lg sm:font-normal leading-5">
           Ellos disfrutan de beneficios como descuentos y obsequios por compras
-          de gran volumen,{" "}
+          de gran volumen, &nbsp;
           <Link href={"/contact"} className="italic underline">
             contactanos
           </Link>
@@ -119,10 +119,10 @@ const page = () => {
         </div>
       </article>
       <div className="w-full md:w-[95%] lg:w-[80%]">
-        <h3 className="title text-white mt-5">
+        <h3 className="title text-[#0c1225] mt-5">
           Algunos de nuestros socios productores
         </h3>
-        <CarouselCoffee />
+        <CarouselFarmers />
       </div>
     </section>
   );
