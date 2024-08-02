@@ -12,6 +12,7 @@ import ErrorModalForm from "./ErrorModalForm";
 import { getKeyLocal, resetBuyLocal } from "@/utils/localStorageItems";
 import { useRouter } from "next/navigation";
 import Loader from "./Loader";
+import ModalRedirect from "./ModalRedirect";
 
 const ChoosePay = () => {
   const { controlRender, setControlRender } = usePayProducts();
@@ -20,6 +21,7 @@ const ChoosePay = () => {
   const [province, setProvince] = useState("");
   const [inputKind, setInputKind] = useState("");
   const [loadingOrderApi, setLoadingOrderApi] = useState(false);
+  const [loading, setLoadingRedirect] = useState(false);
   const router = useRouter();
   const {
     register,
@@ -30,6 +32,7 @@ const ChoosePay = () => {
     defaultValues: {
       payTipe: "",
       name: "",
+      lastName: "",
       identity: "",
       mail: "",
       phone: "",
@@ -47,53 +50,55 @@ const ChoosePay = () => {
     setComunitySpain("");
     setProvince("");
     setInputKind("");
-    reset();
+    return reset();
   };
 
   const onForm = async (data: ChoosePayFormData) => {
-    setLoadingOrderApi(true);
     const itemsLocalStorage: TotalInitValue = getKeyLocal("buy");
-    const items = {
-      time: await displayCurrentTime(),
-      date: await generateInvoiceCode(),
-      office: "E001",
-      sent: { ...itemsLocalStorage.sent, ...data },
-    };
-    const updateData = {
-      ...itemsLocalStorage,
-      ...items,
-    };
-    /*    setbuysLocalStorage(updateData);
-    localStorage.setItem("buy", JSON.stringify(updateData)); */
-    /* POST -> Enviamos datos a DB recibimos copia de item creado */
-    const order = await newOrder(updateData);
-    if (order) {
-      /* Tratamos datos necesarios */
-      const newInvoice = {
-        invoice: order.invoice,
-        product: order.product,
-        total: order.total,
-        comunity: order.sent.comunity,
-        province: order.sent.province,
-        code: order.sent.code,
-        name: order.sent.name,
-        extra: order.sent.anyMore,
-        delivery: order.sent.delivery,
+    if (itemsLocalStorage.product.length >= 1) {
+      setLoadingOrderApi(true);
+      const items = {
+        time: await displayCurrentTime(),
+        date: await generateInvoiceCode(),
+        office: "E001",
+        sent: { ...itemsLocalStorage.sent, ...data },
       };
+      const updateData = {
+        ...itemsLocalStorage,
+        ...items,
+      };
+      /*    setbuysLocalStorage(updateData);
+    localStorage.setItem("buy", JSON.stringify(updateData)); */
+      /* POST -> Enviamos datos a DB recibimos copia de item creado */
+      const order = await newOrder(updateData);
+      if (order) {
+        /* Tratamos datos necesarios */
+        const newInvoice = {
+          invoice: order.invoice,
+          product: order.product,
+          total: order.total,
+          comunity: order.sent.comunity,
+          province: order.sent.province,
+          code: order.sent.code,
+          name: order.sent.name,
+          extra: order.sent.anyMore,
+          delivery: order.sent.delivery,
+        };
 
-      localStorage.setItem(
-        "invoice",
-        JSON.stringify(newInvoice)
-      ); /* Datos para utilizar en Successfull extrayendo desde LS - invoice */
-      resetBuyLocal(); /* Limpiamos LS - buy */
-      setControlRender(
-        controlRender + 1
-      ); /* Controlamos Estado global actualizamos segun LS - buy Limpio */
-      clearForm(); /* Limpiamos Form */
-      setLoadingOrderApi(false);
-      return router.push("/success");
+        localStorage.setItem(
+          "invoice",
+          JSON.stringify(newInvoice)
+        ); /* Datos para utilizar en Successfull extrayendo desde LS - invoice */
+        resetBuyLocal(); /* Limpiamos LS - buy */
+        setControlRender(
+          controlRender + 1
+        ); /* Controlamos Estado global actualizamos segun LS - buy Limpio */
+        clearForm(); /* Limpiamos Form */
+        setLoadingOrderApi(false);
+        return router.push("/success");
+      }
     }
-    return;
+    return setLoadingRedirect(true);
   };
   return (
     <article className="flex flex-col sm:flex-row gap-3 px-4 w-full w-max-[800px]">
@@ -194,21 +199,44 @@ const ChoosePay = () => {
                   required
                   className="input"
                   type="text"
-                  minLength={4}
+                  minLength={2}
                   maxLength={50}
                   placeholder=""
                   {...register("name", {
                     pattern: {
                       value:
                         /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s[a-zA-ZÀ-ÿ\u00f1\u00d1]+)*$/,
-                      message: "Indicar solo caracteres. Ejemplo: Pedro Perez",
+                      message: "Indicar solo caracteres. Ejemplo: Pedro",
                     },
                   })}
                 />
                 <span className="select-none bg-[white] rounded-3x">
-                  Nombre completo
+                  Nombre
                 </span>
                 {errors.name && <ErrorModalForm text={errors.name.message} />}
+              </label>
+              <label className="float-label-container">
+                <input
+                  required
+                  className="input"
+                  type="text"
+                  minLength={2}
+                  maxLength={50}
+                  placeholder=""
+                  {...register("lastName", {
+                    pattern: {
+                      value:
+                        /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s[a-zA-ZÀ-ÿ\u00f1\u00d1]+)*$/,
+                      message: "Indicar solo caracteres. Ejemplo: Perez",
+                    },
+                  })}
+                />
+                <span className="select-none bg-[white] rounded-3x">
+                  Apellidos
+                </span>
+                {errors.lastName && (
+                  <ErrorModalForm text={errors.lastName.message} />
+                )}
               </label>
               <label className="float-label-container">
                 <input
@@ -259,13 +287,19 @@ const ChoosePay = () => {
                   required
                   className="input"
                   type="tel"
-                  minLength={9}
-                  maxLength={15}
                   placeholder=""
                   {...register("phone", {
                     pattern: {
                       value:
-                        /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{3,4}$/im,
+                        /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{3,4}$/,
+                      message: "Formato invalido. Ejemplo: 612345678",
+                    },
+                    minLength: {
+                      value: 9,
+                      message: "Formato invalido. Ejemplo: 612345678",
+                    },
+                    maxLength: {
+                      value: 15,
                       message: "Formato invalido. Ejemplo: 612345678",
                     },
                   })}
@@ -430,7 +464,7 @@ const ChoosePay = () => {
           )}
         </form>
       </section>
-      <section className="w-full flex flex-col justify-start items-center sm:w-[40%] mr-8 rounded-md">
+      <section className="w-full m-auto sm:w-[40%] mr-8 rounded-md">
         <PayModalFixed>
           <div className="flex justify-end items-center mt-3 font-medium gap-3 text-white">
             {!loadingOrderApi && (
@@ -444,6 +478,7 @@ const ChoosePay = () => {
           </div>
         </PayModalFixed>
       </section>
+      {loading && <ModalRedirect/>}
     </article>
   );
 };

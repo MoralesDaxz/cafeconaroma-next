@@ -16,6 +16,7 @@ type Bag = {
 type Pay = {
   payClient?: string;
   name?: string;
+  lastName?:string;
   mail?: string;
   phone?: string;
   comunity?: string;
@@ -33,6 +34,7 @@ type Pay = {
 type ChoosePayFormData = {
   payTipe: string;
   name: string;
+  lastName:string;
   identity: string;
   mail: string;
   phone: string;
