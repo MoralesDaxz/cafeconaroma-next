@@ -17,7 +17,7 @@ const fetchMadridDateTime = async (): Promise<Date> => {
 export const generateInvoiceCode = async () => {
   try {
     const date = await fetchMadridDateTime();
-    const formattedDate = formatDate(date);
+    const formattedDate = await formatDate(date);
     return formattedDate;
   } catch (error) {
     console.error('Error generating invoice code:', error);
@@ -25,7 +25,7 @@ export const generateInvoiceCode = async () => {
   }
 };
 
-export const formatDate = (date: Date): string => {
+export const formatDate = async (date: Date) => {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');

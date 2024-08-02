@@ -430,7 +430,7 @@ const ChoosePay = () => {
           )}
         </form>
       </section>
-      <section className="w-full sm:w-[40%] mr-8 rounded-md">
+      <section className="w-full flex flex-col justify-start items-center sm:w-[40%] mr-8 rounded-md">
         <PayModalFixed>
           <div className="flex justify-end items-center mt-3 font-medium gap-3 text-white">
             {!loadingOrderApi && (
