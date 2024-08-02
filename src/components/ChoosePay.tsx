@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PayModalFixed from "./PayModalFixed";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
@@ -21,7 +21,7 @@ const ChoosePay = () => {
   const [province, setProvince] = useState("");
   const [inputKind, setInputKind] = useState("");
   const [loadingOrderApi, setLoadingOrderApi] = useState(false);
-  const [loading, setLoadingRedirect] = useState(false);
+  const [loadingRedirect, setLoadingRedirect] = useState(false);
   const router = useRouter();
   const {
     register,
@@ -52,6 +52,15 @@ const ChoosePay = () => {
     setInputKind("");
     return reset();
   };
+  const redirectClient = () => {
+    clearForm();
+    return setLoadingRedirect(true);
+  };
+  useEffect(() => {
+    const itemsLocalStorage: TotalInitValue = getKeyLocal("buy");
+    itemsLocalStorage.product.length <= 0 && redirectClient();
+    return;
+  },[]);
 
   const onForm = async (data: ChoosePayFormData) => {
     const itemsLocalStorage: TotalInitValue = getKeyLocal("buy");
@@ -98,7 +107,7 @@ const ChoosePay = () => {
         return router.push("/success");
       }
     }
-    return setLoadingRedirect(true);
+    return redirectClient();
   };
   return (
     <article className="flex flex-col sm:flex-row gap-3 px-4 w-full w-max-[800px]">
@@ -464,7 +473,7 @@ const ChoosePay = () => {
           )}
         </form>
       </section>
-      <section className="w-full m-auto sm:w-[40%] mr-8 rounded-md">
+      <section className="w-full  sm:w-[40%] mr-8 rounded-md">
         <PayModalFixed>
           <div className="flex justify-end items-center mt-3 font-medium gap-3 text-white">
             {!loadingOrderApi && (
@@ -478,7 +487,7 @@ const ChoosePay = () => {
           </div>
         </PayModalFixed>
       </section>
-      {loading && <ModalRedirect/>}
+      {loadingRedirect && <ModalRedirect />}
     </article>
   );
 };
