@@ -20,7 +20,7 @@ const IsModal: FC<Props> = ({ isOpen, setIsOpen }) => {
           onClick={() => setIsOpen(!isOpen)}
         >
           <div
-            className={`relative top-0 right-2 bg-[#1817179f]  rounded-full p-2 flex justify-center items-center cursor-pointer`}
+            className={` animate-pulse relative top-0 right-2 bg-[#1817179f]  rounded-full p-2 flex justify-center items-center cursor-pointer`}
           >
             <IoBagCheckSharp width={40} height={0} />
           </div>

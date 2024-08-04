@@ -146,6 +146,52 @@ const userFarmer = [
   },
 ];
 
+const faqSubscription = [
+  {
+    question: "¿Cuál es la diferencia entre las suscripciones Gratuita, Estándar y Premium?",
+    answer: "La suscripción Gratuita te ofrece acceso a noticias, promociones, descuentos especiales y nuestro boletín mensual. La suscripción Estándar incluye todos los beneficios de la suscripción Gratuita, además de envío gratuito, acceso a recetas exclusivas, atención al cliente prioritaria y la oportunidad de asistir a eventos especiales. La suscripción Premium, nuestra opción más completa, incluye todos los beneficios de la suscripción Estándar, además de una suscripción mensual de café, acceso a productos exclusivos, consultas personalizadas con baristas, regalos sorpresa y acceso anticipado a nuevos productos."
+  },
+  {
+    question: "¿Puedo cambiar mi suscripción en cualquier momento?",
+    answer: "Sí, en Aroma Café puedes cambiar tu suscripción en cualquier momento. Si decides actualizar tu suscripción de Gratuita a Estándar o Premium, o bajar de Premium a Estándar o Gratuita, puedes hacerlo fácilmente a través de tu cuenta en nuestro sitio web. Los cambios se aplicarán de inmediato, y podrás disfrutar de los beneficios de tu nueva suscripción sin interrupciones."
+  },
+  {
+    question: "¿Qué tipo de café recibiré con la suscripción Premium?",
+    answer: "Con la suscripción Premium, recibirás cada mes una bolsa de nuestro café más selecto. Nos aseguramos de que nuestros suscriptores Premium tengan acceso a las mejores cosechas y mezclas especiales que ofrecemos. Además, recibirás información detallada sobre el origen del café, sus notas de sabor y las mejores formas de prepararlo para que puedas disfrutar de una experiencia de café de primera clase en la comodidad de tu hogar."
+
+  }
+]
+const subscriptionOptions = [
+  {
+    title: "Gratuita",
+    features: [
+      "Acceso a Noticias y Promociones",
+      "Descuentos Especiales",
+      "Boletín Mensual"
+    ]
+  },
+  {
+    title: "Estándar",
+    features: [
+      "Todo lo de la Suscripción Gratuita",
+      "Envío Gratuito",
+      "Acceso a Recetas Exclusivas",
+      "Atención al Cliente Prioritaria",
+      "Eventos Especiales"
+    ]
+  },
+  {
+    title: "Premium",
+    features: [
+      "Todo lo de la Suscripción Estándar",
+      "Suscripción Mensual de Café",
+      "Acceso a Productos Exclusivos",
+      "Consultas Personalizadas",
+      "Regalos y Sorpresas",
+      "Acceso Anticipado a Nuevos Productos"
+    ]
+  }
+];
 const logos = [
   "https://cdn.svgporn.com/logos/anthropic-icon.svg",
   "https://cdn.svgporn.com/logos/async-api.svg",
@@ -197,4 +243,4 @@ const galeryUs = [
 ];
 
 
-export { questions, SpainCommunities, userFarmer, logos, galeryUs };
+export { questions, SpainCommunities, userFarmer, logos, galeryUs, faqSubscription, subscriptionOptions };

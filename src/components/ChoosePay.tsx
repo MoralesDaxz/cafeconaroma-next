@@ -76,9 +76,7 @@ const ChoosePay = () => {
         ...itemsLocalStorage,
         ...items,
       };
-      /*    setbuysLocalStorage(updateData);
-    localStorage.setItem("buy", JSON.stringify(updateData)); */
-      /* POST -> Enviamos datos a DB recibimos copia de item creado */
+    
       const order = await newOrder(updateData);
       if (order) {
         /* Tratamos datos necesarios */

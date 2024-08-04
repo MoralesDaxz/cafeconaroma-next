@@ -1,16 +1,16 @@
 "use client";
-import { questions } from "@/utils/information";
+import { faqSubscription, questions } from "@/utils/information";
 import Link from "next/link";
 import React, { useState } from "react";
 import { FaAngleDown } from "react-icons/fa6";
 import { FaArrowRightLong } from "react-icons/fa6";
-const Faq = () => {
+const FaqSubscription = () => {
   const [answerClass, setanswerClass] = useState(-1);
 
   return (
     <section className="bg-[#2a5b45] py-8 flex flex-col items-center min-h-[470px]">
       <h2 className="title mt-2">Preguntas Frecuentes (FAQ)</h2>
-      {questions.map((item, indice) => {
+      {faqSubscription.map((item, indice) => {
         const isExpanded = indice == answerClass;
         return (
           <div
@@ -19,7 +19,7 @@ const Faq = () => {
             className="mt-6 bg-[#f6f5f3] flex flex-col justify-start rounded-lg w-[90%] md:w-[70%] lg:w-[60%] text-black"
           >
             <div className="cursor-pointer px-6 py-8 flex flex-row justify-between items-center">
-              <h3 className="text-base font-medium">{item.title}</h3>
+              <h3 className="text-base font-medium">{item.question}</h3>
               <FaAngleDown
                 className={
                   isExpanded
@@ -57,4 +57,4 @@ const Faq = () => {
   );
 };
 
-export default Faq;
+export default FaqSubscription;
