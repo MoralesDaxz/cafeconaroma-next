@@ -223,7 +223,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  opacity: 0.7;
+  opacity: 0.6;
   /* Ajusta el valor de opacidad según sea necesario */
   z-index: -1;
 }

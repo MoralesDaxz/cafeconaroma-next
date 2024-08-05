@@ -38,7 +38,6 @@ const Successful = () => {
             {order.delivery}
           </p>
         </div>
-
         <div className="w-full">
           <table className="w-full table-border">
             <thead className="border-[1px]  border-y-[gray] ">
@@ -86,7 +85,6 @@ const Successful = () => {
             </tfoot>
           </table>
         </div>
-
         {order.delivery === "normal" ? (
           <p className="text-sm text-center mt-4">
             <i>Estarás recibiéndolo entre los próximos 5 a 7 días hábiles</i>

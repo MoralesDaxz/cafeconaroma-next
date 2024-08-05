@@ -23,6 +23,7 @@ const Location = () => {
           granos de café antes de hacer tu pedido y llévate un descuento
         </p>
         <Link
+        target="_blank"
           href={"https://maps.app.goo.gl/C4ehyrkk2vKedmLx5"}
           className="self-start flex items-center gap-3 opacity-90"
         >

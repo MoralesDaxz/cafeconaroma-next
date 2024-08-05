@@ -6,7 +6,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import { userFarmer } from "@/utils/information";
+import { userFarmer } from "@/data/information";
 import Image from "next/image";
 import { BiSolidQuoteAltLeft } from "react-icons/bi";
 const CarouselFarmers = () => {

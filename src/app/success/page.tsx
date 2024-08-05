@@ -1,11 +1,8 @@
-import Successful from "@/components/Successful";
-import React from "react";
+import Success from "@/pages/Success";
 
 const page = () => {
   return (
-    <>
-      <Successful />
-    </>
+    <Success/>
   );
 };
 

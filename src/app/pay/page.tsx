@@ -1,11 +1,8 @@
-import Basket from "@/components/Basket";
-import React from "react";
+import Pay from "@/pages/Pay";
 
 const page = () => {
   return (
-    <>
-      <Basket />
-    </>
+    <Pay></Pay>
   );
 };
 

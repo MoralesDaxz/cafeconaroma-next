@@ -1,9 +1,10 @@
+import Company from '@/components/Company'
 import React from 'react'
 
-const companies = () => {
+const Companies = () => {
   return (
-    <div>companies</div>
+    <Company/>
   )
 }
 
-export default companies
+export default Companies

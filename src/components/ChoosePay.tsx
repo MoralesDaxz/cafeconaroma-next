@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import PayModalFixed from "./PayModalFixed";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
-import { SpainCommunities } from "@/utils/information";
+import { SpainCommunities } from "@/data/information";
 import { usePayProducts } from "@/context/PayCoffee";
 import { ChoosePayFormData, TotalInitValue } from "@/interfaces/interfaces";
 import { newOrder } from "@/api/apiGetCoffee";

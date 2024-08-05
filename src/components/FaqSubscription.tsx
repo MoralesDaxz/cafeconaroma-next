@@ -1,5 +1,5 @@
 "use client";
-import { faqSubscription, questions } from "@/utils/information";
+import { faqSubscription, questions } from "@/data/information";
 import Link from "next/link";
 import React, { useState } from "react";
 import { FaAngleDown } from "react-icons/fa6";

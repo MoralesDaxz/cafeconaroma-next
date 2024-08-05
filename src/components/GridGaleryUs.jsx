@@ -1,6 +1,6 @@
 "use client";
 import { useControlDisplay } from "@/context/ControlDisplay";
-import { galeryUs } from "@/utils/information";
+import { galeryUs } from "@/data/information";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 const GridGaleryUs = () => {

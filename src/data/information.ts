@@ -13,86 +13,105 @@ const questions = [
     title: "¿Puedo modificar mi dirección de entrega?",
     answer:
       "Una vez realizado tu pedido, podrás cambiar tu dirección de entrega poniéndote en contacto con nuestro equipo se evaluará tu caso específico. Aún así, algunos vendedores no nos permiten, como transportistas, modificar las direcciones de los clientes. Incluso si está permitido, los cambios en tu dirección de entrega a veces pueden no ser posibles debido a condiciones operativas.",
-  }
+  },
 ];
 
 const SpainCommunities = [
   {
     comunidad: "Andalucía",
-    provincias: ["Almería", "Cádiz", "Córdoba", "Granada", "Huelva", "Jaén", "Málaga", "Sevilla"]
+    provincias: [
+      "Almería",
+      "Cádiz",
+      "Córdoba",
+      "Granada",
+      "Huelva",
+      "Jaén",
+      "Málaga",
+      "Sevilla",
+    ],
   },
   {
     comunidad: "Aragón",
-    provincias: ["Huesca", "Teruel", "Zaragoza"]
+    provincias: ["Huesca", "Teruel", "Zaragoza"],
   },
   {
     comunidad: "Asturias",
-    provincias: ["Asturias"]
+    provincias: ["Asturias"],
   },
   {
     comunidad: "Islas Baleares",
-    provincias: ["Baleares"]
+    provincias: ["Baleares"],
   },
   {
     comunidad: "Canarias",
-    provincias: ["Las Palmas", "Santa Cruz de Tenerife"]
+    provincias: ["Las Palmas", "Santa Cruz de Tenerife"],
   },
   {
     comunidad: "Cantabria",
-    provincias: ["Cantabria"]
+    provincias: ["Cantabria"],
   },
   {
     comunidad: "Castilla-La Mancha",
-    provincias: ["Albacete", "Ciudad Real", "Cuenca", "Guadalajara", "Toledo"]
+    provincias: ["Albacete", "Ciudad Real", "Cuenca", "Guadalajara", "Toledo"],
   },
   {
     comunidad: "Castilla y León",
-    provincias: ["Ávila", "Burgos", "León", "Palencia", "Salamanca", "Segovia", "Soria", "Valladolid", "Zamora"]
+    provincias: [
+      "Ávila",
+      "Burgos",
+      "León",
+      "Palencia",
+      "Salamanca",
+      "Segovia",
+      "Soria",
+      "Valladolid",
+      "Zamora",
+    ],
   },
   {
     comunidad: "Cataluña",
-    provincias: ["Barcelona", "Gerona", "Lérida", "Tarragona"]
+    provincias: ["Barcelona", "Gerona", "Lérida", "Tarragona"],
   },
   {
     comunidad: "Extremadura",
-    provincias: ["Badajoz", "Cáceres"]
+    provincias: ["Badajoz", "Cáceres"],
   },
   {
     comunidad: "Galicia",
-    provincias: ["La Coruña", "Lugo", "Orense", "Pontevedra"]
+    provincias: ["La Coruña", "Lugo", "Orense", "Pontevedra"],
   },
   {
     comunidad: "Madrid",
-    provincias: ["Madrid"]
+    provincias: ["Madrid"],
   },
   {
     comunidad: "Murcia",
-    provincias: ["Murcia"]
+    provincias: ["Murcia"],
   },
   {
     comunidad: "Navarra",
-    provincias: ["Navarra"]
+    provincias: ["Navarra"],
   },
   {
     comunidad: "La Rioja",
-    provincias: ["La Rioja"]
+    provincias: ["La Rioja"],
   },
   {
     comunidad: "País Vasco",
-    provincias: ["Álava", "Guipúzcoa", "Vizcaya"]
+    provincias: ["Álava", "Guipúzcoa", "Vizcaya"],
   },
   {
     comunidad: "Comunidad Valenciana",
-    provincias: ["Alicante", "Castellón", "Valencia"]
+    provincias: ["Alicante", "Castellón", "Valencia"],
   },
   {
     comunidad: "Ceuta",
-    provincias: ["Ceuta"]
+    provincias: ["Ceuta"],
   },
   {
     comunidad: "Melilla",
-    provincias: ["Melilla"]
-  }
+    provincias: ["Melilla"],
+  },
 ];
 
 const userFarmer = [
@@ -102,7 +121,8 @@ const userFarmer = [
     location: "Antioquia",
     pic: "https://i.ibb.co/6NtKmvf/ana81.jpg",
     farm: "https://i.ibb.co/FwS0FBr/ana81-finca.jpg",
-    comment: "Trabajamos día a día por mantener ese sabor y calidad tradicional."
+    comment:
+      "Trabajamos día a día por mantener ese sabor y calidad tradicional.",
   },
   {
     name: "Carlos Pond",
@@ -110,7 +130,7 @@ const userFarmer = [
     location: "Cauca",
     pic: "https://i.ibb.co/khC4J4b/carlos22.jpg",
     farm: "https://i.ibb.co/g6rzC7L/carlos22-finca.jpg",
-    comment: "Aroma Café es una ventana al mundo para nuestro producto."
+    comment: "Aroma Café es una ventana al mundo para nuestro producto.",
   },
   {
     name: "Carla Zet",
@@ -118,7 +138,8 @@ const userFarmer = [
     location: "Sedoa",
     pic: "https://i.ibb.co/K2bsZfv/carla90.jpg",
     farm: "https://i.ibb.co/LnTrHGc/carla90-finca.jpg",
-    comment: "Es un privilegio trabajar al lado de otros productores de alta categoría."
+    comment:
+      "Es un privilegio trabajar al lado de otros productores de alta categoría.",
   },
   {
     name: "Julio Torrex",
@@ -126,7 +147,7 @@ const userFarmer = [
     location: "Tachira",
     pic: "https://i.ibb.co/qnjrYNy/julio4.jpg",
     farm: "https://i.ibb.co/vXP80p0/julio4-finca.jpg",
-    comment: "Todo nuestro amor y esfuerzo en cada grano."
+    comment: "Todo nuestro amor y esfuerzo en cada grano.",
   },
   {
     name: "Jose Ford",
@@ -134,7 +155,7 @@ const userFarmer = [
     location: "Santa Marta",
     pic: "https://i.ibb.co/80Lmwkn/jose43.jpg",
     farm: "https://i.ibb.co/C51GFfd/jose43-finca.jpg",
-    comment: "Dando a conocer nuestro café fuera de nuestras fronteras."
+    comment: "Dando a conocer nuestro café fuera de nuestras fronteras.",
   },
   {
     name: "Pedro Wang",
@@ -142,33 +163,38 @@ const userFarmer = [
     location: "Antioquia",
     pic: "https://i.ibb.co/P1xVNNj/pedro7.jpg",
     farm: "https://i.ibb.co/4Rptfm1/pedro7-finca.jpg",
-    comment: "Todo el sabor que esperas de un café por la mañana, aquí lo tenemos."
+    comment:
+      "Todo el sabor que esperas de un café por la mañana, aquí lo tenemos.",
   },
 ];
 
 const faqSubscription = [
   {
-    question: "¿Cuál es la diferencia entre las suscripciones Gratuita, Estándar y Premium?",
-    answer: "La suscripción Gratuita te ofrece acceso a noticias, promociones, descuentos especiales y nuestro boletín mensual. La suscripción Estándar incluye todos los beneficios de la suscripción Gratuita, además de envío gratuito, acceso a recetas exclusivas, atención al cliente prioritaria y la oportunidad de asistir a eventos especiales. La suscripción Premium, nuestra opción más completa, incluye todos los beneficios de la suscripción Estándar, además de una suscripción mensual de café, acceso a productos exclusivos, consultas personalizadas con baristas, regalos sorpresa y acceso anticipado a nuevos productos."
+    question:
+      "¿Cuál es la diferencia entre las suscripciones Gratuita, Estándar y Premium?",
+    answer:
+      "La suscripción Gratuita te ofrece acceso a noticias, promociones, descuentos especiales y nuestro boletín mensual. La suscripción Estándar incluye todos los beneficios de la suscripción Gratuita, además de envío gratuito, acceso a recetas exclusivas, atención al cliente prioritaria y la oportunidad de asistir a eventos especiales. La suscripción Premium, nuestra opción más completa, incluye todos los beneficios de la suscripción Estándar, además de una suscripción mensual de café, acceso a productos exclusivos, consultas personalizadas con baristas, regalos sorpresa y acceso anticipado a nuevos productos.",
   },
   {
     question: "¿Puedo cambiar mi suscripción en cualquier momento?",
-    answer: "Sí, en Aroma Café puedes cambiar tu suscripción en cualquier momento. Si decides actualizar tu suscripción de Gratuita a Estándar o Premium, o bajar de Premium a Estándar o Gratuita, puedes hacerlo fácilmente a través de tu cuenta en nuestro sitio web. Los cambios se aplicarán de inmediato, y podrás disfrutar de los beneficios de tu nueva suscripción sin interrupciones."
+    answer:
+      "Sí, en Aroma Café puedes cambiar tu suscripción en cualquier momento. Si decides actualizar tu suscripción de Gratuita a Estándar o Premium, o bajar de Premium a Estándar o Gratuita, puedes hacerlo fácilmente a través de tu cuenta en nuestro sitio web. Los cambios se aplicarán de inmediato, y podrás disfrutar de los beneficios de tu nueva suscripción sin interrupciones.",
   },
   {
     question: "¿Qué tipo de café recibiré con la suscripción Premium?",
-    answer: "Con la suscripción Premium, recibirás cada mes una bolsa de nuestro café más selecto. Nos aseguramos de que nuestros suscriptores Premium tengan acceso a las mejores cosechas y mezclas especiales que ofrecemos. Además, recibirás información detallada sobre el origen del café, sus notas de sabor y las mejores formas de prepararlo para que puedas disfrutar de una experiencia de café de primera clase en la comodidad de tu hogar."
+    answer:
+      "Con la suscripción Premium, recibirás cada mes una bolsa de nuestro café más selecto. Nos aseguramos de que nuestros suscriptores Premium tengan acceso a las mejores cosechas y mezclas especiales que ofrecemos. Además, recibirás información detallada sobre el origen del café, sus notas de sabor y las mejores formas de prepararlo para que puedas disfrutar de una experiencia de café de primera clase en la comodidad de tu hogar.",
+  },
+];
 
-  }
-]
 const subscriptionOptions = [
   {
     title: "Gratuita",
     features: [
       "Acceso a Noticias y Promociones",
       "Descuentos Especiales",
-      "Boletín Mensual"
-    ]
+      "Boletín Mensual",
+    ],
   },
   {
     title: "Estándar",
@@ -177,8 +203,8 @@ const subscriptionOptions = [
       "Envío Gratuito",
       "Acceso a Recetas Exclusivas",
       "Atención al Cliente Prioritaria",
-      "Eventos Especiales"
-    ]
+      "Eventos Especiales",
+    ],
   },
   {
     title: "Premium",
@@ -188,10 +214,11 @@ const subscriptionOptions = [
       "Acceso a Productos Exclusivos",
       "Consultas Personalizadas",
       "Regalos y Sorpresas",
-      "Acceso Anticipado a Nuevos Productos"
-    ]
-  }
+      "Acceso Anticipado a Nuevos Productos",
+    ],
+  },
 ];
+
 const logos = [
   "https://cdn.svgporn.com/logos/anthropic-icon.svg",
   "https://cdn.svgporn.com/logos/async-api.svg",
@@ -224,6 +251,7 @@ const logos = [
   "https://cdn.svgporn.com/logos/risingwave.svg",
   "https://cdn.svgporn.com/logos/netlify.svg",
 ];
+
 const galeryUs = [
   "https://i.ibb.co/4sj9TNt/client.jpg",
   "https://i.ibb.co/jWD0sD5/coffee-farmer.jpg",
@@ -242,5 +270,12 @@ const galeryUs = [
   "https://i.ibb.co/rbLbSt0/work.jpg",
 ];
 
-
-export { questions, SpainCommunities, userFarmer, logos, galeryUs, faqSubscription, subscriptionOptions };
+export {
+  questions,
+  SpainCommunities,
+  userFarmer,
+  logos,
+  galeryUs,
+  faqSubscription,
+  subscriptionOptions,
+};

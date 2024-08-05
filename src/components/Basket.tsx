@@ -27,7 +27,7 @@ const Basket = () => {
   };
 
   useEffect(() => {
-   return updatePayProducts();
+    return updatePayProducts();
   }, [urgent]);
 
   return (

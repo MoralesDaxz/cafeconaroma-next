@@ -1,9 +1,7 @@
-import React from 'react'
+import Access from "@/pages/Access";
 
 const page = () => {
-  return (
-    <section className='pt-20 md:pt-28 text-[#0c1225]'>Login</section>
-  )
-}
+  return <Access />;
+};
 
-export default page
+export default page;

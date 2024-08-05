@@ -1,10 +1,10 @@
 "use client";
-import { questions } from "@/utils/information";
+import { questions } from "@/data/information";
 import Link from "next/link";
 import React, { useState } from "react";
 import { FaAngleDown } from "react-icons/fa6";
 import { FaArrowRightLong } from "react-icons/fa6";
-const Faq = () => {
+const FaqLanding = () => {
   const [answerClass, setanswerClass] = useState(-1);
 
   return (
@@ -57,4 +57,4 @@ const Faq = () => {
   );
 };
 
-export default Faq;
+export default FaqLanding;

@@ -3,7 +3,7 @@ import { IoMailOutline } from "react-icons/io5";
 import { LuPhone } from "react-icons/lu";
 import FormContact from "./FormHero";
 
-const Contact = () => {
+const ContactUs = () => {
   return (
     <section className="w-full sm:h-[490px] flex flex-col sm:flex sm:flex-row sm:justify-center py-3 sm:py-0 px-3 sm:px-7 gap-8 sm:gap-3 bg-[#E2DFD7]">
       <article className=" max-w-[580px] flex flex-col gap-4 text-[#777E89] justify-center">
@@ -38,4 +38,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default ContactUs;

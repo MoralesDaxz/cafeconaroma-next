@@ -7,18 +7,18 @@ import { footerRoute, route } from "@/utils/boxRoutes";
 import { TbCoffee } from "react-icons/tb";
 const Footer = () => {
   return (
-    <section className="bg-[#201815] w-full flex flex-col justify-center sm:flex-row sm:justify-between sm:items-center p-5">
+    <section className="bg-[#201815] w-full flex flex-col justify-center sm:flex-row sm:justify-between sm:items-center p-5 text-white">
       <article className="sm:w-[40%] flex flex-col gap-3">
         <Link href={"/"} className="flex items-center gap-2">
           <h2 className=" text-2xl">cafeconaroma.com</h2>
           <TbCoffee className="w-[1.5rem] h-[1.5rem]" />
         </Link>
         <p>Te ayudamos</p>
-        <div className="flex gap-2 bg-[#505050] w-fit p-4 rounded-md">
+        <div className="flex items-center gap-2 bg-[#505050] w-fit p-4 rounded-md">
           <LuPhone />
           <p>+34 919 49 05 00</p>
         </div>
-        <div className="flex gap-2 bg-[#505050] w-fit p-4 rounded-md">
+        <div className="flex items-center gap-2 bg-[#505050] w-fit p-4 rounded-md">
           <IoMailOutline />
           <p>hola@cafeconaroma.com</p>
         </div>

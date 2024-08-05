@@ -6,11 +6,11 @@ import "swiper/css/grid";
 import "swiper/css/pagination";
 import { Grid, Pagination, Autoplay } from "swiper/modules";
 import Image from "next/image";
-import { logos } from "@/utils/information";
+import { logos } from "@/data/information";
 
 const CarouselAllies = () => {
   return (
-    <div className="w-full flex items-start  sm:py-0 h-[16rem] sm:h-[17rem] md:h-[17rem]">
+    <div className="w-full flex items-start h-[16rem] sm:h-[17rem]">
       <Swiper
         effect="slide"
        
@@ -43,7 +43,7 @@ const CarouselAllies = () => {
         loop={true}
         autoplay={{ delay: 4000, pauseOnMouseEnter: true }}
         modules={[Grid, Autoplay, Pagination]}
-        className="w-full sm:w-[70%] h-full"
+        className="w-full sm:w-[95%] h-full"
       >
         {logos.map((item, i) => {
           return (

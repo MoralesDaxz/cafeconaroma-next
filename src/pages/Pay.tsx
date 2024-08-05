@@ -1,8 +1,8 @@
-import React from 'react'
+import Basket from '@/components/Basket'
 
 const Pay = () => {
   return (
-    <div>Pay</div>
+    <Basket />
   )
 }
 
