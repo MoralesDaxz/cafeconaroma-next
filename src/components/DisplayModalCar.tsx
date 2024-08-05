@@ -27,13 +27,13 @@ const DisplayModalCar = () => {
         <div className="flex flex-col items-center w-[85%] sm:w-[450px] fixed top-20 z-20 sm:right-2 bg-[#00000098] backdrop-blur-md  transition-all duration-500 rounded-md">
           <div className="flex justify-center items-center bg-[#26a826] w-full text-base sm:text-[1.4em] rounded-se-md rounded-ss-md">
             <Link
-              className="flex py-4 items-center justify-center w-fit  gap-3 cursor-pointer"
+              className="cursor-pointer my-4"
               href={buysLocalStorage.product.length >= 1 ? "/pay" : "/store"}
               title={buysLocalStorage.product.length >= 1 ? "Pagar" : "Escoger"}
             >
               {buysLocalStorage.product.length >= 1 ? (
-                <>
-                <p>Pagar:</p>
+                <div className="flex items-end w-fit gap-3">
+                  <p>Pagar:</p>
                   <p className="text-base">
                     {buysLocalStorage.subtotal.toFixed(2).replace(".", ",")} €
                   </p>
@@ -46,7 +46,7 @@ const DisplayModalCar = () => {
                           .replace(".", ",") + "  €"
                       : "Gratis"}
                   </p>
-                </>
+                </div>
               ) : (
                 <p className="text-center">Escoja un producto</p>
               )}
@@ -73,14 +73,14 @@ const DisplayModalCar = () => {
               href={"/pay"}
               className=" bg-[#26a826] text-base py-2 fixed bottom-0 left-0 flex justify-center items-center gap-3 w-full opacity-90 rounded-ee-md rounded-es-md"
             >
-                <p>Total</p>
-                <p>{buysLocalStorage.total.toFixed(2).replace(".", ",")} €</p>
-                <FaArrowRightLong></FaArrowRightLong>
-                {buysLocalStorage.sent.delivery !== "normal" ? (
-                  <TbShoppingCartStar className="w-[30px] h-[30px]" />
-                ) : (
-                  <TbShoppingCart className="w-[30px] h-[30px]" />
-                )}
+              <p>Total</p>
+              <p>{buysLocalStorage.total.toFixed(2).replace(".", ",")} €</p>
+              <FaArrowRightLong></FaArrowRightLong>
+              {buysLocalStorage.sent.delivery !== "normal" ? (
+                <TbShoppingCartStar className="w-[30px] h-[30px]" />
+              ) : (
+                <TbShoppingCart className="w-[30px] h-[30px]" />
+              )}
             </Link>
           ) : (
             ""

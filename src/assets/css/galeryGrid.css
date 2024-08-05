@@ -42,3 +42,15 @@
     max-width: 100%;
   }
 }
+
+.scrollBar::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+  background-color: transparent;
+}
+.scrollBar::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+.scrollBar:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(84, 106, 114, 0.76);
+}

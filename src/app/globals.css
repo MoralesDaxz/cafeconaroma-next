@@ -22,18 +22,19 @@ html {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom,
+  background: linear-gradient(
+      to bottom,
       transparent,
-      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
   min-width: 330px;
 }
 
 /* Sombra contact */
 .box-shadow {
-  box-shadow: 7px 7px 23px #9f9f9f,
-    -7px -7px 23px #969494;
+  box-shadow: 7px 7px 23px #9f9f9f, -7px -7px 23px #969494;
 }
-
 
 @layer utilities {
   .text-balance {
@@ -58,47 +59,6 @@ body {
   100% {
     box-shadow: 0 0 0 14px #69ffa800;
   }
-}
-
-.barHidden {
-  --scrollbar-thumb-color: #71B774CC;
-  --scrollbar-track-color: #A1A1AA1F;
-  --scrollbar-border-color: #FFFFFF12;
-  --scrollbar-corner-color: #FFFFFF6B;
-}
-
-.barHidden::-webkit-scrollbar-button {
-  background: var(--scrollbar-button-color, #3F3F46);
-  border: var(--scrollbar-border-thickness, 3px) solid var(--scrollbar-border-color, rgb(255, 255, 255));
-  border-radius: var(--scrollbar-border-radius, 4px);
-}
-
-.barHidden::-webkit-scrollbar {
-  width: var(--scrollbar-width, 20px);
-  height: var(--scrollbar-height, 20px);
-}
-
-.barHidden::-webkit-scrollbar-thumb {
-  background: var(--scrollbar-thumb-color, #3B82F6);
-  border: var(--scrollbar-border-thickness, 3px) solid var(--scrollbar-border-color, rgb(255, 255, 255));
-  border-radius: var(--scrollbar-border-radius, 4px);
-}
-
-.barHidden::-webkit-scrollbar-track {
-  background: var(--scrollbar-track-color, #A1A1AA);
-}
-
-.barHidden::-webkit-scrollbar-corner {
-  background: var(--scrollbar-corner-color, #FFFFFF);
-  border: var(--scrollbar-border-thickness, 3px) solid var(--scrollbar-border-color, rgb(255, 255, 255));
-  border-radius: var(--scrollbar-border-radius, 4px);
-}
-
-.barHidden::-webkit-scrollbar-button:vertical:start:increment,
-#preview::-webkit-scrollbar-button:vertical:end:decrement,
-#preview::-webkit-scrollbar-button:horizontal:start:increment,
-#preview::-webkit-scrollbar-button:horizontal:end:decrement {
-  display: var(--show-double-buttons, none);
 }
 
 .title {
@@ -171,7 +131,7 @@ body {
 }
 
 /* Estilo del span para que funciones debe estar INPUT - REQUIRED*/
-.float-label-container .input+span {
+.float-label-container .input + span {
   color: rgb(1, 12, 4);
   position: absolute;
   left: 10px;
@@ -185,14 +145,14 @@ body {
 }
 
 /* Estilo del span cuando el input está vacío y no tiene focus */
-.float-label-container .input:placeholder-shown+span {
+.float-label-container .input:placeholder-shown + span {
   top: 12.5px;
   font-size: 0.9em;
 }
 
 /* Estilo del span cuando el input tiene focus o es válido */
-.float-label-container .input:focus+span,
-.float-label-container .input:valid+span {
+.float-label-container .input:focus + span,
+.float-label-container .input:valid + span {
   top: -7px;
   font-size: 0.8em;
   font-weight: 600;
@@ -202,7 +162,7 @@ body {
 .bg-success {
   background-repeat: no-repeat;
   background-size: 90%;
-  background: url("../assets//images/marco-hojas.png");
+  background: url("../assets/images/marco-hojas.png");
   background-position: top;
 }
 
@@ -229,7 +189,7 @@ body {
 }
 
 /* Asegúrate de que el contenido dentro de .bg-companies esté en un contexto superior al pseudo-elemento */
-.bg-companies>* {
+.bg-companies > * {
   position: relative;
   z-index: 1;
 }
@@ -258,7 +218,47 @@ body {
 }
 
 /* Asegúrate de que el contenido dentro de .bg-companies esté en un contexto superior al pseudo-elemento */
-.bg-us>* {
+.bg-us > * {
   position: relative;
   z-index: 1;
+}
+
+.bg-subscription {
+  position: relative;
+  width: 100%;
+}
+
+.bg-subscription::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../assets/images/subscription/bg.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.5;
+  /* Ajusta el valor de opacidad según sea necesario */
+  z-index: -1;
+}
+
+/* Asegúrate de que el contenido dentro de .bg-companies esté en un contexto superior al pseudo-elemento */
+.bg-subscription > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* .bg-subscription{
+  background-repeat: no-repeat;
+  background-size:cover;
+  background: url("../assets/images/subscription/bg.jpg");
+  background-position: center;
+  background-attachment: fixed;
+ 
+} */
+.test {
+  color: #caa917;
 }

@@ -3,6 +3,7 @@ import { useControlDisplay } from "@/context/ControlDisplay";
 import { galeryUs } from "@/data/information";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import "@/assets/css/galeryGrid.css";
 const GridGaleryUs = () => {
   const { windowWidth } = useControlDisplay();
   const [columns, setColumns] = useState(4);
@@ -13,7 +14,7 @@ const GridGaleryUs = () => {
       return setColumns(2);
     } if (windowWidth < 800 ) {
       return setColumns(3);
-    } if (windowWidth < 1024){
+    } if (windowWidth < 5000){
       return setColumns(4);
     }
   }, [windowWidth]);
@@ -27,7 +28,7 @@ const GridGaleryUs = () => {
 
   const galleryColumns = splitGallery(galeryUs, columns);
   return (
-    <div className="row overflow-y-scroll h-[400px] lg:h-[500px]">
+    <div className="w-full row overflow-y-scroll h-[400px] lg:h-[500px] scrollBar">
       {galleryColumns.map((column, colIndex) => {
         return (
           <div className="column" key={colIndex}>
