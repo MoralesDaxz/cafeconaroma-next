@@ -21,9 +21,9 @@ const CarouselSubscription = () => {
       >
         {subscriptionOptions.map((item, index) => {
           return (
-            <SwiperSlide className="w-full">
+            <SwiperSlide key={index}  className="w-full">
               <div
-                key={index}
+                
                 className={
                   
                       `${index == 0
