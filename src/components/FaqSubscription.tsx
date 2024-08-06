@@ -32,12 +32,12 @@ const FaqSubscription = () => {
             <div
               className={
                 isExpanded
-                  ? "flex flex-col justify-start px-6 h-[130px] overflow-auto transition-all duration-700"
-                  : "flex flex-col justify-start px-6 h-[0px] overflow-auto transition-all duration-700"
+                  ? "flex flex-col justify-start px-6 h-[130px] transition-all duration-700"
+                  : "flex flex-col justify-start px-6 h-[0px] transition-all duration-700"
               }
             >
               <div className="h-[1px] bg-[#e7e4e1] w-full"></div>
-              <p className="text-sm md:text-[1rem] opacity-90  mt-3 h-[110px]">
+              <p className="text-sm md:text-[1rem] opacity-90 mt-3 h-[110px] overflow-auto scrollBar">
                 {item.answer}
               </p>
             </div>
