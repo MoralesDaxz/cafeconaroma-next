@@ -2,13 +2,8 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import {
-  Navigation,
   Pagination,
-  Scrollbar,
-  A11y,
-  Autoplay,
-  EffectCoverflow,
-  Grid,
+   Grid,
 } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/grid";
