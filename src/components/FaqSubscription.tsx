@@ -8,7 +8,7 @@ const FaqSubscription = () => {
   const [answerClass, setanswerClass] = useState(-1);
 
   return (
-    <section className="bg-[#102f36] py-8 flex flex-col items-center min-h-[550px]">
+    <section className="bg-[#102f36c0] py-8 flex flex-col items-center min-h-[550px]">
       <h2 className="title mt-2">Preguntas Frecuentes (FAQ)</h2>
       {faqSubscription.map((item, indice) => {
         const isExpanded = indice == answerClass;

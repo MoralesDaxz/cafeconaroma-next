@@ -24,4 +24,20 @@ const newOrder = async (data: TotalInitValue) => {
   }
 };
 
+/*Pendiente inicializacion de API para que marchen rapido
+const initApis = async()=>{
+  const response = await fetch(postApi!, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    
+    
+  });
+
+  if (!response.ok) {
+    throw new Error(`Error: ${response.status} ${response.statusText}`);
+  }
+} */
+
 export { newOrder };
