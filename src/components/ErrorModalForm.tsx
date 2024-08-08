@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { FaExclamationCircle } from "react-icons/fa";
 type Props = {
-  text?: string;
+  text?: string | undefined;
 };
 const ErrorModalForm: FC<Props> = ({ text }) => {
   return (

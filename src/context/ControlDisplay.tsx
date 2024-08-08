@@ -12,8 +12,6 @@ import {
 } from "react";
 
 export const ControlDisplay = createContext<ControlProps>({
-  closeModal: false,
-  setCloseModal: () => {},
   windowWidth: 0,
   setWindowWidth: () => {},
   windowScroll: 0,
@@ -22,7 +20,7 @@ export const ControlDisplay = createContext<ControlProps>({
 export const ControlDisplayProvider: FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [closeModal, setCloseModal] = useState<boolean>(true);
+ 
   const [windowWidth, setWindowWidth] = useState<number>(0);
   const [windowScroll, setWindowScroll] = useState<number>(0);
   useEffect(() => {
@@ -49,8 +47,6 @@ export const ControlDisplayProvider: FC<{ children: React.ReactNode }> = ({
   return (
     <ControlDisplay.Provider
       value={{
-        closeModal,
-        setCloseModal,
         windowWidth,
         setWindowWidth,
         windowScroll,

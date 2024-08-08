@@ -77,14 +77,20 @@ interface PayProductsContextType {
 }
 /* ControlDisplay */
 type ControlProps = {
-  closeModal: boolean;
-  setCloseModal: Dispatch<SetStateAction<boolean>>;
+
   windowWidth: number;
   setWindowWidth: Dispatch<SetStateAction<number>>;
   windowScroll: number;
   setWindowScroll: Dispatch<SetStateAction<number>>;
 };
 
+type SignUpData = {
+  name: string;
+  lastName:string;
+  email: string;
+  pass: string;
+  passConfirm:string;
+}
 export type {
   Product,
   TotalInitValue,
@@ -92,5 +98,6 @@ export type {
   ControlProps,
   ChoosePayFormData,
   Order,
-  Bag
+  Bag,
+  SignUpData
 };
