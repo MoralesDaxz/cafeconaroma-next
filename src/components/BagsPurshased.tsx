@@ -1,10 +1,10 @@
 "use client";
 import { usePayProducts } from "@/context/PayCoffee";
-import { AddToLocal, SubsToLocal } from "@/utils/localStorageItems";
 import React from "react";
 import { IoMdAddCircle } from "react-icons/io";
 import { IoMdRemoveCircle } from "react-icons/io";
 import Image from "next/image";
+import { AddToLocal, SubsToLocal } from "@/data/controlLocalStorage";
 
 const BagsPurshased = () => {
   const { buysLocalStorage, controlRender, setControlRender } =

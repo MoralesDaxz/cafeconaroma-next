@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/CarouselContact.jsx", "src/components/CarouselFarmers.jsx", "src/components/CarouselAllies.tsx", "src/components/GridGaleryUs.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/CarouselContact.jsx", "src/components/CarouselFarmers.jsx", "src/components/CarouselAllies.tsx", "src/components/GridGaleryUs.jsx", "src/pages/Access.jsx"],
   "exclude": ["node_modules"]
 }

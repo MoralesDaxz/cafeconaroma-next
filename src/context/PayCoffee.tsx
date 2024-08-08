@@ -3,8 +3,8 @@
 import {
   PayProductsContextType,
   TotalInitValue,
-} from "@/interfaces/interfaces";
-import { getKeyLocal } from "@/utils/localStorageItems";
+} from "@/interfaces/index";
+import { getKeyLocal } from "@/data/controlLocalStorage";
 import { useState, createContext, useEffect, FC, useContext } from "react";
 
 const defaultValue: PayProductsContextType = {

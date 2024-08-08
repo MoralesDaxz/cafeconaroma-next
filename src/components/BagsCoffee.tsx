@@ -3,8 +3,8 @@ import { useProducts } from "@/context/GetProducts";
 import Image from "next/image";
 import React, { FC, useEffect, useState } from "react";
 import Loader from "./Loader";
-import { AddToLocal } from "@/utils/localStorageItems";
 import { usePayProducts } from "@/context/PayCoffee";
+import { AddToLocal } from "@/data/controlLocalStorage";
 
 type NumberBags = {
   units: number;

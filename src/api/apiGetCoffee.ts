@@ -1,4 +1,4 @@
-import { TotalInitValue } from "@/interfaces/interfaces";
+import { TotalInitValue } from "@/interfaces/index";
 
 const postApi = process.env.NEXT_PUBLIC_URL_API_ORDER_NEW
 

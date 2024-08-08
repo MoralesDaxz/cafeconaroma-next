@@ -1,5 +1,5 @@
 "use client";
-import { ControlProps } from "@/interfaces/interfaces";
+import { ControlProps } from "@/interfaces/index";
 /* Componente encargado del Display del dispositivo */
 import {
   useState,

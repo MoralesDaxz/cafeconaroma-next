@@ -5,7 +5,7 @@ import BagsPurshased from "./BagsPurshased";
 import Link from "next/link";
 import { IoArrowBack } from "react-icons/io5";
 import PayModalFixed from "./PayModalFixed";
-import { getKeyLocal } from "@/utils/localStorageItems";
+import { getKeyLocal } from "@/data/controlLocalStorage";
 const Basket = () => {
   const {
     buysLocalStorage,

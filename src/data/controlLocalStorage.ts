@@ -1,7 +1,7 @@
-import { Bag, Product } from "@/interfaces/interfaces";
+import { Bag, Product } from "@/interfaces/index";
 
 /* Agregar producto a LS */
-export const AddToLocal = ({ bagCoffee }: Bag) => {
+const AddToLocal = ({ bagCoffee }: Bag) => {
   const itemsLocalStorage = getKeyLocal("buy");
   /* Nuevo producto con argunmentos proporcionados */
   const coffee = {
@@ -25,7 +25,7 @@ export const AddToLocal = ({ bagCoffee }: Bag) => {
 };
 
 /* Eliminar producto de LS */
-export const SubsToLocal = ({ bagCoffee }: Bag) => {
+const SubsToLocal = ({ bagCoffee }: Bag) => {
   const itemsLocalStorage = getKeyLocal("buy");
   const existingProduct = itemsLocalStorage.product.find(
     (item: Product) => item._id === bagCoffee._id
@@ -35,7 +35,7 @@ export const SubsToLocal = ({ bagCoffee }: Bag) => {
     const filtered = itemsLocalStorage.product.filter(
       (item: Product) => item.units! >= 1
     );
-    const newData = {...itemsLocalStorage, product: filtered }
+    const newData = { ...itemsLocalStorage, product: filtered }
     return localStorage.setItem(
       "buy",
       JSON.stringify(newData)
@@ -43,7 +43,7 @@ export const SubsToLocal = ({ bagCoffee }: Bag) => {
   }
 };
 /* Informacion de LS */
-export const getKeyLocal = (keyLocal: string) => {
+const getKeyLocal = (keyLocal: string) => {
   const itemsReset = {
     subtotal: 0,
     total: 0,
@@ -69,7 +69,7 @@ export const resetBuyLocal = () => {
   return localStorage.setItem("buy", JSON.stringify(itemsReset));
 };
 
-export async function updateData(newData: any) {
+async function updateData(newData: any) {
   try {
     const response = await fetch("/api/writeOrder", {
       method: "POST",
@@ -89,3 +89,5 @@ export async function updateData(newData: any) {
     console.error("Error al actualizar los datos:", error);
   }
 }
+
+export { SubsToLocal, AddToLocal, getKeyLocal, updateData }

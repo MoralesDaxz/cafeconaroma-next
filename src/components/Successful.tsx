@@ -1,7 +1,7 @@
 "use client";
 
-import { Order } from "@/interfaces/interfaces";
-import { getKeyLocal } from "@/utils/localStorageItems";
+import { Order } from "@/interfaces/index";
+import { getKeyLocal } from "@/data/controlLocalStorage";
 import React, { useEffect, useState } from "react";
 import { TbCoffee } from "react-icons/tb";
 const Successful = () => {

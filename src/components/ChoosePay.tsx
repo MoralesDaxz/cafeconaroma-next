@@ -5,11 +5,11 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { SpainCommunities } from "@/data/information";
 import { usePayProducts } from "@/context/PayCoffee";
-import { ChoosePayFormData, TotalInitValue } from "@/interfaces/interfaces";
+import { ChoosePayFormData, TotalInitValue } from "@/interfaces/index";
 import { newOrder } from "@/api/apiGetCoffee";
 import { displayCurrentTime, generateInvoiceCode } from "@/utils/invoice";
 import ErrorModalForm from "./ErrorModalForm";
-import { getKeyLocal, resetBuyLocal } from "@/utils/localStorageItems";
+import { getKeyLocal, resetBuyLocal } from "@/data/controlLocalStorage";
 import { useRouter } from "next/navigation";
 import Loader from "./Loader";
 import ModalRedirect from "./ModalRedirect";
@@ -60,7 +60,7 @@ const ChoosePay = () => {
     const itemsLocalStorage: TotalInitValue = getKeyLocal("buy");
     itemsLocalStorage.product.length <= 0 && redirectClient();
     return;
-  },[]);
+  }, []);
 
   const onForm = async (data: ChoosePayFormData) => {
     const itemsLocalStorage: TotalInitValue = getKeyLocal("buy");
@@ -76,7 +76,7 @@ const ChoosePay = () => {
         ...itemsLocalStorage,
         ...items,
       };
-    
+
       const order = await newOrder(updateData);
       if (order) {
         /* Tratamos datos necesarios */
