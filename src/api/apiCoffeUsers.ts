@@ -14,6 +14,8 @@ async function putNewUser(data:SignUpData) {
 
     if (!response.ok) {
       throw new Error("Failed to create user");
+     
+      
     }
 
     const result = await response.json();

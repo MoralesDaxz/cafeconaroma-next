@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 
 const Access = () => {
   const [users, setUsers] = useState([]);
-  users.length > 0 && console.log(users);
+
 
   useEffect(() => {
     fetchUsers().then((data) => setUsers(data));
