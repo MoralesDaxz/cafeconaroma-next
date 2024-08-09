@@ -49,10 +49,8 @@ export const GetProductsProvider: FC<{ children: React.ReactNode }> = ({
         return console.log(error);
       }
     };
-    getProduct();
-
     return () => {
-      initApi();
+      getProduct()
     };
   });
   return (

@@ -7,7 +7,7 @@ export const fetchMadridDateTime = async (): Promise<{
     "https://worldtimeapi.org/api/timezone/Europe/Madrid";
 
   try {
-    const response = await fetch(URL_API);
+    const response = await fetch(URL_API!);
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
@@ -30,4 +30,3 @@ export const fetchMadridDateTime = async (): Promise<{
     throw new Error("Could not fetch the date and time from the API");
   }
 };
-

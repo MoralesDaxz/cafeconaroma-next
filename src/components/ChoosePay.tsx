@@ -6,13 +6,13 @@ import { useForm } from "react-hook-form";
 import { SpainCommunities } from "@/data/information";
 import { usePayProducts } from "@/context/PayCoffee";
 import { ChoosePayFormData, TotalInitValue } from "@/interfaces/index";
-import { newOrder } from "@/api/apiGetCoffee";
-import { fetchMadridDateTime } from "@/utils/invoice";
+import { newOrder } from "@/api/putOrder";
 import ErrorModalForm from "./ErrorModalForm";
 import { getKeyLocal, resetBuyLocal } from "@/data/controlLocalStorage";
 import { useRouter } from "next/navigation";
 import Loader from "./Loader";
 import ModalRedirect from "./ModalRedirect";
+import { fetchMadridDateTime } from "@/utils/invoice";
 
 const ChoosePay = () => {
   const { controlRender, setControlRender } = usePayProducts();
