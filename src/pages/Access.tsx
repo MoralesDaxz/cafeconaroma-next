@@ -7,11 +7,11 @@ const Access = () => {
   const [users, setUsers] = useState([]);
 
 
-  useEffect(() => {
+/*   useEffect(() => {
     fetchUsers().then((data) => setUsers(data));
     console.log(users);
     return () => {};
-  }, []);
+  }, []); */
   return (
     <section className="pt-20 md:pt-28 text-[#0c1225] min-h-screen w-full">
       <article className="w-[90%] bg-slate-900 min-h-[400px] flex-col justify-center">

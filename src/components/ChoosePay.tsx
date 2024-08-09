@@ -7,7 +7,7 @@ import { SpainCommunities } from "@/data/information";
 import { usePayProducts } from "@/context/PayCoffee";
 import { ChoosePayFormData, TotalInitValue } from "@/interfaces/index";
 import { newOrder } from "@/api/apiGetCoffee";
-import { displayCurrentTime, generateInvoiceCode } from "@/utils/invoice";
+import { fetchMadridDateTime } from "@/utils/invoice";
 import ErrorModalForm from "./ErrorModalForm";
 import { getKeyLocal, resetBuyLocal } from "@/data/controlLocalStorage";
 import { useRouter } from "next/navigation";
@@ -66,10 +66,10 @@ const ChoosePay = () => {
     const itemsLocalStorage: TotalInitValue = getKeyLocal("buy");
     if (itemsLocalStorage.product.length >= 1) {
       setLoadingOrderApi(true);
+      const dateInfo = await fetchMadridDateTime()
       const items = {
-        time: await displayCurrentTime(),
-        date: await generateInvoiceCode(),
-        office: "E001",
+        time: dateInfo.time,
+        date: dateInfo.date,
         sent: { ...itemsLocalStorage.sent, ...data },
       };
       const updateData = {

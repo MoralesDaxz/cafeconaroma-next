@@ -12,6 +12,7 @@ const AddToLocal = ({ bagCoffee }: Bag) => {
     price: bagCoffee.price,
     package: bagCoffee.package,
   };
+  
   /* Evaluamos si existe o no para agregar unidades*/
   const existingProduct = itemsLocalStorage.product.find(
     (item: Product) => item._id === bagCoffee._id
@@ -82,7 +83,6 @@ async function updateData(newData: any) {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-
     const result = await response.json();
     console.log(result);
   } catch (error) {
@@ -92,7 +92,7 @@ async function updateData(newData: any) {
 
 const fetchUsers = async () => {
   try {
-    const response = await fetch("http://localhost:5000/api/users");
+    const response = await fetch("http://localhost:5000/users");
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }

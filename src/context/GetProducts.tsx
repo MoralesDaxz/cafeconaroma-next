@@ -1,5 +1,6 @@
 "use client";
 
+import { initApi } from "@/api/initApi";
 /* Componente encargado de obtener productos de la API */
 
 import {
@@ -45,12 +46,14 @@ export const GetProductsProvider: FC<{ children: React.ReactNode }> = ({
         return setCoffee(response.products);
       } catch (error) {
         /* Podriamos generar una pagina 404 */
-       return  console.log(error);
+        return console.log(error);
       }
     };
-    
     getProduct();
-    return; 
+
+    return () => {
+      initApi();
+    };
   });
   return (
     <GetProducts.Provider
