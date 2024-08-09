@@ -16,7 +16,7 @@ export const fetchMadridDateTime = async (): Promise<{
     const hours = String(date.getHours()).padStart(2, "0");
     const minutes = String(date.getMinutes()).padStart(2, "0");
     // Formatear la hora
-    const time = `${hours + minutes}`;
+    const time = `${hours}:${minutes}`;
     // Formatear la hora
 
     // Formatear la fecha
@@ -31,11 +31,3 @@ export const fetchMadridDateTime = async (): Promise<{
   }
 };
 
-/* // Ejemplo de uso para la hora en formato 24 horas
-export const displayCurrentTime = async () => {
-  const currentTime = await getCurrentTimeIn24HourFormat();
-  return currentTime
-};
-
-
-displayCurrentTime(); */
