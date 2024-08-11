@@ -1,8 +1,8 @@
 "use client";
 import FormLogin from "@/components/FormLogin";
 import FormSignUp from "@/components/FormSignUp";
-import { fetchUsers } from "@/data/controlLocalStorage";
-import React, { useEffect, useState } from "react";
+
+import React from "react";
 
 const Access = () => {
   const [users, setUsers] = useState([]);
