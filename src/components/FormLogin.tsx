@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { MdRemoveRedEye } from "react-icons/md";
 import { HiEyeOff } from "react-icons/hi";
 import ErrorModalForm from "./ErrorModalForm";
-import { putNewUser } from "@/api/apiCoffeUsers";
+import { putNewUser } from "@/api/users";
 import { SignUpData } from "@/interfaces";
 import Link from "next/link";
 

@@ -1,8 +1,5 @@
 "use client";
-
-import { initApi } from "@/api/initApi";
 /* Componente encargado de obtener productos de la API */
-
 import {
   useState,
   createContext,
