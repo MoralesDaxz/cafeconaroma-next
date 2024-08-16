@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { MdRemoveRedEye } from "react-icons/md";
@@ -5,6 +6,7 @@ import { HiEyeOff } from "react-icons/hi";
 import ErrorModalForm from "./ErrorModalForm";
 import { putNewUser } from "@/api/users";
 import { SignUpData } from "@/interfaces";
+import RecaptchaGoogleV2 from "./RecaptchaGoogleV2";
 
 const FormSignUp = () => {
   const {
@@ -24,11 +26,9 @@ const FormSignUp = () => {
   });
   const [isPass, setIsPass] = useState("password");
   const [isPassConfirm, setIsPassConfirm] = useState("password");
-
   const [samePassword, setSamePassword] = useState(true);
-
   const enableContinue = watch("pass") === watch("passConfirm");
-
+  const [captchaValue, setCaptchaValue] = useState<string | null>(null);
   const validateSamePassword = () => {
     if (watch("pass") !== watch("passConfirm")) {
       return setSamePassword(false);
@@ -38,19 +38,17 @@ const FormSignUp = () => {
 
   const onForm = async (data: SignUpData) => {
     try {
-      const result = await putNewUser(data)
+      const result = await putNewUser(data);
       console.log("User created:", result);
     } catch (error) {
       console.error("Failed to create user:", error);
     }
   };
- 
-
 
   return (
     <>
       <form
-        className="bg-white text-black px-6 py-4 rounded-md  flex flex-col gap-3 items-center justify-center w-full"
+        className="bg-white text-black px-6 py-4 rounded-md flex flex-col gap-3 items-center justify-center w-full sm:w-[50%] lg:w-[30%]"
         onSubmit={handleSubmit(onForm)}
       >
         <label className="float-label-container">
@@ -177,11 +175,14 @@ const FormSignUp = () => {
             <ErrorModalForm text={"Contraseñas no coinciden"} />
           )}
         </label>
-
+        <RecaptchaGoogleV2 setCaptchaValue={setCaptchaValue} />
         <input
           type="submit"
-          value={"Enviar"}
-          className="self-center sm:self-start w-[40%] sm:w-fit bg-[#2B5A45] text-[#f4f7f3] p-4 sm:p-2 rounded-md cursor-pointer"
+          value={"Registrarme"}
+          disabled={captchaValue === null ? true : false}
+          className={`self-center sm:self-start  sm:w-fit bg-[#2B5A45] text-[#f4f7f3] p-4 sm:p-2 rounded-md cursor-pointer mt-5 ${
+            captchaValue === null ? "opacity-50" : "opacity-100"
+          }`}
         />
       </form>
     </>

@@ -6,6 +6,7 @@ import ErrorModalForm from "./ErrorModalForm";
 import { putNewUser } from "@/api/users";
 import { SignUpData } from "@/interfaces";
 import Link from "next/link";
+import RecaptchaGoogleV2 from "./RecaptchaGoogleV2";
 
 const FormLogin = () => {
   const {
@@ -24,16 +25,16 @@ const FormLogin = () => {
     },
   });
   const [isPass, setIsPass] = useState("password");
-  const [samePassword, setSamePassword] = useState(true);
-  const enableContinue = watch("pass") === watch("passConfirm");
-
+  const [captchaValue, setCaptchaValue] = useState<string | null>(null);
   const onForm = async (data: SignUpData) => {
-    try {
+    console.log(data);
+    /* Jgar con las respuesta del servidor */
+  /*   try {
       const result = await putNewUser(data);
       console.log("User created:", result);
     } catch (error) {
       console.error("Failed to create user:", error);
-    }
+    } */
   };
   return (
     <>
@@ -85,13 +86,20 @@ const FormLogin = () => {
           </span>
           {errors.pass && <ErrorModalForm text={errors.pass.message} />}
         </label>
-        <Link href={"/recoverypass"} className="w-fit self-start opacity-80 text-xs sm:text-sm">
-          No recuerdo la contraseña.
+        <Link href={"/register"} className="w-fit self-start opacity-80 text-xs sm:text-sm">
+          No tienes cuenta aun, <b>registrate</b>.
         </Link> 
+        <Link href={"/recoverypass"} className="w-fit self-start opacity-80 text-xs sm:text-sm">
+          No recuerdas la contraseña, <b>restaurala</b>.
+        </Link> 
+        <RecaptchaGoogleV2 setCaptchaValue={setCaptchaValue}/>
         <input
           type="submit"
           value={"Acceder"}
-          className="self-center sm:self-start w-[40%] sm:w-fit bg-[#2B5A45] text-[#f4f7f3] p-4 sm:p-2 rounded-md cursor-pointer mt-5"
+          disabled={captchaValue === null ? true : false}
+          className={`self-center sm:self-start  sm:w-fit bg-[#2B5A45] text-[#f4f7f3] p-4 sm:p-2 rounded-md cursor-pointer mt-5 ${
+            captchaValue === null ? "opacity-50" : "opacity-100"
+          }`}
         />
       </form>
     </>

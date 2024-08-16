@@ -1,12 +1,12 @@
-import Recovery from '@/pages/Recovery'
-import React from 'react'
+import Recovery from "@/pages/Recovery";
+import React from "react";
 
 const page = () => {
   return (
     <>
-<Recovery/>
+      <Recovery />
     </>
-  )
-}
+  );
+};
 
-export default page
+export default page;
