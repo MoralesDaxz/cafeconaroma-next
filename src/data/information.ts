@@ -289,4 +289,5 @@ export {
   galeryUs,
   faqSubscription,
   subscriptionOptions,
+  terms
 };
