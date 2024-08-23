@@ -1,11 +1,12 @@
 "use client";
-import Link from "next/link";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import Terms from "./Terms";
+import ModalInformation from "./ModalInformation";
+import { privacity, terms } from "@/data/information";
 
 const FormContact = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [openTerms, setOpenTerms] = useState(false);
+  const [openPrivacity, setOpenPrivacity] = useState(false);
   const {
     register,
     handleSubmit,
@@ -76,9 +77,17 @@ const FormContact = () => {
           />
           <p className="text-[.8em]">
             Acepto la &nbsp;
-            <b className="underline">Política de Privacidad</b>
+            <b
+              onClick={() => setOpenPrivacity(true)}
+              className="underline cursor-pointer text-[#201f1f]"
+            >
+              Política de Privacidad
+            </b>
             &nbsp;y los&nbsp;
-            <b onClick={() => setIsOpen(!isOpen)} className="underline">
+            <b
+              onClick={() => setOpenTerms(true)}
+              className="underline cursor-pointer text-[#201f1f]"
+            >
               Términos y condiciones
             </b>
             .
@@ -90,7 +99,22 @@ const FormContact = () => {
           className="self-center sm:self-start w-[40%] sm:w-fit bg-[#2B5A45] text-[#f4f7f3] p-4 sm:p-2 rounded-md cursor-pointer"
         />
       </form>
-      {isOpen && <Terms isOpen={isOpen} />}
+      {openTerms && (
+        <ModalInformation
+          isOpen={openTerms}
+          setIsOpen={setOpenTerms}
+          arrText={terms}
+          title="Términos y condiciones"
+        />
+      )}
+      {openPrivacity && (
+        <ModalInformation
+          isOpen={openPrivacity}
+          setIsOpen={setOpenPrivacity}
+          arrText={privacity}
+          title="Política de Privacidad"
+        />
+      )}
     </>
   );
 };

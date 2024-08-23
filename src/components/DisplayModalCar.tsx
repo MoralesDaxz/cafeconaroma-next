@@ -52,9 +52,7 @@ const DisplayModalCar = () => {
               )}
             </Link>
             <IoClose
-              onClick={() => {
-                setIsOpen(false);
-              }}
+              onClick={() => setIsOpen(false)}
               className="absolute top-1 right-2 cursor-pointer"
               title="Cerrar"
             />
