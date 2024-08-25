@@ -2,7 +2,7 @@ import { SignUpData } from "@/interfaces";
 const urlApi = process.env.NEXT_PUBLIC_URL_API_USERS;
 async function putNewUser(data: SignUpData) {
   try {
-    const response = await fetch(urlApi!, {
+    const response = await fetch(`${urlApi}/users/new`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -33,12 +33,12 @@ export const GetProductsProvider: FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [coffee, setCoffee] = useState<Product[]>();
-  const url = process.env.NEXT_PUBLIC_URL_API_COFFEE;
+  const urlCoffee = process.env.NEXT_PUBLIC_URL_API_COFFEE;
 
   useEffect(() => {
     const getProduct = async () => {
       try {
-        const promise = await fetch(url!);
+        const promise = await fetch(`${urlCoffee}/products`);
         const response = await promise.json();
         return setCoffee(response.products);
       } catch (error) {

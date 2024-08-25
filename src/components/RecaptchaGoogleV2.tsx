@@ -5,7 +5,7 @@ type Props = {
   setCaptchaValue: (value: string | null) => void;
 };
 const RecaptchaGoogleV2: FC<Props> = ({ setCaptchaValue }) => {
-  const KEY_RECAPTCHA = process.env.NEXT_PUBLIC_URL_RECAPTCHA;
+  const KEY_RECAPTCHA = process.env.NEXT_PUBLIC_KEY_RECAPTCHA;
   /*  const [captchaValue, setCaptchaValue] = useState<string | null>(null); */
   const recaptchaRef = useRef<ReCAPTCHA>(null);
   return (

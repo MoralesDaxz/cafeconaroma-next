@@ -1,3 +1,4 @@
+<!-- Aqui dejamos las claves de entorno para mantener sincronizacion entre equipos y servidor de despliegue -->
 NEXT_PUBLIC_URL_API_USERS = https://api-coffee-users.onrender.com
 NEXT_PUBLIC_URL_API_ORDER = https://api-order-cafeconaroma.onrender.com
 NEXT_PUBLIC_URL_API_COFFEE = https://api-cafeconaroma.onrender.com
