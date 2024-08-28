@@ -38,7 +38,7 @@ export const GetProductsProvider: FC<{ children: React.ReactNode }> = ({
   useEffect(() => {
     const getProduct = async () => {
       try {
-        const promise = await fetch(urlCoffee! + "/products");
+        const promise = await fetch(urlCoffee! + "products");
         const response = await promise.json();
         return setCoffee(response.products);
       } catch (error) {
@@ -46,9 +46,9 @@ export const GetProductsProvider: FC<{ children: React.ReactNode }> = ({
         return console.log(error);
       }
     };
-    return () => {
-      getProduct()
-    };
+
+    getProduct();
+    return;
   });
   return (
     <GetProducts.Provider
