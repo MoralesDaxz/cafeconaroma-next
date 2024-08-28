@@ -30,3 +30,4 @@ export const fetchMadridDateTime = async (): Promise<{
     throw new Error("Could not fetch the date and time from the API");
   }
 };
+
