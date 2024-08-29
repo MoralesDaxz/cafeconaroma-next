@@ -4,7 +4,7 @@ const urlApi = process.env.NEXT_PUBLIC_URL_API_ORDER
 
 const newOrder = async (data: TotalInitValue) => {
   try {
-    const response = await fetch(`${urlApi}/new`, {
+    const response = await fetch(urlApi! + "new", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

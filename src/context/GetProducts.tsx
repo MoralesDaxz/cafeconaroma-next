@@ -45,8 +45,24 @@ export const GetProductsProvider: FC<{ children: React.ReactNode }> = ({
       return console.log(error);
     }
   };
+  const initApi = async () => {
+    /* Inicializamos API ya que al estar en Render - Gratis, despues de un tiempo dejan de estar disponibles */
+    const arrApi = [
+      process.env.NEXT_PUBLIC_URL_API_COFFEE,
+      process.env.NEXT_PUBLIC_URL_API_ORDER,
+      process.env.NEXT_PUBLIC_URL_API_USERS,
+    ];
+    const promises = arrApi.map(async (url) => {
+      const res = await fetch(url!);
+      const data = await res.json();
+      return data;
+    });
+    const results = await Promise.all(promises);
+    return;
+  };
   useEffect(() => {
     getProduct();
+    initApi();
   }, []);
   return (
     <GetProducts.Provider

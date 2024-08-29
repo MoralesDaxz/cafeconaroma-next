@@ -3,8 +3,7 @@ export const fetchMadridDateTime = async (): Promise<{
   date: string;
 }> => {
   const URL_API =
-    process.env.NEXT_PUBLIC_URL_API_TIME ||
-    "https://worldtimeapi.org/api/timezone/Europe/Madrid";
+    process.env.NEXT_PUBLIC_URL_API_TIME
 
   try {
     const response = await fetch(URL_API!);

@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { MdRemoveRedEye } from "react-icons/md";
 import { HiEyeOff } from "react-icons/hi";
 import ErrorModalForm from "./ErrorModalForm";
-import { putNewUser } from "@/api/users";
 import { SignUpData } from "@/interfaces";
 import Link from "next/link";
 import RecaptchaGoogleV2 from "./RecaptchaGoogleV2";
@@ -39,7 +38,7 @@ const FormLogin = () => {
   return (
     <>
       <form
-        className="bg-white text-black px-6 py-4 rounded-md  flex flex-col gap-3 items-center justify-center w-full"
+        className="bg-white text-black px-6 py-4 rounded-md  flex flex-col gap-3 items-center justify-center w-full max-w-[500px]"
         onSubmit={handleSubmit(onForm)}
       >
         <label className="float-label-container">
@@ -97,7 +96,7 @@ const FormLogin = () => {
           type="submit"
           value={"Acceder"}
           disabled={captchaValue === null ? true : false}
-          className={`self-center sm:self-start  sm:w-fit bg-[#2B5A45] text-[#f4f7f3] p-4 sm:p-2 rounded-md cursor-pointer mt-5 ${
+          className={`self-center sm:w-[50%] bg-[#2B5A45] text-[#f4f7f3] p-4 rounded-md cursor-pointer mt-5 ${
             captchaValue === null ? "opacity-50" : "opacity-100"
           }`}
         />

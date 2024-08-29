@@ -39,7 +39,7 @@ const FormSignUp = () => {
   const onForm = async (data: SignUpData) => {
     try {
       const result = await putNewUser(data);
-      console.log("User created:", result);
+      console.log("User process:", result);
     } catch (error) {
       console.error("Failed to create user:", error);
     }
@@ -180,7 +180,7 @@ const FormSignUp = () => {
           type="submit"
           value={"Registrarme"}
           disabled={captchaValue === null ? true : false}
-          className={`self-center sm:self-start  sm:w-fit bg-[#2B5A45] text-[#f4f7f3] p-4 sm:p-2 rounded-md cursor-pointer mt-5 ${
+          className={`self-center sm:w-[50%] bg-[#2B5A45] text-[#f4f7f3] p-4 rounded-md cursor-pointer mt-5 ${
             captchaValue === null ? "opacity-50" : "opacity-100"
           }`}
         />
