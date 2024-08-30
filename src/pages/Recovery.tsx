@@ -25,7 +25,7 @@ const Recovery = () => {
     /* Aqui jugar con la respuesta del servidor si existe o no correo. */
 
     /*   try {
-      const result = await putNewUser(data);
+      const result = await newUser(data);
       console.log("User created:", result);
     } catch (error) {
       console.error("Failed to create user:", error);

@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import { subscriptionOptions } from "@/data/information";
@@ -7,7 +7,6 @@ import { FaCheck } from "react-icons/fa";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/effect-cards";
-
 import { EffectCards } from "swiper/modules";
 import Link from "next/link";
 const CarouselSubscription = () => {
@@ -21,17 +20,15 @@ const CarouselSubscription = () => {
       >
         {subscriptionOptions.map((item, index) => {
           return (
-            <SwiperSlide key={index}  className="w-full">
+            <SwiperSlide key={index} className="w-full">
               <div
-                
-                className={
-                  
-                      `${index == 0
-                        ? "bg-[#99a124f1]"
-                        : index == 1
-                        ? "bg-[#921982f1]" 
-                        : "bg-[#199292f1]"  }  flex flex-col items-center justify-between gap-4 min-h-[380px] p-2 backdrop-blur-[1px] rounded-md border-2 border-[#1a4c69e7]`
-                }
+                className={`${
+                  index == 0
+                    ? "bg-[#99a124f1]"
+                    : index == 1
+                    ? "bg-[#199292f1]"
+                    : "bg-[#921982f1]"
+                }  flex flex-col items-center justify-between gap-4 min-h-[380px] p-2 backdrop-blur-[1px] rounded-md border-2 border-[#1a4c69e7]`}
               >
                 <h3 className="text-[1.7rem] font-medium">{item.title}</h3>
                 <ul className="text-sm lg:text-base list-style-type: none h-[160px]">
@@ -42,11 +39,7 @@ const CarouselSubscription = () => {
                     >
                       <FaCheck color="#caa917" />
                       <p>{feature}</p>
-                    </li> /*  item.title == "Gratuita"
-                      ? ""
-                      : item.title == "Estándar"
-                      ? ""
-                      : "" */
+                    </li>
                   ))}
                 </ul>
                 <p className="text-[1.5rem] md:text-[2rem] lg:text-[3rem] font-semibold">
@@ -58,7 +51,7 @@ const CarouselSubscription = () => {
                 </p>
                 <Link
                   className="w-fit p-4 bg-[#16791694] rounded-md  border-2 border-[#53f84de7] "
-                  href={"/login"}
+                  href={"/register"}
                 >
                   Suscripcion {item.title}
                 </Link>

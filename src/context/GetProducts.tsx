@@ -62,7 +62,7 @@ export const GetProductsProvider: FC<{ children: React.ReactNode }> = ({
   };
   useEffect(() => {
     getProduct();
-    initApi();
+ /*    initApi(); */
   }, []);
   return (
     <GetProducts.Provider

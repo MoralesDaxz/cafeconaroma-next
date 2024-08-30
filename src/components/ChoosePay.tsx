@@ -66,7 +66,7 @@ const ChoosePay = () => {
     const itemsLocalStorage: TotalInitValue = getKeyLocal("buy");
     if (itemsLocalStorage.product.length >= 1) {
       setLoadingOrderApi(true);
-      const dateInfo = await fetchMadridDateTime()
+      const dateInfo = await fetchMadridDateTime();
       const items = {
         time: dateInfo.time,
         date: dateInfo.date,
@@ -485,7 +485,15 @@ const ChoosePay = () => {
           </div>
         </PayModalFixed>
       </section>
-      {loadingRedirect && <ModalRedirect />}
+      {loadingRedirect && (
+        <ModalRedirect
+          route="/"
+          page={"Principal"}
+          text={
+            "No hay compras realizadas, seras redireccionado en un momento a la pagina"
+          }
+        />
+      )}
     </article>
   );
 };

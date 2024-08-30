@@ -29,7 +29,7 @@ const FormLogin = () => {
     console.log(data);
     /* Jgar con las respuesta del servidor */
   /*   try {
-      const result = await putNewUser(data);
+      const result = await newUser(data);
       console.log("User created:", result);
     } catch (error) {
       console.error("Failed to create user:", error);

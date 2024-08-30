@@ -1,28 +1,32 @@
 "use client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
-
-const ModalRedirect = () => {
+import React, { FC, useEffect, useState } from "react";
+type Props ={
+  route:string;
+  text:string;
+  page:string;
+}
+const ModalRedirect:FC <Props>= ({route, text,page}) => {
   const router = useRouter();
-  const [sec, setSec] = useState(5);
+  const [seconds, setSeconds] = useState(5);
   useEffect(() => {
     setTimeout(() => {
-      setSec(sec - 1);
+      setSeconds(seconds - 1);
     }, 1000);
-    sec === 1 && router.push("/");
-  }, [sec]);
+    seconds === 1 && router.push(route);
+  }, [seconds]);
   return (
     <div className="absolute top-0 left-0 w-full min-h-screen flex justify-center items-center bg-[#000000f5] backdrop-blur-sm text-white z-30">
       <div className="w-[70%] flex flex-col items-center justify-center gap-10">
         <p className="text-[1.7rem] font-light text-center ">
-          No hay compras realizadas, seras redireccionado en un momento a la{" "}
-          <Link href={"/"} className="italic font-medium ">
-            pagina principal
+          {text} &nbsp;
+          <Link href={route} className="italic font-medium ">
+             {page}
           </Link>
           .
         </p>
-        <p className="text-[4rem] font-bold">( {sec > 0 ? sec : 0} )</p>
+        <p className="text-[4rem] font-bold">( {seconds > 0 ? seconds : 0} )</p>
       </div>
     </div>
   );
