@@ -7,7 +7,7 @@ import ContactUs from "@/components/ContactUs";
 const Contact = () => {
   return (
     <>
-      <section className="pt-20 md:pt-28 w-full bg-white text-black flex flex-col justify-between items-center gap-5">
+      <section className="pt-24 md:pt-32 w-full bg-white text-black flex flex-col justify-between items-center gap-5">
         <h1 className="text-center mb-6 title text-[#0c1225]">
           Contacta con Aroma Café
         </h1>

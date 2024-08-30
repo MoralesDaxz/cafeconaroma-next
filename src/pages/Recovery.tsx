@@ -32,7 +32,7 @@ const Recovery = () => {
     } */
   };
   return (
-    <section className="pt-20 md:pt-28 bg-white pb-2 min-h-screen w-full flex flex-col items-center gap-8 px-2">
+    <section className="pt-24 md:pt-32 bg-white pb-2 min-h-screen w-full flex flex-col items-center gap-8 px-2">
       <h2 className="title text-black">Restablecer contraseña</h2>
       <Link
         href={"/login"}

@@ -5,7 +5,7 @@ import { IoArrowBack } from "react-icons/io5";
 
 const Checkout = () => {
   return (
-    <section className="pt-20 md:pt-28 pb-2 bg-[white] min-h-screen w-full flex flex-col items-center">
+    <section className="pt-24 md:pt-32 pb-2 bg-[white] min-h-screen w-full flex flex-col items-center">
       <Link
         href={"/pay"}
         className="text-black absolute top-14 sm:top-20 left-2 flex gap-2"

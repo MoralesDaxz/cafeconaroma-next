@@ -8,6 +8,7 @@ import DisplayNavBar from "@/components/DisplayNavBar";
 import CopyRight from "@/components/CopyRight";
 import { GetProductsProvider } from "@/context/GetProducts";
 import { PayProductsProvider } from "@/context/PayCoffee";
+import { QueryUserProvider } from "@/context/LoginUser";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -43,9 +44,11 @@ export default function RootLayout({
         <ControlDisplayProvider>
           <GetProductsProvider>
             <PayProductsProvider>
-              <DisplayNavBar />
-              {children}
-              <CopyRight />
+              <QueryUserProvider>
+                <DisplayNavBar />
+                {children}
+                <CopyRight />
+              </QueryUserProvider>
             </PayProductsProvider>
           </GetProductsProvider>
         </ControlDisplayProvider>

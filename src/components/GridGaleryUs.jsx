@@ -12,9 +12,11 @@ const GridGaleryUs = () => {
   useEffect(() => {
     if (windowWidth < 450) {
       return setColumns(2);
-    } if (windowWidth < 800 ) {
+    }
+    if (windowWidth < 800) {
       return setColumns(3);
-    } if (windowWidth < 5000){
+    }
+    if (windowWidth < 5000) {
       return setColumns(4);
     }
   }, [windowWidth]);

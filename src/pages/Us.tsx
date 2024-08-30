@@ -6,7 +6,7 @@ const Us = () => {
   const prfStyle = "text-base sm:text-lg font-extralight w-full";
   return (
     <>
-      <section className="bg-us pt-20 md:pt-28 min-h-screen text-[#d8d7d7] flex flex-col items-center gap-5 px-2 sm:px-0">
+      <section className="bg-us pt-24 md:pt-32 min-h-screen text-[#d8d7d7] flex flex-col items-center gap-5 px-2 sm:px-0">
         <h1 className="title pb-10">Nosotros</h1>
 
         <article className="w-full md:w-[90%] lg:w-[70%] flex flex-col items-center gap-5 bg-[#1b1b1bad] backdrop-blur-sm p-8 rounded-md">

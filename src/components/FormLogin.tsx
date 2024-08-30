@@ -1,39 +1,34 @@
+'use client'
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { MdRemoveRedEye } from "react-icons/md";
 import { HiEyeOff } from "react-icons/hi";
 import ErrorModalForm from "./ErrorModalForm";
-import { SignUpData } from "@/interfaces";
 import Link from "next/link";
 import RecaptchaGoogleV2 from "./RecaptchaGoogleV2";
+import { loginUser } from "@/api/users";
+import { useUser } from "@/context/LoginUser";
 
 const FormLogin = () => {
+  const { controlRender, setControlRender } = useUser();
   const {
     register,
     handleSubmit,
-    reset,
-    watch,
     formState: { errors },
   } = useForm({
     defaultValues: {
-      name: "",
-      lastName: "",
       email: "",
-      pass: "",
-      passConfirm: "",
+      password: "",
     },
   });
   const [isPass, setIsPass] = useState("password");
   const [captchaValue, setCaptchaValue] = useState<string | null>(null);
-  const onForm = async (data: SignUpData) => {
-    console.log(data);
-    /* Jgar con las respuesta del servidor */
-  /*   try {
-      const result = await newUser(data);
-      console.log("User created:", result);
-    } catch (error) {
-      console.error("Failed to create user:", error);
-    } */
+  const onForm = async (data: any) => {
+    const response = await loginUser(data);
+    if (response.message === "ok") {
+      localStorage.setItem("user", JSON.stringify(response));
+      return setControlRender(controlRender + 1);
+    }
   };
   return (
     <>
@@ -58,7 +53,7 @@ const FormLogin = () => {
             placeholder=""
             required
             maxLength={16}
-            {...register("pass", {
+            {...register("password", {
               required: {
                 value: true,
                 message: "Campo requerido.",
@@ -83,15 +78,21 @@ const FormLogin = () => {
           >
             {isPass === "password" ? <MdRemoveRedEye /> : <HiEyeOff />}
           </span>
-          {errors.pass && <ErrorModalForm text={errors.pass.message} />}
+          {errors.password && <ErrorModalForm text={errors.password.message} />}
         </label>
-        <Link href={"/register"} className="w-fit self-start opacity-80 text-xs sm:text-sm">
+        <Link
+          href={"/register"}
+          className="w-fit self-start opacity-80 text-xs sm:text-sm"
+        >
           No tienes cuenta aun, <b>registrate</b>.
-        </Link> 
-        <Link href={"/recoverypass"} className="w-fit self-start opacity-80 text-xs sm:text-sm">
+        </Link>
+        <Link
+          href={"/recoverypass"}
+          className="w-fit self-start opacity-80 text-xs sm:text-sm"
+        >
           No recuerdas la contraseña, <b>restaurala</b>.
-        </Link> 
-        <RecaptchaGoogleV2 setCaptchaValue={setCaptchaValue}/>
+        </Link>
+        <RecaptchaGoogleV2 setCaptchaValue={setCaptchaValue} />
         <input
           type="submit"
           value={"Acceder"}

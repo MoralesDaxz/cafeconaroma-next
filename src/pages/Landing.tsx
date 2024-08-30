@@ -10,7 +10,7 @@ import FaqLanding from "@/components/FaqLanding";
 const Landing = () => {
   return (
     <>
-      <main className=" w-full flex flex-col items-center justify-between">
+      <main className="w-full flex flex-col items-center justify-between">
         <Hero />
         <CardsInfo />
         <NewsCoffee />

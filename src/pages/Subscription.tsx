@@ -12,7 +12,7 @@ import { FaCheck } from "react-icons/fa";
 const Subscription = () => {
   const { windowWidth } = useControlDisplay();
   return (
-    <section className="pt-20 md:pt-28 min-h-screen w-full text-white flex flex-col items-center bg-subscription ">
+    <section className="pt-24 md:pt-32 min-h-screen w-full text-white flex flex-col items-center bg-subscription ">
       <h1 className="title text-[#ffffff] pb-10">Suscripción</h1>
       <article className="w-full flex flex-col items-center">
         {windowWidth > 640 ? (

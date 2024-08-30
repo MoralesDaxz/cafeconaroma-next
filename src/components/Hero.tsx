@@ -7,7 +7,7 @@ import { useControlDisplay } from "@/context/ControlDisplay";
 const Hero = () => {
   const { windowWidth } = useControlDisplay();
   return (
-    <section className="pt-10 sm:pt-24 pb-10 px-12 w-full flex flex-col sm:flex-row sm:justify-center sm:items-center bg-[#FEFFFE] gap-5 h-[450px] sm:h-[560px]">
+    <section className="pt-20 md:pt-28 pb-10 px-12 w-full flex flex-col sm:flex-row sm:justify-center sm:items-center bg-[#FEFFFE] gap-5 h-[450px] sm:h-[560px]">
       <article className="w-full max-w-[580px] flex flex-col gap-8 sm:gap-5">
         <p className="text-[#2B5A45] font-medium text-lg">
           De la planta a tu taza

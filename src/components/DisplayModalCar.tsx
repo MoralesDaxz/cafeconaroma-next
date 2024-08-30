@@ -32,7 +32,7 @@ const DisplayModalCar = () => {
               title={buysLocalStorage.product.length >= 1 ? "Pagar" : "Escoger"}
             >
               {buysLocalStorage.product.length >= 1 ? (
-                <div className="flex items-end w-fit gap-3">
+                <div className="flex items-center sm:items-end w-fit gap-3">
                   <p>Pagar:</p>
                   <p className="text-base">
                     {buysLocalStorage.subtotal.toFixed(2).replace(".", ",")} €

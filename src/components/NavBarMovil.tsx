@@ -8,7 +8,9 @@ import { HiMenu } from "react-icons/hi";
 import { TbCoffee } from "react-icons/tb";
 import { FaCircle } from "react-icons/fa6";
 import { usePathname } from "next/navigation";
+import { useControlDisplay } from "@/context/ControlDisplay";
 const NavBarMovil = () => {
+  const { windowScroll } = useControlDisplay();
   const path = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [indexRoute, setIndexRoute] = useState(-1);
@@ -69,7 +71,9 @@ const NavBarMovil = () => {
         </div>
       )}
       {isOpen === false && (
-        <div className="bg-[#2B2A2B]  p-2">
+        <div className={`fixed w-full p-2 z-40 ${
+          windowScroll > 40 ? "bg-[#2b2a2be0] backdrop-blur-sm" : "bg-[#2B2A2B]"
+        }`}>
           <Link href={"/"} className="w-fit flex items-center gap-2">
             <h2 className=" text-2xl">cafeconaroma.com</h2>
             <TbCoffee className="w-[1.5rem] h-[1.5rem]" />

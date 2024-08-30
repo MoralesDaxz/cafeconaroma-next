@@ -16,7 +16,7 @@ const Company = () => {
 
   return (
     <>
-      <section className="pt-20 md:pt-28 min-h-screen w-full bg-companies text-black flex flex-col items-center gap-5 px-5 ">
+      <section className="pt-24 md:pt-32 min-h-screen w-full bg-companies text-black flex flex-col items-center gap-5 px-5 ">
         <h1 className="title text-white pb-10">Dirigido a compañias</h1>
         <article
           className={

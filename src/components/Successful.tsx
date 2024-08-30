@@ -12,7 +12,7 @@ const Successful = () => {
     return setOrder(itemsLocalStorage);
   }, []);
   return (
-    <section className="pt-20 md:pt-28 bg-[#0e0d0d] text-black min-h-screen w-full flex flex-col items-center gap-6 ">
+    <section className="pt-24 md:pt-32 bg-[#0e0d0d] text-black min-h-screen w-full flex flex-col items-center gap-6 ">
       <h2 className="title text-white text-base sm:text-2xl ">Comprobante de Compra</h2>
       <div className="w-[90%] relative sm:w-[70%] lg:w-[45%] rounded-md flex flex-col gap-3 bg-[#dad8bc]">
         <div className="w-full absolute z-0 top-0 bg-success h-[150px] rounded-md"></div>

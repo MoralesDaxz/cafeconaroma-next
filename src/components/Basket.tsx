@@ -31,7 +31,7 @@ const Basket = () => {
   }, [urgent]);
 
   return (
-    <section className="pt-20 md:pt-28 pb-2 bg-[white] min-h-screen w-full flex flex-col items-center gap-8">
+    <section className="pt-24 md:pt-32 pb-2 bg-[white] min-h-screen w-full flex flex-col items-center gap-8">
       <Link
         href={"/store"}
         className="text-black absolute top-14 sm:top-20 left-2 flex gap-2"
