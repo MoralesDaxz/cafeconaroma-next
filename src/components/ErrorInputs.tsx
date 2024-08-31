@@ -3,7 +3,7 @@ import { FaExclamationCircle } from "react-icons/fa";
 type Props = {
   text?: string | undefined;
 };
-const ErrorModalForm: FC<Props> = ({ text }) => {
+const ErrorInputs: FC<Props> = ({ text }) => {
   return (
     <>
       <span className="flex self-center gap-1 items-center text-[#646363]">
@@ -14,4 +14,4 @@ const ErrorModalForm: FC<Props> = ({ text }) => {
   );
 };
 
-export default ErrorModalForm;
+export default ErrorInputs;

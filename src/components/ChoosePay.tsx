@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { SpainCommunities } from "@/data/information";
 import { usePayProducts } from "@/context/PayCoffee";
 import { ChoosePayFormData, TotalInitValue } from "@/interfaces/index";
-import ErrorModalForm from "./ErrorModalForm";
+import ErrorInputs from "./ErrorInputs";
 import { getKeyLocal, resetBuyLocal } from "@/data/controlLocalStorage";
 import { useRouter } from "next/navigation";
 import Loader from "./Loader";
@@ -220,7 +220,7 @@ const ChoosePay = () => {
                 <span className="select-none bg-[white] rounded-3x">
                   Nombre
                 </span>
-                {errors.name && <ErrorModalForm text={errors.name.message} />}
+                {errors.name && <ErrorInputs text={errors.name.message} />}
               </label>
               <label className="float-label-container">
                 <input
@@ -242,7 +242,7 @@ const ChoosePay = () => {
                   Apellidos
                 </span>
                 {errors.lastName && (
-                  <ErrorModalForm text={errors.lastName.message} />
+                  <ErrorInputs text={errors.lastName.message} />
                 )}
               </label>
               <label className="float-label-container">
@@ -264,7 +264,7 @@ const ChoosePay = () => {
                   Identificacion
                 </span>
                 {errors.identity && (
-                  <ErrorModalForm text={errors.identity.message} />
+                  <ErrorInputs text={errors.identity.message} />
                 )}
               </label>
               <h2 className="pl-2 font-medium text-lg mt-2 mb-4">
@@ -287,7 +287,7 @@ const ChoosePay = () => {
                 <span className="select-none bg-[white] rounded-3xl">
                   Email
                 </span>
-                {errors.mail && <ErrorModalForm text={errors.mail.message} />}
+                {errors.mail && <ErrorInputs text={errors.mail.message} />}
               </label>
               <label className="float-label-container">
                 <input
@@ -315,7 +315,7 @@ const ChoosePay = () => {
                 <span className="select-none bg-[white] rounded-3xl">
                   Telefono
                 </span>
-                {errors.phone && <ErrorModalForm text={errors.phone.message} />}
+                {errors.phone && <ErrorInputs text={errors.phone.message} />}
               </label>
               <label className="float-label-container">
                 <select
@@ -340,7 +340,7 @@ const ChoosePay = () => {
                 <span className="select-none bg-[white] rounded-3xl">
                   Comunidad
                 </span>
-                {errors.comunity && <ErrorModalForm />}
+                {errors.comunity && <ErrorInputs />}
               </label>
               {comunitySpain !== "" && (
                 <label className="float-label-container">
@@ -372,7 +372,7 @@ const ChoosePay = () => {
                   <span className="select-none bg-[white] rounded-3xl">
                     Província
                   </span>
-                  {errors.province && <ErrorModalForm />}
+                  {errors.province && <ErrorInputs />}
                 </label>
               )}
 
@@ -391,7 +391,7 @@ const ChoosePay = () => {
                     <span className="select-none bg-[white] rounded-3xl">
                       Calle
                     </span>
-                    {errors.street && <ErrorModalForm />}
+                    {errors.street && <ErrorInputs />}
                   </label>
                   <div className="w-full flex gap-1">
                     <label className="float-label-container">
@@ -412,7 +412,7 @@ const ChoosePay = () => {
                         Cód. postal
                       </span>
                       {errors.code && (
-                        <ErrorModalForm text={errors.code.message} />
+                        <ErrorInputs text={errors.code.message} />
                       )}
                     </label>
                     <label className="float-label-container">

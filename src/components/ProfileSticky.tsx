@@ -26,7 +26,7 @@ const ProfileSticky: FC<Props> = ({ isModalLogin, setIsModalLogin }) => {
           {user?.name} &nbsp; {user?.lastName}
         </p>
         {isModalLogin ? (
-          <div className="absolute sm:translate-y-[2.8rem] left-0 bg-[#1f1914ee] w-full max-w-[150px] p-2 transition-all duration-300">
+          <div className="absolute sm:translate-y-[2.8rem] top-0 left-[140px] sm:left-0 bg-[#1f1914ee] w-full max-w-[150px] p-2 transition-all duration-300">
             <ul className="list-none flex flex-col gap-2">
               <li className="cursor-pointer opacity-75 hover:opacity-100">-</li>
               <li className="cursor-pointer opacity-75 hover:opacity-100">-</li>

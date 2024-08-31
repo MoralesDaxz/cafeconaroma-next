@@ -9,26 +9,41 @@ import { TbCoffee } from "react-icons/tb";
 import { FaCircle } from "react-icons/fa6";
 import { usePathname } from "next/navigation";
 import { useControlDisplay } from "@/context/ControlDisplay";
+import { useUser } from "@/context/LoginUser";
+import ProfileSticky from "./ProfileSticky";
 const NavBarMovil = () => {
   const { windowScroll } = useControlDisplay();
   const path = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [indexRoute, setIndexRoute] = useState(-1);
-
+  const { isLogin } = useUser();
+  const [isMenuLogin, setIsMenuLogin] = useState(false);
   useEffect(() => {
-   return setIndexRoute(getRouteIndex(path!));
+    return setIndexRoute(getRouteIndex(path!));
   }, [path]);
 
   return (
     <>
       {isOpen && (
         <div className="text-lg fixed z-30 min-w-[330px] w-full bg-[#2b2a2bf6] flex flex-col items-start justify-start gap-10 min-h-screen pt-4 px-2">
-          <Link
+          {isLogin ? (
+            <ProfileSticky
+              setIsModalLogin={setIsMenuLogin}
+              isModalLogin={isMenuLogin}
+            />
+          ) : (
+            <Link href={"/login"}>
+              <p className="font-semibold py-2 px-4 bg-[#515051] flex items-center justify-center rounded">
+                Iniciar sesión
+              </p>
+            </Link>
+          )}
+          {/*  <Link
             className="bg-[#515051] font-semibold py-3 px-6  flex items-center rounded"
             href={"/login"}
           >
             <p>Iniciar sesión</p>
-          </Link>
+          </Link> */}
           <IoIosClose
             onClick={() => setIsOpen(false)}
             className="w-[2rem] h-[2rem] absolute z-20 top-2 right-5 opacity-90"
@@ -71,9 +86,13 @@ const NavBarMovil = () => {
         </div>
       )}
       {isOpen === false && (
-        <div className={`fixed w-full p-2 z-40 ${
-          windowScroll > 40 ? "bg-[#2b2a2be0] backdrop-blur-sm" : "bg-[#2B2A2B]"
-        }`}>
+        <div
+          className={`fixed w-full p-2 z-40 ${
+            windowScroll > 40
+              ? "bg-[#2b2a2be0] backdrop-blur-sm"
+              : "bg-[#2B2A2B]"
+          }`}
+        >
           <Link href={"/"} className="w-fit flex items-center gap-2">
             <h2 className=" text-2xl">cafeconaroma.com</h2>
             <TbCoffee className="w-[1.5rem] h-[1.5rem]" />

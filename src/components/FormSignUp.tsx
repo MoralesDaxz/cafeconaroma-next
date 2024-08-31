@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { MdRemoveRedEye } from "react-icons/md";
 import { HiEyeOff } from "react-icons/hi";
-import ErrorModalForm from "./ErrorModalForm";
+import ErrorInputs from "./ErrorInputs";
 import { newUser } from "@/api/users";
 import { SignUpData } from "@/interfaces";
 import RecaptchaGoogleV2 from "./RecaptchaGoogleV2";
@@ -166,7 +166,7 @@ const FormSignUp = () => {
                 })}
               />
               <span className="select-none bg-[white] rounded-3xl">Nombre</span>
-              {errors.name && <ErrorModalForm text={errors.name.message} />}
+              {errors.name && <ErrorInputs text={errors.name.message} />}
             </label>
 
             <label className="float-label-container">
@@ -189,7 +189,7 @@ const FormSignUp = () => {
                 Apellido
               </span>
               {errors.lastName && (
-                <ErrorModalForm text={errors.lastName.message} />
+                <ErrorInputs text={errors.lastName.message} />
               )}
             </label>
 
@@ -209,7 +209,7 @@ const FormSignUp = () => {
               />
               <span className="select-none bg-[white] rounded-3xl">Email</span>
               {emailExist && (
-                <ErrorModalForm text={"Este email ya esta registrado."} />
+                <ErrorInputs text={"Este email ya esta registrado."} />
               )}
             </label>
             <label className="float-label-container">
@@ -247,7 +247,7 @@ const FormSignUp = () => {
               >
                 {isPass === "password" ? <MdRemoveRedEye /> : <HiEyeOff />}
               </span>
-              {errors.pass && <ErrorModalForm text={errors.pass.message} />}
+              {errors.pass && <ErrorInputs text={errors.pass.message} />}
             </label>
             <label className="float-label-container">
               <input
@@ -288,10 +288,10 @@ const FormSignUp = () => {
                 )}
               </span>
               {errors.passConfirm && (
-                <ErrorModalForm text={errors.passConfirm.message} />
+                <ErrorInputs text={errors.passConfirm.message} />
               )}
               {!samePassword && (
-                <ErrorModalForm text={"Contraseñas no coinciden"} />
+                <ErrorInputs text={"Contraseñas no coinciden"} />
               )}
             </label>
             <RecaptchaGoogleV2 setCaptchaValue={setCaptchaValue} />

@@ -10,7 +10,7 @@ import ProfileSticky from "./ProfileSticky";
 
 const NavBar = () => {
   const { windowWidth, windowScroll } = useControlDisplay();
-  const { isLogin, user } = useUser();
+  const { isLogin } = useUser();
   const [isMenuLogin, setIsMenuLogin] = useState(false);
   return (
     <div

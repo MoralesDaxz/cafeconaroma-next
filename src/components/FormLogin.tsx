@@ -3,7 +3,7 @@ import React, { Dispatch, FC, SetStateAction, useState } from "react";
 import { useForm } from "react-hook-form";
 import { MdRemoveRedEye } from "react-icons/md";
 import { HiEyeOff } from "react-icons/hi";
-import ErrorModalForm from "./ErrorModalForm";
+import ErrorInputs from "./ErrorInputs";
 import Link from "next/link";
 import RecaptchaGoogleV2 from "./RecaptchaGoogleV2";
 import { loginUser } from "@/api/users";
@@ -89,7 +89,7 @@ const FormLogin: FC<Props> = ({ setValidFormInfo, setIsToast }) => {
           >
             {isPass === "password" ? <MdRemoveRedEye /> : <HiEyeOff />}
           </span>
-          {errors.password && <ErrorModalForm text={errors.password.message} />}
+          {errors.password && <ErrorInputs text={errors.password.message} />}
         </label>
         <Link
           href={"/register"}
