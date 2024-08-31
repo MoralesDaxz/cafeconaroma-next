@@ -21,16 +21,16 @@ type State = {
   setUser: Dispatch<SetStateAction<Init | undefined>>;
   controlRender: number;
   setControlRender: Dispatch<SetStateAction<number>>;
-  isUser: boolean;
-  setIsUser: Dispatch<SetStateAction<boolean>>;
+  isLogin: boolean;
+  setIsLogin: Dispatch<SetStateAction<boolean>>;
 };
 export const QueryUser = createContext<State>({
   user: { name: "", lastName: "", _id: "", message: "" },
   setUser: () => {},
   controlRender: 0,
   setControlRender: () => {},
-  isUser: false,
-  setIsUser: () => {},
+  isLogin: false,
+  setIsLogin: () => {},
 });
 
 export const QueryUserProvider: FC<{ children: React.ReactNode }> = ({
@@ -38,15 +38,15 @@ export const QueryUserProvider: FC<{ children: React.ReactNode }> = ({
 }) => {
   const [user, setUser] = useState<Init>();
   const [controlRender, setControlRender] = useState(0);
-  const [isUser, setIsUser] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
   const updateGlobal = () => {
     const key = getKeyLocal("user");
     if (key !== null && key.name) {
       setUser(key);
-      setIsUser(true);
+      setIsLogin(true);
       return;
     }
-    setIsUser(false);
+    setIsLogin(false);
     return localStorage.setItem("user", JSON.stringify({}));
   };
 
@@ -64,8 +64,8 @@ export const QueryUserProvider: FC<{ children: React.ReactNode }> = ({
         setUser,
         controlRender,
         setControlRender,
-        isUser,
-        setIsUser,
+        isLogin,
+        setIsLogin,
       }}
     >
       {children}

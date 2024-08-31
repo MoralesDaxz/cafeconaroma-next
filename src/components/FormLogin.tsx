@@ -1,5 +1,5 @@
-'use client'
-import React, { useState } from "react";
+"use client";
+import React, { Dispatch, FC, SetStateAction, useState } from "react";
 import { useForm } from "react-hook-form";
 import { MdRemoveRedEye } from "react-icons/md";
 import { HiEyeOff } from "react-icons/hi";
@@ -8,8 +8,12 @@ import Link from "next/link";
 import RecaptchaGoogleV2 from "./RecaptchaGoogleV2";
 import { loginUser } from "@/api/users";
 import { useUser } from "@/context/LoginUser";
+type Props = {
+  setIsToast: Dispatch<SetStateAction<boolean>>;
+  setValidFormInfo: Dispatch<SetStateAction<string>>;
+};
 
-const FormLogin = () => {
+const FormLogin: FC<Props> = ({ setValidFormInfo, setIsToast }) => {
   const { controlRender, setControlRender } = useUser();
   const {
     register,
@@ -23,12 +27,18 @@ const FormLogin = () => {
   });
   const [isPass, setIsPass] = useState("password");
   const [captchaValue, setCaptchaValue] = useState<string | null>(null);
+  const [errorLogin, setErrorLogin] = useState(false);
   const onForm = async (data: any) => {
     const response = await loginUser(data);
     if (response.message === "ok") {
       localStorage.setItem("user", JSON.stringify(response));
+      setValidFormInfo("ok");
+      setIsToast(true);
       return setControlRender(controlRender + 1);
     }
+    setErrorLogin(true);
+    setIsToast(true);
+    setValidFormInfo("fail");
   };
   return (
     <>
@@ -42,7 +52,7 @@ const FormLogin = () => {
             type="email"
             placeholder=""
             required
-            {...register("email")}
+            {...register("email", { onChange: () => setErrorLogin(false) })}
           />
           <span className="select-none bg-[white] rounded-3xl">Email</span>
         </label>
@@ -67,6 +77,7 @@ const FormLogin = () => {
                 value: 9,
                 message: "Mínimo 9 caracteres, Ej.:F1-456789",
               },
+              onChange: () => setErrorLogin(false),
             })}
           />
           <span className="select-none bg-[white] rounded-3xl">Contraseña</span>
@@ -96,9 +107,9 @@ const FormLogin = () => {
         <input
           type="submit"
           value={"Acceder"}
-          disabled={captchaValue === null ? true : false}
+          disabled={captchaValue === null || errorLogin ? true : false}
           className={`self-center sm:w-[50%] bg-[#2B5A45] text-[#f4f7f3] p-4 rounded-md cursor-pointer mt-5 ${
-            captchaValue === null ? "opacity-50" : "opacity-100"
+            captchaValue === null || errorLogin  ? "opacity-50" : "opacity-100"
           }`}
         />
       </form>

@@ -1,15 +1,17 @@
+'use client'
 import { useControlDisplay } from "@/context/ControlDisplay";
 import { useUser } from "@/context/LoginUser";
 import { route } from "@/utils/boxRoutes";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { LuPhone } from "react-icons/lu";
 import { TbCoffee } from "react-icons/tb";
 import ProfileSticky from "./ProfileSticky";
 
 const NavBar = () => {
   const { windowWidth, windowScroll } = useControlDisplay();
-  const { isUser, user } = useUser();
+  const { isLogin, user } = useUser();
+  const [isMenuLogin, setIsMenuLogin] = useState(false);
   return (
     <div
       className={`text-lg fixed z-10 min-w-[330px] w-full h-16 flex justify-evenly items-center transition-all duration-300 ${
@@ -38,8 +40,8 @@ const NavBar = () => {
         </div>
       )}
       {/* Control de inicio de Sesion */}
-      {isUser ? (
-        <ProfileSticky />
+      {isLogin ? (
+        <ProfileSticky setIsModalLogin={setIsMenuLogin} isModalLogin={isMenuLogin}/>
       ) : (
         <Link href={"/login"}>
           <p className="font-semibold py-2 px-4 bg-[#515051] flex items-center justify-center rounded">

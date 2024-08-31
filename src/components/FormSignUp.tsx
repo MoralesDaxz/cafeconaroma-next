@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { MdRemoveRedEye } from "react-icons/md";
@@ -35,6 +35,7 @@ const FormSignUp = () => {
   const [emailExist, setEmailExist] = useState(false);
   const [isToast, setIsToast] = useState(false);
   const [isSubscription, setIsSubscription] = useState("");
+  const [errorRegister, setErrorRegister] = useState(false);
   const borderSubscription =
     "border-2 border-[#2fd32ae7] shadow-[#30d32ab2] shadow-lg";
   const cupCoffee =
@@ -56,7 +57,10 @@ const FormSignUp = () => {
       }, 3500);
       return;
     }
+    setIsToast(true);
+    setErrorRegister(true);
     setEmailExist(true);
+    return;
   };
 
   return (
@@ -136,7 +140,12 @@ const FormSignUp = () => {
             />
           </label>
         </div>
-        {isSubscription === "" && <p className="opacity-80 text-black text-lg sm:text-xl text-center"> Seleccione una opción.</p>}
+        {isSubscription === "" && (
+          <p className="opacity-80 text-black text-lg sm:text-xl text-center">
+            {" "}
+            Seleccione una opción.
+          </p>
+        )}
 
         {isSubscription !== "" && (
           <>
@@ -191,7 +200,10 @@ const FormSignUp = () => {
                 placeholder=""
                 required
                 {...register("email", {
-                  onChange: () => setEmailExist(false),
+                  onChange: () => {
+                    setEmailExist(false);
+                    setErrorRegister(false);
+                  },
                   onBlur: () => setEmailExist(false),
                 })}
               />
@@ -286,23 +298,37 @@ const FormSignUp = () => {
             <input
               type="submit"
               value={"Registrarme"}
-              disabled={captchaValue === null ? true : false}
+              disabled={captchaValue === null && errorRegister ? true : false}
               className={`self-center sm:w-[50%] bg-[#2B5A45] text-[#f4f7f3] p-4 rounded-md cursor-pointer mt-5 ${
-                captchaValue === null ? "opacity-50" : "opacity-100"
+                captchaValue === null && errorRegister
+                  ? "opacity-50"
+                  : "opacity-100"
               }`}
             />
           </>
         )}
       </form>
 
-      <ToastAlert
+      {/*     <ToastAlert
         valid
         isToast={isToast}
         setIsToast={setIsToast}
         title="Registro exitoso!"
       >
-        <p className="font-light text-sm">Redidirigiendo para acceder...</p>
-      </ToastAlert>
+      
+      </ToastAlert> */}
+      {isToast && (
+        <ToastAlert
+          title={errorRegister ? "Error en datos." : "Registro exitoso!"}
+          valid={errorRegister ? false : true}
+          isToast={true}
+          setIsToast={setIsToast}
+        >
+          {!errorRegister && (
+            <p className="font-light text-sm">Redidirigiendo para acceder...</p>
+          )}
+        </ToastAlert>
+      )}
     </>
   );
 };

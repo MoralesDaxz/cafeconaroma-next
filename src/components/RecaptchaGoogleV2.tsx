@@ -6,7 +6,6 @@ type Props = {
 };
 const RecaptchaGoogleV2: FC<Props> = ({ setCaptchaValue }) => {
   const KEY_RECAPTCHA = process.env.NEXT_PUBLIC_KEY_RECAPTCHA;
-  /*  const [captchaValue, setCaptchaValue] = useState<string | null>(null); */
   const recaptchaRef = useRef<ReCAPTCHA>(null);
   return (
     <>
@@ -17,6 +16,7 @@ const RecaptchaGoogleV2: FC<Props> = ({ setCaptchaValue }) => {
         onExpired={() => setCaptchaValue(null)}
         onChange={() => setCaptchaValue("NO_null")}
         theme="light"
+        
       />
     </>
   );

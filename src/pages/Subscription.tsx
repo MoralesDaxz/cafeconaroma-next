@@ -44,7 +44,7 @@ const Subscription = () => {
                   </p>
                   <Link
                     className="w-fit p-4 bg-[#19921994] rounded-md hover:scale-110 text-center border-2 border-[#48ad48b6] hover:border-[#53f84de7] transition-all duration-300"
-                    href={"/login"}
+                    href={"/register"}
                   >
                     Suscripcion {item.title}
                   </Link>

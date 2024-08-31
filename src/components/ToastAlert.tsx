@@ -46,7 +46,7 @@ const ToastAlert: FC<Props> = ({
               className="w-[30px] h-[30px]"
             />
           )}
-          <p>{title}</p>
+          <p className="text-white">{title}</p>
         </div>
         {children}
       </div>
