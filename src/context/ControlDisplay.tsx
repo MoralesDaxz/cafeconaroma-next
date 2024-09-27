@@ -42,7 +42,7 @@ export const ControlDisplayProvider: FC<{ children: React.ReactNode }> = ({
         window.removeEventListener("scroll", () => handleScroll());
       };
     }
-    return;
+    
   }, []);
   return (
     <ControlDisplay.Provider
